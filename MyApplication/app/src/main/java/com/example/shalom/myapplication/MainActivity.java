@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
     protected void onRestart() {
         super.onRestart();
         android.util.Log.d(ACTIVITY_LIFE_TAG , "onRestart()");
+        int q;
     }
 
     @Override
