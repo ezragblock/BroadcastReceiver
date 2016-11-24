@@ -1,52 +1,30 @@
 package com.example.shalom.myapplication;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends Activity {
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
-    final String ACTIVITY_LIFE_TAG = "activity lifecycle";
-    @Override
-    protected void onStart() {
-        super.onStart();
-        android.util.Log.d(ACTIVITY_LIFE_TAG , "onStart()");
-    }
+public class MainActivity extends Activity
+{
+    private List<Item> myItemList;
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        android.util.Log.d(ACTIVITY_LIFE_TAG , "onRestart()");
-        int q;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        android.util.Log.d(ACTIVITY_LIFE_TAG , "onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        android.util.Log.d(ACTIVITY_LIFE_TAG , "onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        android.util.Log.d(ACTIVITY_LIFE_TAG , "onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        android.util.Log.d(ACTIVITY_LIFE_TAG , "onDestory()");
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    void initItemList(int size)
+    {
+        myItemList = new ArrayList<Item>();
+        for (int i = 0; i < size; i++)
+        {
+            int day = i % 27 + 1;
+            int month = i % 12;
+            int year = i % 10 + 1990;
+            Calendar calender = new GregorianCalendar(year, month, day);
+            Item item = new Item(i, "item " + i, calender.getTime());
+            myItemList.add(item);
+        }
     }
 }
