@@ -7,5 +7,5 @@ package com.example.shalom.myapplication;
 public class Address {
     public String state;
     public String city;
-    public String street;//shy is the king
+    public String street;
 }
