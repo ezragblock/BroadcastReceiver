@@ -1,4 +1,7 @@
-package com.example.shalom.myapplication;
+package com.example.shalom.myapplication.datasource;
+
+import com.example.shalom.myapplication.entities.Business;
+import com.example.shalom.myapplication.entities.User;
 
 import java.util.List;
 

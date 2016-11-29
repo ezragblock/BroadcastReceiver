@@ -1,4 +1,4 @@
-package com.example.shalom.myapplication;
+package com.example.shalom.myapplication.entities;
 
 /**
  * Created by Shalom on 11/26/2016.
