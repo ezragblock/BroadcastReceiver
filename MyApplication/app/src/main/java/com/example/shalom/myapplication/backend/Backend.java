@@ -6,7 +6,7 @@ package com.example.shalom.myapplication.backend;
 
 public class Backend
 {
-    public void addUser(User  user)
+    public void addUser(User user)
     {
 
     }
