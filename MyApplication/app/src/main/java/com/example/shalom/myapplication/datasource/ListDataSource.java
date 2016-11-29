@@ -1,21 +1,18 @@
 package com.example.shalom.myapplication.datasource;
 
-import android.app.Activity;
-
 import com.example.shalom.myapplication.entities.Business;
 import com.example.shalom.myapplication.entities.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Shalom on 11/26/2016.
  */
 
-public class ListDataSource
+public class ListDataSource implements IDataSource
 {
     public ArrayList<Business> businesses;
-    public ArrayList<com.example.shalom.myapplication.Activity> activities;
+    public ArrayList<com.example.shalom.myapplication.entities.Activity> activities;
     public ArrayList<User> users;
 
     public void addUser(User user)
@@ -28,20 +25,20 @@ public class ListDataSource
         businesses.add(b);
     }
 
-    public void addActivity(com.example.shalom.myapplication.Activity activity)
+    public void addActivity(com.example.shalom.myapplication.entities.Activity activity)
     {
         activities.add(activity);
     }
 
     public ArrayList<Business> getBusinesses() {
-        return businesses.clone();
+        return (ArrayList<Business>)businesses.clone();
     }
 
-    public ArrayList<com.example.shalom.myapplication.Activity> getActivities() {
-        return activities.clone();
+    public ArrayList<com.example.shalom.myapplication.entities.Activity> getActivities() {
+        return (ArrayList<com.example.shalom.myapplication.entities.Activity>)activities.clone();
     }
 
     public ArrayList<User> getUsers() {
-        return users.clone();
+        return (ArrayList<User>)users.clone();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.shalom.myapplication;
+package com.example.shalom.myapplication.entities;
 
 import java.util.Date;
 
