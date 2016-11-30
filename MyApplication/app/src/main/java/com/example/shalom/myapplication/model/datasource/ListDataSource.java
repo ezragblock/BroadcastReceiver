@@ -1,8 +1,9 @@
-package com.example.shalom.myapplication.datasource;
+package com.example.shalom.myapplication.model.datasource;
 
-import com.example.shalom.myapplication.backend.IDataSource;
-import com.example.shalom.myapplication.entities.Business;
-import com.example.shalom.myapplication.entities.User;
+import com.example.shalom.myapplication.model.backend.IDataSource;
+import com.example.shalom.myapplication.model.entities.Business;
+import com.example.shalom.myapplication.model.entities.User;
+import com.example.shalom.myapplication.model.entities.Activity;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class ListDataSource implements IDataSource
 {
     public ArrayList<Business> businesses;
-    public ArrayList<com.example.shalom.myapplication.entities.Activity> activities;
+    public ArrayList<Activity> activities;
     public ArrayList<User> users;
 
     public void addUser(User user)
@@ -26,7 +27,7 @@ public class ListDataSource implements IDataSource
         businesses.add(b);
     }
 
-    public void addActivity(com.example.shalom.myapplication.entities.Activity activity)
+    public void addActivity(Activity activity)
     {
         activities.add(activity);
     }
@@ -35,9 +36,9 @@ public class ListDataSource implements IDataSource
         return (ArrayList<Business>)businesses.clone();
     }
 
-    public ArrayList<com.example.shalom.myapplication.entities.Activity> getActivities()
+    public ArrayList<Activity> getActivities()
     {
-        return (ArrayList<com.example.shalom.myapplication.entities.Activity>)activities.clone();
+        return (ArrayList<Activity>)activities.clone();
     }
 
     public ArrayList<User> getUsers() {

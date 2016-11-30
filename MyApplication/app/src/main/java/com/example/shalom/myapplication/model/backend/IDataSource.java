@@ -1,8 +1,8 @@
-package com.example.shalom.myapplication.backend;
+package com.example.shalom.myapplication.model.backend;
 
-import com.example.shalom.myapplication.entities.Activity;
-import com.example.shalom.myapplication.entities.Business;
-import com.example.shalom.myapplication.entities.User;
+import com.example.shalom.myapplication.model.entities.Activity;
+import com.example.shalom.myapplication.model.entities.Business;
+import com.example.shalom.myapplication.model.entities.User;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,8 @@
-package com.example.shalom.myapplication.backend;
+package com.example.shalom.myapplication.model.backend;
 
-import com.example.shalom.myapplication.entities.Activity;
-import com.example.shalom.myapplication.datasource.FactoryDataSource;
-import com.example.shalom.myapplication.entities.Business;
-import com.example.shalom.myapplication.entities.User;
+import com.example.shalom.myapplication.model.entities.Activity;
+import com.example.shalom.myapplication.model.entities.Business;
+import com.example.shalom.myapplication.model.entities.User;
 
 import java.util.ArrayList;
 
@@ -45,7 +44,7 @@ public class Backend
         return theDataSource.getBusinesses();
     }
 
-    public ArrayList<com.example.shalom.myapplication.entities.Activity> getAllActivites()
+    public ArrayList<Activity> getAllActivites()
     {
         return theDataSource.getActivities();
     }
