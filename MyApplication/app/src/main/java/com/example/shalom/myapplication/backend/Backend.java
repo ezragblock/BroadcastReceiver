@@ -2,7 +2,6 @@ package com.example.shalom.myapplication.backend;
 
 import com.example.shalom.myapplication.entities.Activity;
 import com.example.shalom.myapplication.datasource.FactoryDataSource;
-import com.example.shalom.myapplication.datasource.IDataSource;
 import com.example.shalom.myapplication.entities.Business;
 import com.example.shalom.myapplication.entities.User;
 

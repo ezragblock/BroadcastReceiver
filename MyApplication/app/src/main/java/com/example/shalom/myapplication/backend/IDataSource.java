@@ -1,4 +1,4 @@
-package com.example.shalom.myapplication.datasource;
+package com.example.shalom.myapplication.backend;
 
 import com.example.shalom.myapplication.entities.Activity;
 import com.example.shalom.myapplication.entities.Business;
