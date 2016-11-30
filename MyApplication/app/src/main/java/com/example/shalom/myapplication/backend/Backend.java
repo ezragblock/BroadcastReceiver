@@ -41,12 +41,12 @@ public class Backend
         return theDataSource.getUsers();
     }
 
-    public  ArrayList<Business> getAllBusinesses()
+    public ArrayList<Business> getAllBusinesses()
     {
         return theDataSource.getBusinesses();
     }
 
-    public  ArrayList<com.example.shalom.myapplication.entities.Activity> getAllActivites()
+    public ArrayList<com.example.shalom.myapplication.entities.Activity> getAllActivites()
     {
         return theDataSource.getActivities();
     }
