@@ -34,7 +34,8 @@ public class ListDataSource implements IDataSource
         return (ArrayList<Business>)businesses.clone();
     }
 
-    public ArrayList<com.example.shalom.myapplication.entities.Activity> getActivities() {
+    public ArrayList<com.example.shalom.myapplication.entities.Activity> getActivities()
+    {
         return (ArrayList<com.example.shalom.myapplication.entities.Activity>)activities.clone();
     }
 

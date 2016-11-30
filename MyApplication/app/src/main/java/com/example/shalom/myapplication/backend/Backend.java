@@ -6,6 +6,8 @@ import com.example.shalom.myapplication.datasource.IDataSource;
 import com.example.shalom.myapplication.entities.Business;
 import com.example.shalom.myapplication.entities.User;
 
+import java.util.ArrayList;
+
 /**
  * Created by yedid on 11/29/2016.
  */
@@ -33,4 +35,21 @@ public class Backend
         //make sure the business id is of a existent business
         theDataSource.addActivity(activity);
     }
+
+    public ArrayList<User> getAllUsers()
+    {
+        return theDataSource.getUsers();
+    }
+
+    public  ArrayList<Business> getAllBusinesses()
+    {
+        return theDataSource.getBusinesses();
+    }
+
+    public  ArrayList<com.example.shalom.myapplication.entities.Activity> getAllActivites()
+    {
+        return theDataSource.getActivities();
+    }
+
+
 }
