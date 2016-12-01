@@ -14,7 +14,9 @@ import java.util.ArrayList;
 
 public interface IDataSource
 {
-    Boolean add(ContentValues values);
+    void addUser(ContentValues values);
+    void addBusiness(ContentValues values);
+    void addActivity(ContentValues values);
 
     ArrayList<Activity> getActivities();
     ArrayList<User> getUsers();

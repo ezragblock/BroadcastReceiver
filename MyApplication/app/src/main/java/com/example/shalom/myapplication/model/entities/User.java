@@ -4,10 +4,18 @@ package com.example.shalom.myapplication.model.entities;
  * Created by Shalom on 11/26/2016.
  */
 
-public class User {
+public class User
+{
     int userNum;
     String username;
     String password;
+
+    public User(int userNum, String username, String password)
+    {
+        this.userNum = userNum;
+        this.username = username;
+        this.password = password;
+    }
 
     public int getUserNum() {
         return userNum;

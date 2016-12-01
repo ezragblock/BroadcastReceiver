@@ -15,6 +15,17 @@ public class Activity {
     int price;
     int businessId;
 
+    public Activity(ActivityType activityType, String description, String state, Date beginningDate, Date finishDate, int price, int businessId)
+    {
+        this.activityType = activityType;
+        this.description = description;
+        this.state = state;
+        this.beginningDate = beginningDate;
+        this.finishDate = finishDate;
+        this.price = price;
+        this.businessId = businessId;
+    }
+
     public ActivityType getActivityType() {
         return activityType;
     }

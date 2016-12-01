@@ -1,6 +1,10 @@
 package com.example.shalom.myapplication.model.datasource;
 
+import android.content.ContentValues;
+
 import com.example.shalom.myapplication.model.backend.IDataSource;
+import com.example.shalom.myapplication.model.entities.ActivityType;
+import com.example.shalom.myapplication.model.entities.Address;
 import com.example.shalom.myapplication.model.entities.Business;
 import com.example.shalom.myapplication.model.entities.User;
 import com.example.shalom.myapplication.model.entities.Activity;
@@ -17,24 +21,41 @@ public class ListDataSource implements IDataSource
     public ArrayList<Activity> activities;
     public ArrayList<User> users;
 
-    public void addUser(User user)
+    private boolean UserUpdate;
+    private boolean activityUpdate;
+    private boolean businessUpdate;
+
+    public void addUser(ContentValues user)
     {
-        users.add(user);
+        UserUpdate=true;
+        users.add(new User(user.getAsInteger("userNum"),
+                           user.getAsString("username"),
+                           user.getAsString("password")));
     }
 
-    public void addBusiness(Business b)
+    public void addBusiness(ContentValues values)
     {
-        businesses.add(b);
+        businessUpdate=true;
+        businesses.add(new Business(values.getAsInteger("id"),
+                                    values.getAsString("name"),
+                                    new Address(values.getAsString("state"),
+                                                values.getAsString("city"),
+                                                values.getAsString("street")),
+                                    values.getAsString("telephoneNumber"),
+                                    values.getAsString("telephoneNumber"),
+                                    values.getAsString("websiteAddress")));
     }
 
-    public void addActivity(Activity activity)
+    public void addActivity(ContentValues values)
     {
-        activities.add(activity);
+        activityUpdate=true;
+        ////////////////////////
     }
 
-    public ArrayList<Business> getBusinesses() {
+    public ArrayList<Business> getBusinesses()
+    {
         return (ArrayList<Business>)businesses.clone();
-    }
+    } ///צריך להחזיר cursor
 
     public ArrayList<Activity> getActivities()
     {

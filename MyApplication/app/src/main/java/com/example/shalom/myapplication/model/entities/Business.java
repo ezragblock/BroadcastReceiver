@@ -13,6 +13,16 @@ public class Business
     String email;
     String websiteAddress;
 
+    public Business(int id, String name, Address address, String telephoneNumber, String email, String websiteAddress)
+    {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.telephoneNumber = telephoneNumber;
+        this.email = email;
+        this.websiteAddress = websiteAddress;
+    }
+
     public int getId() {
         return id;
     }
@@ -49,7 +59,8 @@ public class Business
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(String telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber)
+    {
         this.telephoneNumber = telephoneNumber;
     }
 
