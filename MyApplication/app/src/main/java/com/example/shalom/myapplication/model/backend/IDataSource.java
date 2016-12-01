@@ -1,5 +1,7 @@
 package com.example.shalom.myapplication.model.backend;
 
+import android.content.ContentValues;
+
 import com.example.shalom.myapplication.model.entities.Activity;
 import com.example.shalom.myapplication.model.entities.Business;
 import com.example.shalom.myapplication.model.entities.User;
@@ -12,9 +14,7 @@ import java.util.ArrayList;
 
 public interface IDataSource
 {
-    void addUser(User user);
-    void addActivity(Activity activity);
-    void addBusiness(Business user);
+    Boolean add(ContentValues values);
 
     ArrayList<Activity> getActivities();
     ArrayList<User> getUsers();
