@@ -1,4 +1,4 @@
-package com.example.shalom.myapplication;
+package com.example.shalom.myapplication.Controller;
 
 import android.app.Activity;
 import android.content.ClipData;
