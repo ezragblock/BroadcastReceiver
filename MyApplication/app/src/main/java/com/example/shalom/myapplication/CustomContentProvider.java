@@ -2,9 +2,14 @@ package com.example.shalom.myapplication;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+
+import com.example.shalom.myapplication.model.backend.FactoryDataSource;
+import com.example.shalom.myapplication.model.backend.IDataSource;
+import com.example.shalom.myapplication.model.entities.Activity;
 
 /**
  * Created by Shalom on 11/26/2016.
@@ -12,9 +17,18 @@ import android.support.annotation.Nullable;
 
 public class CustomContentProvider extends ContentProvider {
     static final String PROVIDER_NAME = "com.example.shalom.myapplication";
-    // NOT COMPLETE!!! NEED TO FIX THE URI
-    static final String URL = "content://" + PROVIDER_NAME + "/";
-    static final Uri CONTENT_URI = Uri.parse(URL);
+
+    public static IDataSource DB_Manager = FactoryDataSource.getDataBase();
+
+    static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+    //static constructor for initializing static attributes
+    static
+    {
+        sUriMatcher.addURI(PROVIDER_NAME,"businesses",1);
+        sUriMatcher.addURI(PROVIDER_NAME,"activities",2);
+        sUriMatcher.addURI(PROVIDER_NAME,"users",3);
+    }
 
     @Nullable
     @Override
@@ -41,6 +55,19 @@ public class CustomContentProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values)
     {
+        String table = uri.getAuthority();
+        switch(uri.getPath())
+        {
+            case "activities":
+                Activity activity = new Activity();
+                break;
+            case "buisnesses":
+                break;
+            case "users":
+                break;
+            default:
+
+        }
         return null;
     }
     @Override
