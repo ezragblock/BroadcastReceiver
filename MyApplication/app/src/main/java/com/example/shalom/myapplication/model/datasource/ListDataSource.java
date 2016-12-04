@@ -1,5 +1,6 @@
 package com.example.shalom.myapplication.model.datasource;
 
+import java.util.Date;
 import android.content.ContentValues;
 
 import com.example.shalom.myapplication.model.backend.IDataSource;
@@ -49,7 +50,13 @@ public class ListDataSource implements IDataSource
     public void addActivity(ContentValues values)
     {
         activityUpdate=true;
-        ////////////////////////
+        activities.add(new Activity(ActivityType.valueOf(values.getAsString("activityType")),
+                                    values.getAsString("description"),
+                                    values.getAsString("state"),
+                                    new Date(values.getAsString("beginingDate")),
+                                    new Date(values.getAsString("endDate")),
+                                    values.getAsInteger("price"),
+                                    values.getAsInteger("businessId"));
     }
 
     public ArrayList<Business> getBusinesses()
