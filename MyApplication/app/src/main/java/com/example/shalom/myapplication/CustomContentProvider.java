@@ -4,8 +4,10 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.example.shalom.myapplication.model.backend.FactoryDataSource;
 import com.example.shalom.myapplication.model.backend.IDataSource;
@@ -34,8 +36,27 @@ public class CustomContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
-        //need the get functions from the IDataSource to return a Courser
-        return null;
+        //Choosing database category
+        Cursor c;
+        switch (sUriMatcher.match(uri)) {
+            case 1://businesses
+                c = DB_Manager.getBusinesses();
+                break;
+            case 2://activities
+                c = DB_Manager.getActivities();
+                break;
+            case 3://users
+                c = DB_Manager.getUsers();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported URI: " + uri);
+        }
+
+        //Choosing Columns
+
+
+        // Return the cursor to the result set
+        return c;
     }
     @Override
     public String getType(Uri uri)

@@ -2,6 +2,7 @@ package com.example.shalom.myapplication.model.datasource;
 
 import java.util.Date;
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.example.shalom.myapplication.model.backend.IDataSource;
 import com.example.shalom.myapplication.model.entities.ActivityType;
@@ -59,17 +60,17 @@ public class ListDataSource implements IDataSource
                                     values.getAsInteger("businessId"));
     }
 
-    public ArrayList<Business> getBusinesses()
+    public Cursor getBusinesses()
     {
-        return (ArrayList<Business>)businesses.clone();
+        //return (ArrayList<Business>)businesses.clone();
     } ///צריך להחזיר cursor
 
-    public ArrayList<Activity> getActivities()
+    public Cursor getActivities()
     {
-        return (ArrayList<Activity>)activities.clone();
+        //return (ArrayList<Activity>)activities.clone();
     }
 
-    public ArrayList<User> getUsers() {
-        return (ArrayList<User>)users.clone();
+    public Cursor getUsers() {
+        //return (ArrayList<User>)users.clone();
     }
 }
