@@ -1,6 +1,7 @@
 package com.example.shalom.myapplication.model.backend;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.example.shalom.myapplication.model.entities.Activity;
 import com.example.shalom.myapplication.model.entities.Business;
@@ -18,7 +19,7 @@ public interface IDataSource
     void addBusiness(ContentValues values);
     void addActivity(ContentValues values);
 
-    ArrayList<Activity> getActivities();
-    ArrayList<User> getUsers();
-    ArrayList<Business> getBusinesses();
+    Cursor getActivities();
+    Cursor getUsers();
+    Cursor getBusinesses();
 }

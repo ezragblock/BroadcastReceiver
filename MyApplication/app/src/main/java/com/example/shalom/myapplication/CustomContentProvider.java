@@ -34,6 +34,7 @@ public class CustomContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
+        //need the get functions from the IDataSource to return a Courser
         return null;
     }
     @Override
@@ -55,24 +56,24 @@ public class CustomContentProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values)
     {
-        String table = uri.getAuthority();
-        switch(uri.getPath())
+        switch(uri.getPath().substring(1))
         {
             case "activities":
-                Activity activity = new Activity();
-                break;
+                DB_Manager.addActivity(values);
+                return null;
             case "buisnesses":
-                break;
+                DB_Manager.addBusiness(values);
+                return null;
             case "users":
-                break;
+                DB_Manager.addUser(values);
+                return null;
             default:
-
+                throw new IllegalArgumentException("This Content Provider doesn't support this type of thing");
         }
-        return null;
     }
     @Override
     public boolean onCreate()
     {
-        return false;
+        return true;
     }
 }
