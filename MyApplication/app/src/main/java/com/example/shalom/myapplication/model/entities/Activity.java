@@ -15,6 +15,7 @@ public class Activity {
     int price;
     int businessId;
 
+
     public Activity(ActivityType activityType, String description, String state, Date beginningDate, Date finishDate, int price, int businessId)
     {
         this.activityType = activityType;
@@ -80,5 +81,19 @@ public class Activity {
 
     public void setBusinessId(int businessId) {
         this.businessId = businessId;
+    }
+
+    public static String [] COLUMNS()
+    {
+        String[] COLUMNS = {
+                "ActivityType",
+                "description",
+                "state",
+                "beginningDate",
+                "finishDate",
+                "price",
+                "businessId"
+        };
+        return COLUMNS;
     }
 }

@@ -3,6 +3,7 @@ package com.example.shalom.myapplication.model.datasource;
 import java.util.Date;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 
 import com.example.shalom.myapplication.model.backend.IDataSource;
 import com.example.shalom.myapplication.model.entities.ActivityType;
@@ -57,20 +58,84 @@ public class ListDataSource implements IDataSource
                                     new Date(values.getAsString("beginingDate")),
                                     new Date(values.getAsString("endDate")),
                                     values.getAsInteger("price"),
-                                    values.getAsInteger("businessId"));
+                                    values.getAsInteger("businessId")));
     }
 
+    //this functions convert the data from the list to matrixCursor for the contentProvider
     public Cursor getBusinesses()
     {
-        //return (ArrayList<Business>)businesses.clone();
-    } ///צריך להחזיר cursor
+        MatrixCursor c = new MatrixCursor(Business.COLUMNS());
+
+        for (Business business:businesses)
+        {
+            ArrayList<String> temp = new ArrayList<>();
+            try
+            {
+                temp.add(String.valueOf(business.getId()));
+                temp.add(business.getName());
+                temp.add(business.getTelephoneNumber());
+                temp.add(business.getEmail());
+                temp.add(business.getWebsiteAddress());
+
+                c.addRow(temp);
+                return c;
+            }
+            catch (Exception e)//we dont know yet what kind of exception can happened hear (not yet tested)
+            {
+                return null;
+            }
+        }
+        return null;
+    }
 
     public Cursor getActivities()
     {
-        //return (ArrayList<Activity>)activities.clone();
+        MatrixCursor c = new MatrixCursor(Activity.COLUMNS());
+
+        for (Activity activity:activities)
+        {
+            ArrayList<String> temp = new ArrayList<>();
+            try {
+                temp.add(String.valueOf(activity.getActivityType()));
+                temp.add(activity.getDescription());
+                temp.add(activity.getState());
+                temp.add(String.valueOf(activity.getBeginningDate()));
+                temp.add(String.valueOf(activity.getFinishDate()));
+                temp.add(String.valueOf(activity.getPrice()));
+                temp.add(String.valueOf(activity.getBusinessId()));
+
+                c.addRow(temp);
+                return c;
+            }
+            catch (Exception e)//we dont know yet what kind of exception can happened hear (not yet tested)
+            {
+                return null;
+            }
+        }
+        return null;
     }
 
-    public Cursor getUsers() {
-        //return (ArrayList<User>)users.clone();
+    public Cursor getUsers()
+    {
+        MatrixCursor c = new MatrixCursor(Activity.COLUMNS());
+
+        for (User user:users)
+        {
+            ArrayList<String> temp = new ArrayList<>();
+            try
+            {
+                temp.add(String.valueOf(user.getUserNum()));
+                temp.add(user.getUsername());
+                temp.add(user.getPassword());
+
+                c.addRow(temp);
+                return c;
+            }
+            catch (Exception e)//we dont know yet what kind of exception can happened hear (not yet tested)
+            {
+                return null;
+            }
+        }
+        return null;
     }
 }

@@ -72,5 +72,16 @@ public class Business
         this.websiteAddress = websiteAddress;
     }
 
+    public static String[] COLUMNS()
+    {
+        String[] COLOMNS = {
+                "id",
+                "name",
+                "telephoneNumber",
+                "email",
+                "websiteAddress"
+        };
+        return COLOMNS;
+    }
 
 }

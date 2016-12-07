@@ -16,4 +16,15 @@ public class Address
         this.city = city;
         this.street = street;
     }
+
+    public static String [] COLUMNS()
+    {
+        String[] COLUMNS = {
+              "state",
+              "city",
+              "street"
+        };
+        return COLUMNS;
+    }
+
 }

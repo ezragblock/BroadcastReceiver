@@ -40,4 +40,15 @@ public class User
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public static String[] COLUMNS()
+    {
+        String[] COLUMNS = {
+               "userNum",
+                "username",
+                "password"
+        };
+        return COLUMNS;
+    }
+
 }

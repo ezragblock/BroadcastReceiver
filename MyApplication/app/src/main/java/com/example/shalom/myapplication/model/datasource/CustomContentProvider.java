@@ -1,4 +1,4 @@
-package com.example.shalom.myapplication;
+package com.example.shalom.myapplication.model.datasource;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
