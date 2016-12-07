@@ -52,10 +52,8 @@ public class CustomContentProvider extends ContentProvider {
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
 
-        //Choosing Columns
+        //Delete Columns witht the projection and selection
 
-
-        // Return the cursor to the result set
         return c;
     }
     @Override
