@@ -90,52 +90,11 @@ public class ListDataSource implements IDataSource
 
     public Cursor getActivities()
     {
-        MatrixCursor c = new MatrixCursor(Activity.COLUMNS());
-
-        for (Activity activity:activities)
-        {
-            ArrayList<String> temp = new ArrayList<>();
-            try {
-                temp.add(String.valueOf(activity.getActivityType()));
-                temp.add(activity.getDescription());
-                temp.add(activity.getState());
-                temp.add(String.valueOf(activity.getBeginningDate()));
-                temp.add(String.valueOf(activity.getFinishDate()));
-                temp.add(String.valueOf(activity.getPrice()));
-                temp.add(String.valueOf(activity.getBusinessId()));
-
-                c.addRow(temp);
-                return c;
-            }
-            catch (Exception e)//we dont know yet what kind of exception can happened hear (not yet tested)
-            {
-                return null;
-            }
-        }
-        return null;
+        return Activity.getCursorFromList(activities);
     }
 
     public Cursor getUsers()
     {
-        MatrixCursor c = new MatrixCursor(Activity.COLUMNS());
-
-        for (User user:users)
-        {
-            ArrayList<String> temp = new ArrayList<>();
-            try
-            {
-                temp.add(String.valueOf(user.getUserNum()));
-                temp.add(user.getUsername());
-                temp.add(user.getPassword());
-
-                c.addRow(temp);
-                return c;
-            }
-            catch (Exception e)//we dont know yet what kind of exception can happened hear (not yet tested)
-            {
-                return null;
-            }
-        }
-        return null;
+        return User.getCursorFromList(users);
     }
 }

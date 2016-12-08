@@ -1,5 +1,10 @@
 package com.example.shalom.myapplication.model.entities;
 
+import android.database.Cursor;
+
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Created by Shalom on 11/26/2016.
  */
