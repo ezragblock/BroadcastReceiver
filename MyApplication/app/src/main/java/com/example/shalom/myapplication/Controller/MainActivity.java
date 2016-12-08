@@ -12,6 +12,11 @@ import java.util.List;
 
 public class MainActivity extends Activity
 {
+    @Override
+    public void onCreate(Bundle bundle)
+    {
+        super.onCreate(bundle);
 
+    }
 
 }
