@@ -15,6 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Controller.MainOptions" />
+        <activity
+            android:name=".Controller.AddBusiness"
+            android:label="@string/title_activity_add_business"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

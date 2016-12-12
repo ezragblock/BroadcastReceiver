@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_create_business">CreateBusiness</string>
+    <string name="title_activity_add_business">AddBusiness</string>
 </resources>
