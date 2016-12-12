@@ -15,18 +15,25 @@
         <Button
             android:id="@+id/addBusiness"
             android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+        </Button>
+        <TextView
             android:layout_width="wrap_content"
-            ></Button>
+            android:layout_height="wrap_content"
+            android:text ="hello"
+            android:textSize="23mm"/>
     </LinearLayout>
     <LinearLayout
-    android:id="@+id/businessLayout"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/addActivity"
-        android:layout_height="wrap_content"
+        android:id="@+id/activityLayout"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        ></Button>
-</LinearLayout>
+            android:gravity="right"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/addActivity"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="hello">
+        </Button>
+    </LinearLayout>
 </LinearLayout>

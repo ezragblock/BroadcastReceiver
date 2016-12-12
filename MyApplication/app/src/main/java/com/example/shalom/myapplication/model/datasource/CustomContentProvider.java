@@ -17,9 +17,8 @@ import com.example.shalom.myapplication.model.entities.Activity;
  * Created by Shalom on 11/26/2016.
  */
 
-public class CustomContentProvider extends ContentProvider
-{
-    static final String PROVIDER_NAME = "com.example.shalom.myapplication";
+public class CustomContentProvider extends ContentProvider {
+    static final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
 
     public static IDataSource DB_Manager = FactoryDataSource.getDataBase();
 
@@ -39,8 +38,7 @@ public class CustomContentProvider extends ContentProvider
     {
         //Choosing database category
         Cursor c;
-        switch (sUriMatcher.match(uri))
-        {
+        switch (sUriMatcher.match(uri)) {
             case 1://businesses
                 return DB_Manager.getBusinesses();
             case 2://activities
