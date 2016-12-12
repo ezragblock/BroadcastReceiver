@@ -21,7 +21,7 @@ public class MainOptions extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-
+                //p[en the add business activity with intent
             }
         });
     }

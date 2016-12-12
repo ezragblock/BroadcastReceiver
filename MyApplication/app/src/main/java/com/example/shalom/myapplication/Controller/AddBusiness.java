@@ -1,5 +1,7 @@
 package com.example.shalom.myapplication.Controller;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -36,7 +38,8 @@ public class AddBusiness extends AppCompatActivity {
                         ,((EditText) findViewById(R.id.telephoneNumber)).getText().toString()
                         ,((EditText) findViewById(R.id.email)).getText().toString()
                         ,((EditText) findViewById(R.id.website)).getText().toString());
-
+                //add to content provider
+                //getContentResolver().insert(Uri("content://com.example.shalom.myapplication"))
             }
         });
     }
