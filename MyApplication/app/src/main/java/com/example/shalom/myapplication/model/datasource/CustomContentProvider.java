@@ -42,21 +42,16 @@ public class CustomContentProvider extends ContentProvider
         switch (sUriMatcher.match(uri))
         {
             case 1://businesses
-                c = DB_Manager.getBusinesses();
-                break;
+                return DB_Manager.getBusinesses();
             case 2://activities
-                c = DB_Manager.getActivities();
-                break;
+                return DB_Manager.getActivities();
             case 3://users
-                c = DB_Manager.getUsers();
-                break;
+                return DB_Manager.getUsers();
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
 
         //Delete Columns witht the projection and selection
-
-        return c;
     }
     @Override
     public String getType(Uri uri)
