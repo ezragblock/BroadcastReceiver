@@ -82,6 +82,6 @@ public class Business
                 "websiteAddress"
         };
         return COLOMNS;
-    }
+    }////////////// יש צורך לתקן פונקציה זו ולשרשר לה את ההמשך כלור לשים בה את משתני הכתובת
 
 }

@@ -64,6 +64,7 @@ public class ListDataSource implements IDataSource
     //this functions convert the data from the list to matrixCursor for the contentProvider
     public Cursor getBusinesses()
     {
+        businessUpdate = false;
         MatrixCursor c = new MatrixCursor(Business.COLUMNS());
 
         for (Business business:businesses)
@@ -90,11 +91,19 @@ public class ListDataSource implements IDataSource
 
     public Cursor getActivities()
     {
+        activityUpdate = false;
         return Activity.getCursorFromList(activities);
     }
 
     public Cursor getUsers()
     {
+        UserUpdate = false;
         return User.getCursorFromList(users);
     }
+
+    public Boolean isUpdated()
+    {
+        return (!(UserUpdate||activityUpdate||businessUpdate));
+    }
+    /////////////////חשוב מאוד אני מניח שכאשר מוסיפים אובייקט הרשימה לא מעודכנת וכאשר מושכים את הרשימה היא מתעדכנת
 }

@@ -22,4 +22,6 @@ public interface IDataSource
     Cursor getActivities();
     Cursor getUsers();
     Cursor getBusinesses();
+
+    Boolean isUpdated();
 }
