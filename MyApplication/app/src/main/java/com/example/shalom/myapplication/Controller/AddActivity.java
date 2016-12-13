@@ -45,25 +45,26 @@ public class AddActivity extends AppCompatActivity {
                 values.put("type","HOTEL_VACATION_PACKAGE");
                 break;
             case "Travel agency trip":
-                values.put("type","TRAVEL_AGENCY_TRIP");
+                values.put("activityType","TRAVEL_AGENCY_TRIP");
                 break;
             case "Entertainment":
-                values.put("type","ENTERTAINMENT");
+                values.put("activityType","ENTERTAINMENT");
                 break;
             case "Airline":
-                values.put("type","AIRLINE");
+                values.put("activityType","AIRLINE");
                 break;
             default:
                 // nothing was chosen => send an appropriate message
         }
         values.put("description",((EditText)findViewById(R.id.description)).getText().toString());
         values.put("state",((EditText)findViewById(R.id.state)).getText().toString());
-        values.put("beginningday",((Integer)((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth()).toString());
-        values.put("beginningmonth",((Integer)((DatePicker)findViewById(R.id.beginningDate)).getMonth()).toString());
-        values.put("beginningyear",((Integer)((DatePicker)findViewById(R.id.beginningDate)).getYear()).toString());
-        values.put("finishingday",((Integer)((DatePicker)findViewById(R.id.finishingDate)).getDayOfMonth()).toString());
-        values.put("finishingmonth",((Integer)((DatePicker)findViewById(R.id.finishingDate)).getMonth()).toString());
-        values.put("finishingyear",((Integer)((DatePicker)findViewById(R.id.finishingDate)).getYear()).toString());
+
+        values.put("beginningday", ((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth());
+        values.put("beginningmonth", ((DatePicker)findViewById(R.id.beginningDate)).getMonth());
+        values.put("beginningyear", ((DatePicker)findViewById(R.id.beginningDate)).getYear());
+        values.put("finishingday", ((DatePicker)findViewById(R.id.finishingDate)).getDayOfMonth());
+        values.put("finishingmonth", ((DatePicker)findViewById(R.id.finishingDate)).getMonth());
+        values.put("finishingyear", ((DatePicker)findViewById(R.id.finishingDate)).getYear());
         values.put("price",((EditText)findViewById(R.id.price)).getText().toString());
         values.put("businessId",((EditText)findViewById(R.id.businessID)).getText().toString());
         Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");

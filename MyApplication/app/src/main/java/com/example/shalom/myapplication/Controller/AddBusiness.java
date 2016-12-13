@@ -49,7 +49,7 @@ public class AddBusiness extends AppCompatActivity {
                 values.put("street",address.street);
                 values.put("telephoneNumber",newBusiness.getTelephoneNumber());
                 values.put("email",newBusiness.getEmail());
-                values.put("website",newBusiness.getWebsiteAddress());
+                values.put("websiteAddress",newBusiness.getWebsiteAddress());
                 Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
                 getContentResolver().insert(uri,values);
             }

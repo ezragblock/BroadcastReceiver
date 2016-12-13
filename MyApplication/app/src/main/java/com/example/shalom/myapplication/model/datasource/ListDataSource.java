@@ -45,7 +45,7 @@ public class ListDataSource implements IDataSource
                                                 values.getAsString("city"),
                                                 values.getAsString("street")),
                                     values.getAsString("telephoneNumber"),
-                                    values.getAsString("telephoneNumber"),
+                                    values.getAsString("email"),
                                     values.getAsString("websiteAddress")));
     }
 
@@ -55,8 +55,8 @@ public class ListDataSource implements IDataSource
         activities.add(new Activity(ActivityType.valueOf(values.getAsString("activityType")),
                                     values.getAsString("description"),
                                     values.getAsString("state"),
-                                    new Date(values.getAsString("beginingDate")),
-                                    new Date(values.getAsString("endDate")),
+                                    new Date(values.getAsInteger("beginningday"),values.getAsInteger("beginningmonth"),values.getAsInteger("beginningyear")),
+                                    new Date(values.getAsInteger("finishingday"),values.getAsInteger("finishingmonth"),values.getAsInteger("finishingyear")),
                                     values.getAsInteger("price"),
                                     values.getAsInteger("businessId")));
     }
