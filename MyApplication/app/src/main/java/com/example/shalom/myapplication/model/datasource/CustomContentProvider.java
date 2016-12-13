@@ -18,11 +18,11 @@ import com.example.shalom.myapplication.model.entities.Activity;
  */
 
 public class CustomContentProvider extends ContentProvider {
-    static final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
+    public static final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
 
     public static IDataSource DB_Manager = FactoryDataSource.getDataBase();
 
-    static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+    public static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     //static constructor for initializing static attributes
     static

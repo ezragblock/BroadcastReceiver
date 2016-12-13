@@ -1,6 +1,7 @@
 package com.example.shalom.myapplication.Controller;
 
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.shalom.myapplication.R;
+import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.Address;
 import com.example.shalom.myapplication.model.entities.Business;
 
@@ -39,7 +41,17 @@ public class AddBusiness extends AppCompatActivity {
                         ,((EditText) findViewById(R.id.email)).getText().toString()
                         ,((EditText) findViewById(R.id.website)).getText().toString());
                 //add to content provider
-                //getContentResolver().insert(Uri("content://com.example.shalom.myapplication"))
+                ContentValues values = new ContentValues();
+                values.put("id",newBusiness.getId());
+                values.put("name",newBusiness.getName());
+                values.put("state",address.state);
+                values.put("city",address.city);
+                values.put("street",address.street);
+                values.put("telephoneNumber",newBusiness.getTelephoneNumber());
+                values.put("email",newBusiness.getEmail());
+                values.put("website",newBusiness.getWebsiteAddress());
+                Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
+                getContentResolver().insert(uri,values);
             }
         });
     }
