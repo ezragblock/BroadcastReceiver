@@ -15,10 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addBusiness"
-        android:onClick=""/>
+        android:onClick="addBusiness"/>
     <Button
         android:text="Add An Activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addActivity" />
+        android:id="@+id/addActivity"
+        android:onClick="addActivity"/>
 </LinearLayout>

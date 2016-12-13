@@ -1,5 +1,6 @@
 package com.example.shalom.myapplication.Controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,14 +17,14 @@ public class MainOptions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_options2);
-        final Button addBusiness = (Button)findViewById(R.id.addBusiness);
-        addBusiness.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                //p[en the add business activity with intent
-            }
-        });
+    }
+    public void addActivity(View v)
+    {
+
+    }
+    public void addBusiness(View v) {
+        //open the add business activity with intent
+        startActivity(new Intent(MainOptions.this,AddBusiness.class));
     }
 
 }

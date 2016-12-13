@@ -2,4 +2,10 @@
     <string name="app_name">My Application</string>
     <string name="title_activity_create_business">CreateBusiness</string>
     <string name="title_activity_add_business">AddBusiness</string>
+    <string-array name="activity_type_array">
+        <item>Hotel vacation package</item>
+        <item>Travel agency trip</item>
+        <item>Entertainment</item>
+        <item>Airline</item>
+    </string-array>
 </resources>
