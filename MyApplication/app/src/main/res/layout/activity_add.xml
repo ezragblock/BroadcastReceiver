@@ -18,7 +18,10 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Activity Type"/>
             <Spinner
                 android:id="@+id/actType"
                 android:layout_width="match_parent"
@@ -26,27 +29,39 @@
                 <!-- make it have a title-->
             </Spinner>
             <EditText
+                android:hint="Description"
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="120dp"/>
             <EditText
+                android:hint="State"
                 android:id="@+id/state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="Beginning Date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <DatePicker
                 android:id="@+id/beginningDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></DatePicker>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Finishing Date"/>
             <DatePicker
                 android:id="@+id/finishingDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></DatePicker>
             <EditText
+                android:hint="Price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/price"/>
             <EditText
+                android:hint="Business ID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/businessID"/>

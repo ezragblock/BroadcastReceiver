@@ -13,6 +13,7 @@
 
     <EditText
         android:id="@+id/ID"
+        android:hint="ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="180dp"
@@ -20,6 +21,7 @@
         android:selectAllOnFocus="true"
         android:inputType="numberDecimal"/>
     <EditText
+        android:hint="Name"
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +29,7 @@
         android:inputType="text"/>
     <EditText
         android:id="@+id/state"
+        android:hint="State"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="180dp"
@@ -35,6 +38,7 @@
         android:inputType="text"/>
     <EditText
         android:id="@+id/city"
+        android:hint="City"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="180dp"
@@ -43,6 +47,7 @@
         android:inputType="text"/>
     <EditText
         android:id="@+id/street"
+        android:hint="Street"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="180dp"
@@ -51,6 +56,7 @@
         android:inputType="text"/>
     <EditText
         android:id="@+id/telephoneNumber"
+        android:hint="Telephone Number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="180dp"
@@ -59,6 +65,7 @@
         android:inputType="phone"/>
     <EditText
         android:id="@+id/email"
+        android:hint="Email Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="180dp"
@@ -66,6 +73,7 @@
         android:selectAllOnFocus="true"
         android:inputType="textEmailAddress"/>
     <EditText
+        android:hint="Website Address"
         android:id="@+id/website"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

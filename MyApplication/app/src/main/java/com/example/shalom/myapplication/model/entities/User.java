@@ -73,7 +73,7 @@ public class User
                 c.addRow(temp);
                 return c;
             }
-            catch (Exception e)//we dont know yet what kind of exception can happened hear (not yet tested)
+            catch (Exception e)//we don't know yet what kind of exception can happened here (not yet tested)
             {
                 return null;
             }
