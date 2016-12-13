@@ -60,7 +60,6 @@ public class ListDataSource implements IDataSource
                                     values.getAsInteger("price"),
                                     values.getAsInteger("businessId")));
     }
-
     //this functions convert the data from the list to matrixCursor for the contentProvider
     public Cursor getBusinesses()
     {
