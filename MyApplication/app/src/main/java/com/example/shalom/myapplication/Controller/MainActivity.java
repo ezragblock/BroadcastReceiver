@@ -17,7 +17,7 @@ public class MainActivity extends Activity
     public void onCreate(Bundle bundle)
     {
         super.onCreate(bundle);
-        Intent intent = new Intent(MainActivity.this,MainOptions.class);
+        Intent intent = new Intent(MainActivity.this,Login.class);
         startActivity(intent);
     }
 
