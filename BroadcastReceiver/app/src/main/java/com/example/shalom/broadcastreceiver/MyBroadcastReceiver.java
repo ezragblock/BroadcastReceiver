@@ -14,6 +14,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
+        //on receiver
         // TODO Auto-generated method stub
         // Extract data included in the Intent
         CharSequence intentData = intent.getCharSequenceExtra("message");
