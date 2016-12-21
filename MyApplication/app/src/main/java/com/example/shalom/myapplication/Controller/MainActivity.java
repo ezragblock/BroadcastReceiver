@@ -3,7 +3,6 @@ package com.example.shalom.myapplication.Controller;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ public class MainActivity extends Activity
     @Override
     public void onCreate(Bundle bundle)
     {
+        //on Create
         super.onCreate(bundle);
         Intent intent = new Intent(MainActivity.this,Login.class);
         startActivity(intent);
