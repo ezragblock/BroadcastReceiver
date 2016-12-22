@@ -6,6 +6,7 @@ import android.database.MatrixCursor;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Shalom on 11/26/2016.
@@ -15,14 +16,15 @@ public class Activity {
     ActivityType activityType;
     String description;
     String state;
-    Date beginningDate;
-    Date finishDate;
+    GregorianCalendar beginningDate;
+    GregorianCalendar finishDate;
     int price;
     int businessId;
 
 
-    public Activity(ActivityType activityType, String description, String state, Date beginningDate, Date finishDate, int price, int businessId)
+    public Activity(ActivityType activityType, String description, String state, GregorianCalendar beginningDate, GregorianCalendar finishDate, int price, int businessId)
     {
+
         this.activityType = activityType;
         this.description = description;
         this.state = state;
@@ -62,22 +64,22 @@ public class Activity {
         this.state = state;
     }
 
-    public Date getBeginningDate()
+    public GregorianCalendar getBeginningDate()
     {
         return beginningDate;
     }
 
-    public void setBeginningDate(Date beginningDate)
+    public void setBeginningDate(GregorianCalendar beginningDate)
     {
         this.beginningDate = beginningDate;
     }
 
-    public Date getFinishDate()
+    public GregorianCalendar getFinishDate()
     {
         return finishDate;
     }
 
-    public void setFinishDate(Date finishDate)
+    public void setFinishDate(GregorianCalendar finishDate)
     {
         this.finishDate = finishDate;
     }
@@ -161,10 +163,14 @@ public class Activity {
             a.add(new Activity(ActivityType.valueOf(cursor.getString(cursor.getColumnIndex(COLUMNS()[0]))),
                                cursor.getString(cursor.getColumnIndex(COLUMNS()[1])),
                                cursor.getString(cursor.getColumnIndex(COLUMNS()[2])),
-                               new Date(cursor.getInt(cursor.getColumnIndex(COLUMNS()[3]))),
-                               new Date(cursor.getInt(cursor.getColumnIndex(COLUMNS()[4]))),
-                               cursor.getInt(cursor.getColumnIndex(COLUMNS()[5])),
-                               cursor.getInt(cursor.getColumnIndex(COLUMNS()[6]))));
+                               new GregorianCalendar(cursor.getInt(cursor.getColumnIndex(COLUMNS()[3])),
+                                       cursor.getInt(cursor.getColumnIndex(COLUMNS()[4])),
+                                       cursor.getInt(cursor.getColumnIndex(COLUMNS()[5]))),
+                               new GregorianCalendar(cursor.getInt(cursor.getColumnIndex(COLUMNS()[6])),
+                                       cursor.getInt(cursor.getColumnIndex(COLUMNS()[7])),
+                                       cursor.getInt(cursor.getColumnIndex(COLUMNS()[8]))),
+                               cursor.getInt(cursor.getColumnIndex(COLUMNS()[9])),
+                               cursor.getInt(cursor.getColumnIndex(COLUMNS()[10]))));
 
         }while (cursor.moveToNext());
         return a;
