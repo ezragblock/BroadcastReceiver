@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.AsyncTask;
+import android.os.SystemClock;
+import android.support.annotation.Nullable;
 
 public class UpdatedService extends Service
 {
@@ -69,7 +71,6 @@ public class UpdatedService extends Service
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
