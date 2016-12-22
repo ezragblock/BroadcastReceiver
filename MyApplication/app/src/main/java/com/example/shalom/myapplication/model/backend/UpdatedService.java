@@ -3,13 +3,58 @@ package com.example.shalom.myapplication.model.backend;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.AsyncTask;
 
 public class UpdatedService extends Service
 {
     private static final String TAG = "service";
-    public UpdatedService()
+    private static IDataSource manager = FactoryDataSource.getDataBase();
+
+    new AsyncTask<Void, Void, Void>()
     {
+        @Override
+        protected Void doInBackground(final Void... params)
+        {
+            checkForDBUpdates();
+            return null;
+        }
+    }.execute ();
+
+    private void checkForDBUpdates()
+    {
+        Intent ActivityUpdate, BusinessUpdate,UserUpdate;
+        //sets the appropriate intents in advance
+        ActivityUpdate = new Intent("com.example.ezras.newUpdates").putExtra("table", 'a');
+        BusinessUpdate = new Intent("com.example.ezras.newUpdates").putExtra("table", 'b');
+        UserUpdate = new Intent("com.example.ezras.newUpdates").putExtra("table", 'u');
+
+        while (true)
+        {
+            try
+            {
+                //checking for agencies updates
+                if (manager.isActivitiesUpdated())
+                {
+                    sendBroadcast(ActivityUpdate);
+                }
+                if (manager.isBusinessesUpdated())
+                {
+                    sendBroadcast(BusinessUpdate);
+                }
+                if(manager.isUsersUpdated())
+                {
+                    sendBroadcast(UserUpdate);
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            //wait 10 seconds
+            SystemClock.sleep(10000);
+        }
     }
+
 
     @Override
     public IBinder onBind(Intent intent)

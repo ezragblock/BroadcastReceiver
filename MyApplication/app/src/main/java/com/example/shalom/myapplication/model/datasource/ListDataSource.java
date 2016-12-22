@@ -100,9 +100,19 @@ public class ListDataSource implements IDataSource
         return User.getCursorFromList(users);
     }
 
-    public Boolean isUpdated()
+    public Boolean isActivitiesUpdated()
     {
-        return (!(UserUpdate||activityUpdate||businessUpdate));
+        return !activityUpdate;
+    }
+
+    public Boolean isUsersUpdated()
+    {
+        return !UserUpdate;
+    }
+
+    public Boolean isBusinessesUpdated()
+    {
+        return !businessUpdate;
     }
     /////////////////חשוב מאוד אני מניח שכאשר מוסיפים אובייקט הרשימה לא מעודכנת וכאשר מושכים את הרשימה היא מתעדכנת
 }
