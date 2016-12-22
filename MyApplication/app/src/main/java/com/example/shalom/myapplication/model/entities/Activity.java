@@ -112,8 +112,12 @@ public class Activity {
                 "ActivityType",
                 "description",
                 "state",
-                "beginningDate",
-                "finishDate",
+                "beginningDay",
+                "beginningMonth",
+                "beginningYear",
+                "finishDay",
+                "finishMonth",
+                "finishYear",
                 "price",
                 "businessId"
         };
