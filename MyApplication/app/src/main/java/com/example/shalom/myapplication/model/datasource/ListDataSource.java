@@ -64,28 +64,7 @@ public class ListDataSource implements IDataSource
     public Cursor getBusinesses()
     {
         businessUpdate = false;
-        MatrixCursor c = new MatrixCursor(Business.COLUMNS());
-
-        for (Business business:businesses)
-        {
-            ArrayList<String> temp = new ArrayList<>();
-            try
-            {
-                temp.add(String.valueOf(business.getId()));
-                temp.add(business.getName());
-                temp.add(business.getTelephoneNumber());
-                temp.add(business.getEmail());
-                temp.add(business.getWebsiteAddress());
-
-                c.addRow(temp);
-                return c;
-            }
-            catch (Exception e)//we dont know yet what kind of exception can happened hear (not yet tested)
-            {
-                return null;
-            }
-        }
-        return null;
+        return Business.getCursorFromList(businesses);
     }
 
     public Cursor getActivities()
