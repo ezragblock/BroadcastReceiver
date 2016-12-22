@@ -1,6 +1,5 @@
 package com.example.shalom.myapplication.Controller;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,11 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.shalom.myapplication.R;
+import com.example.shalom.myapplication.model.backend.ActivateBackEndTask;
+import com.example.shalom.myapplication.model.backend.ICallableTask;
 import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.Address;
 import com.example.shalom.myapplication.model.entities.Business;
 
-public class AddBusiness extends AppCompatActivity {
+public class AddBusiness extends AppCompatActivity
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,12 @@ public class AddBusiness extends AppCompatActivity {
                 values.put("email",newBusiness.getEmail());
                 values.put("websiteAddress",newBusiness.getWebsiteAddress());
                 Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
-                getContentResolver().insert(uri,values);
+
+                ActivateBackEndTask.execute( new ICallableTask()
+                {
+                    getContentResolver().insert(uri,values);
+                });
+
             }
         });
     }

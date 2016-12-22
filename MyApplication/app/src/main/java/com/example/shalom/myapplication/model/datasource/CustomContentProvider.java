@@ -6,7 +6,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.example.shalom.myapplication.model.backend.FactoryDataSource;
@@ -32,7 +31,6 @@ public class CustomContentProvider extends ContentProvider {
         sUriMatcher.addURI(PROVIDER_NAME,"users",3);
     }
 
-    @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
@@ -66,7 +64,7 @@ public class CustomContentProvider extends ContentProvider {
     {
         return 0;
     }
-    @Nullable
+
     @Override
     public Uri insert(Uri uri, ContentValues values)
     {

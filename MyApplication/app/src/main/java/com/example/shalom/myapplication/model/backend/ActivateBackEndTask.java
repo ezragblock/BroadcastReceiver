@@ -1,7 +1,5 @@
-package com.example.shalom.myapplication.model.SharedPreference;
+package com.example.shalom.myapplication.model.backend;
 
-import android.content.AsyncTaskLoader;
-import android.content.Intent;
 import android.os.AsyncTask;
 
 /**

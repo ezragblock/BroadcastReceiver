@@ -1,4 +1,4 @@
-package com.example.shalom.myapplication.model.SharedPreference;
+package com.example.shalom.myapplication.model.backend;
 
 import android.database.Cursor;
 

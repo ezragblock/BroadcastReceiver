@@ -10,15 +10,22 @@ public class UpdatedService extends Service
     private static final String TAG = "service";
     private static IDataSource manager = FactoryDataSource.getDataBase();
 
-    new AsyncTask<String, String, String>()
+    @Override
+    public void onCreate()
     {
-        @Override
-        protected Void doInBackground(final String... params)
+        super.onCreate();
+
+        new AsyncTask<String, String, String>()
         {
-            checkForDBUpdates();
-            return "0";
-        }
-    }.execute ();
+            @Override
+            protected Void doInBackground(final String... params)
+            {
+                checkForDBUpdates();
+                return "0";
+            }
+        }.execute ();
+    }
+
 
     private void checkForDBUpdates()
     {
