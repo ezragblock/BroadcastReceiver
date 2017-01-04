@@ -13,6 +13,7 @@ import com.example.shalom.myapplication.model.entities.User;
 import com.example.shalom.myapplication.model.entities.Activity;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Shalom on 11/26/2016.
@@ -55,8 +56,8 @@ public class ListDataSource implements IDataSource
         activities.add(new Activity(ActivityType.valueOf(values.getAsString("activityType")),
                                     values.getAsString("description"),
                                     values.getAsString("state"),
-                                    new Date(values.getAsInteger("beginningday"),values.getAsInteger("beginningmonth"),values.getAsInteger("beginningyear")),
-                                    new Date(values.getAsInteger("finishingday"),values.getAsInteger("finishingmonth"),values.getAsInteger("finishingyear")),
+                                    new GregorianCalendar(values.getAsInteger("beginningday"),values.getAsInteger("beginningmonth"),values.getAsInteger("beginningyear")),
+                                    new GregorianCalendar(values.getAsInteger("finishingday"),values.getAsInteger("finishingmonth"),values.getAsInteger("finishingyear")),
                                     values.getAsInteger("price"),
                                     values.getAsInteger("businessId")));
     }
