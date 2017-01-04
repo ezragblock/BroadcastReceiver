@@ -1,5 +1,10 @@
 package com.example.shalom.myapplication.model.entities;
 
+import android.database.Cursor;
+import android.database.MatrixCursor;
+
+import java.util.ArrayList;
+
 /**
  * Created by Shalom on 11/26/2016.
  */
@@ -85,6 +90,60 @@ public class Business
             "websiteAddress"
         };
         return COLUMNS;
-    }////////////// יש צורך לתקן פונקציה זו ולשרשר לה את ההמשך כלור לשים בה את משתני הכתובת
+    }
 
+    public static Cursor getCursorFromList(ArrayList<Business> buisness)
+    {
+        MatrixCursor c = new MatrixCursor(Business.COLUMNS());
+
+        for (Business b:buisness)
+        {
+            ArrayList<String> temp = new ArrayList<>();
+            try
+            {
+                temp.add(String.valueOf(b.getId()));
+                temp.add(b.getName());
+                temp.add(b.getAddress().state);
+                temp.add(b.getAddress().city);
+                temp.add(b.getAddress().street);
+                temp.add(b.getTelephoneNumber());
+                temp.add(b.getEmail());
+                temp.add(b.getWebsiteAddress());
+
+                c.addRow(temp);
+                return c;
+            }
+            catch (Exception e)//we don't know yet what kind of exception can happened here (not yet tested)
+            {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<Business> getListFromCursor(Cursor cursor)
+    {
+        if(cursor == null)
+            return new ArrayList<Business>();
+
+        if(!Activity.COLUMNS().equals(cursor.getColumnNames()))
+            throw new IllegalArgumentException("The columns must match the entity's paramters");
+
+        ArrayList<Business> buisness = new ArrayList<>();//this is the list that we will return with all the activities
+        cursor.moveToFirst();
+
+        do
+        {
+            buisness.add(new Business(cursor.getInt(cursor.getColumnIndex(COLUMNS()[0])),
+                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[1])),
+                                      new Address(cursor.getString(cursor.getColumnIndex(COLUMNS()[2])),
+                                              cursor.getString(cursor.getColumnIndex(COLUMNS()[3])),
+                                              cursor.getString(cursor.getColumnIndex(COLUMNS()[4]))),
+                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[5])),
+                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[6])),
+                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[7]))));
+
+        }while (cursor.moveToNext());
+        return buisness;
+    }
 }
