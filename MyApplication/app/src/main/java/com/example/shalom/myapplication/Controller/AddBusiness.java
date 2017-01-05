@@ -1,6 +1,7 @@
 package com.example.shalom.myapplication.Controller;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -35,7 +36,7 @@ public class AddBusiness extends AppCompatActivity
                         ,((EditText) findViewById(R.id.city)).getText().toString()
                         ,((EditText) findViewById(R.id.street)).getText().toString());
 
-                Business newBusiness = new Business(
+                final Business newBusiness = new Business(
                         Integer.parseInt(((EditText) findViewById(R.id.ID)).getText().toString())
                         ,((EditText) findViewById(R.id.name)).getText().toString()
                         ,address
@@ -43,20 +44,15 @@ public class AddBusiness extends AppCompatActivity
                         ,((EditText) findViewById(R.id.email)).getText().toString()
                         ,((EditText) findViewById(R.id.website)).getText().toString());
                 //add to content provider
-                ContentValues values = new ContentValues();
-                values.put("id",newBusiness.getId());
-                values.put("name",newBusiness.getName());
-                values.put("state",address.state);
-                values.put("city",address.city);
-                values.put("street",address.street);
-                values.put("telephoneNumber",newBusiness.getTelephoneNumber());
-                values.put("email",newBusiness.getEmail());
-                values.put("websiteAddress",newBusiness.getWebsiteAddress());
-                Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
+                final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
 
                 ActivateBackEndTask.execute( new ICallableTask()
                 {
-                    getContentResolver().insert(uri,values);
+                    public Cursor Activate()
+                    {
+                        getContentResolver().insert(uri, newBusiness.getContentvalue());
+                        return null;
+                    }
                 });
 
             }

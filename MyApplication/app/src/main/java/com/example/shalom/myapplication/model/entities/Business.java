@@ -1,5 +1,6 @@
 package com.example.shalom.myapplication.model.entities;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 
@@ -146,4 +147,19 @@ public class Business
         }while (cursor.moveToNext());
         return buisness;
     }
+
+    public final ContentValues getContentvalue()
+    {
+        final ContentValues values = new ContentValues();
+        values.put("id",this.getId());
+        values.put("name",this.getName());
+        values.put("state",address.state);
+        values.put("city",address.city);
+        values.put("street",address.street);
+        values.put("telephoneNumber",this.getTelephoneNumber());
+        values.put("email",this.getEmail());
+        values.put("websiteAddress",this.getWebsiteAddress());
+        return values;
+    }
+
 }

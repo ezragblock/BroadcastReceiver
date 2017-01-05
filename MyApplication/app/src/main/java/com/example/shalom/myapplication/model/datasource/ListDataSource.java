@@ -56,7 +56,7 @@ public class ListDataSource implements IDataSource
         activities.add(new Activity(ActivityType.valueOf(values.getAsString("activityType")),
                                     values.getAsString("description"),
                                     values.getAsString("state"),
-                                    new GregorianCalendar(values.getAsInteger("beginningday"),values.getAsInteger("beginningmonth"),values.getAsInteger("beginningyear")),
+                                    new GregorianCalendar(values.getAsInteger("beginningday"),values.getAsInteger("beginningmonth"), values.getAsInteger("beginningyear")),
                                     new GregorianCalendar(values.getAsInteger("finishingday"),values.getAsInteger("finishingmonth"),values.getAsInteger("finishingyear")),
                                     values.getAsInteger("price"),
                                     values.getAsInteger("businessId")));
