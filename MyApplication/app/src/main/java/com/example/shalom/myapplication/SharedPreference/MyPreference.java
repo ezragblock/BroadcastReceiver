@@ -1,4 +1,5 @@
 package com.example.shalom.myapplication.SharedPreference;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -10,8 +11,13 @@ import static android.content.Context.MODE_PRIVATE;
 public class MyPreference
 {
     public static final String MY_PREFS_NAME = "YedidyaFiles";
-    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+    Context temp;
+    SharedPreferences.Editor editor = temp.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
 
+    public void addUser()
+    {
+
+    }
 
 
 }

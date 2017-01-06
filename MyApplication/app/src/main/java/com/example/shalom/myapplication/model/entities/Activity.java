@@ -3,6 +3,10 @@ package com.example.shalom.myapplication.model.entities;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.widget.DatePicker;
+import android.widget.EditText;
+
+import com.example.shalom.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +28,6 @@ public class Activity {
 
     public Activity(ActivityType activityType, String description, String state, GregorianCalendar beginningDate, GregorianCalendar finishDate, int price, int businessId)
     {
-
         this.activityType = activityType;
         this.description = description;
         this.state = state;
@@ -179,5 +182,25 @@ public class Activity {
         }while (cursor.moveToNext());
         return a;
     }
+
+    public ContentValues getContentValue()
+    {//this function convert this activity to content value
+        ContentValues values = new ContentValues();
+
+        values.put("activitytype",this.activityType.toString());
+        values.put("description",this.description);
+        values.put("state",this.state);
+        values.put("beginningday", this.beginningDate.getTime().getDay());
+        values.put("beginningmonth", this.beginningDate.getTime().getMonth());
+        values.put("beginningyear", this.beginningDate.getTime().getYear());
+        values.put("finishingday", this.finishDate.getTime().getDay());
+        values.put("finishingmonth", this.finishDate.getTime().getMonth());
+        values.put("finishingyear", this.finishDate.getTime().getYear());
+        values.put("price",this.price);
+        values.put("businessId",this.businessId);
+
+        return values;
+    }
+
 
 }

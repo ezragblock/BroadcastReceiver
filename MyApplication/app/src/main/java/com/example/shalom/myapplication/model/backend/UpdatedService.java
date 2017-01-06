@@ -20,16 +20,22 @@ public class UpdatedService extends Service
         new AsyncTask<String, String, String>()
         {
             @Override
-            protected Void doInBackground(final String... params)
+            protected String doInBackground(final String... params)
             {
-                checkForDBUpdates();
-                return "0";
+                if(checkForDBUpdates())
+                {
+                    return "DataBase Has been Updated";
+                }
+                else
+                {
+                    return "";
+                }
             }
         }.execute ();
     }
 
 
-    private void checkForDBUpdates()
+    private boolean checkForDBUpdates()
     {
         Intent ActivityUpdate, BusinessUpdate,UserUpdate;
         //sets the appropriate intents in advance
@@ -45,14 +51,17 @@ public class UpdatedService extends Service
                 if (manager.isActivitiesUpdated())
                 {
                     sendBroadcast(ActivityUpdate);
+                    return true;
                 }
                 if (manager.isBusinessesUpdated())
                 {
                     sendBroadcast(BusinessUpdate);
+                    return true;
                 }
                 if(manager.isUsersUpdated())
                 {
                     sendBroadcast(UserUpdate);
+                    return true;
                 }
             }
             catch (Exception e)
@@ -61,6 +70,7 @@ public class UpdatedService extends Service
             }
             //wait 10 seconds
             SystemClock.sleep(10000);
+            return false;
         }
     }
 

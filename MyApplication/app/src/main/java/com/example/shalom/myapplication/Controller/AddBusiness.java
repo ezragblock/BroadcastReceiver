@@ -23,7 +23,8 @@ public class AddBusiness extends AppCompatActivity
 {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_business);
         Button createBusinessBtn = (Button)findViewById(R.id.createBusiness);
@@ -46,7 +47,7 @@ public class AddBusiness extends AppCompatActivity
                 //add to content provider
                 final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
 
-                ActivateBackEndTask.execute( new ICallableTask()
+                new ActivateBackEndTask().execute( new ICallableTask()
                 {
                     public Cursor Activate()
                     {
