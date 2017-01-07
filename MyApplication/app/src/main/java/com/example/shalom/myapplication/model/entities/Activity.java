@@ -183,7 +183,7 @@ public class Activity {
         return a;
     }
 
-    public ContentValues getContentValue()
+    public final ContentValues getContentValue()
     {//this function convert this activity to content value
         ContentValues values = new ContentValues();
 

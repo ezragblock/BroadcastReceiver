@@ -1,6 +1,7 @@
 package com.example.shalom.myapplication.Controller;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.shalom.myapplication.R;
+import com.example.shalom.myapplication.model.backend.ActivateBackEndTask;
+import com.example.shalom.myapplication.model.backend.ICallableTask;
 import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.Activity;
 import com.example.shalom.myapplication.model.entities.ActivityType;
@@ -20,7 +23,6 @@ import java.util.GregorianCalendar;
 
 public class AddActivity extends AppCompatActivity
 {
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -60,19 +62,27 @@ public class AddActivity extends AppCompatActivity
             default:
                 throw new IllegalArgumentException("You must choose an Activity Type");
         }////צריך לתקן ולהמיר באמצעות מספר//////////////////////////////////////////////
-        Activity newActivity = new Activity(a,((EditText)findViewById(R.id.description)).getText().toString(),
-                                            ((EditText)findViewById(R.id.state)).getText().toString(),
-                                            new GregorianCalendar(((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth(),
-                                                                  ((DatePicker)findViewById(R.id.beginningDate)).getMonth(),
-                                                                  ((DatePicker)findViewById(R.id.beginningDate)).getYear()),
-                                            new GregorianCalendar(((DatePicker)findViewById(R.id.finishingDate)).getDayOfMonth(),
-                                                                  ((DatePicker)findViewById(R.id.finishingDate)).getMonth(),
-                                                                  ((DatePicker)findViewById(R.id.finishingDate)).getYear()),
-                                            Integer.parseInt(((EditText)findViewById(R.id.price)).getText().toString()),
-                                            Integer.parseInt(((EditText)findViewById(R.id.businessID)).getText().toString()));
+        final Activity newActivity = new Activity(a,((EditText)findViewById(R.id.description)).getText().toString(),
+                                                  ((EditText)findViewById(R.id.state)).getText().toString(),
+                                                  new GregorianCalendar(((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth(),
+                                                                      ((DatePicker)findViewById(R.id.beginningDate)).getMonth(),
+                                                                      ((DatePicker)findViewById(R.id.beginningDate)).getYear()),
+                                                  new GregorianCalendar(((DatePicker)findViewById(R.id.finishingDate)).getDayOfMonth(),
+                                                                      ((DatePicker)findViewById(R.id.finishingDate)).getMonth(),
+                                                                      ((DatePicker)findViewById(R.id.finishingDate)).getYear()),
+                                                  Integer.parseInt(((EditText)findViewById(R.id.price)).getText().toString()),
+                                                  Integer.parseInt(((EditText)findViewById(R.id.businessID)).getText().toString()));
 
 
-        Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");
-        getContentResolver().insert(uri,newActivity.getContentValue());
+        final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");
+
+        new ActivateBackEndTask().execute(new ICallableTask() {
+            @Override
+            public Cursor Activate()
+            {
+                getContentResolver().insert(uri,newActivity.getContentValue());
+                return null;
+            }
+        });
     }
 }
