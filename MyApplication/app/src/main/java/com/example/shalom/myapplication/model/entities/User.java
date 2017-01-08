@@ -1,7 +1,11 @@
 package com.example.shalom.myapplication.model.entities;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.widget.EditText;
+
+import com.example.shalom.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,23 +16,13 @@ import java.util.Date;
 
 public class User
 {
-    int userNum;
     String username;
     String password;
 
-    public User(int userNum, String username, String password)
+    public User(String username, String password)
     {
-        this.userNum = userNum;
         this.username = username;
         this.password = password;
-    }
-
-    public int getUserNum() {
-        return userNum;
-    }
-
-    public void setUserNum(int userNum) {
-        this.userNum = userNum;
     }
 
     public String getUsername() {
@@ -50,7 +44,6 @@ public class User
     public static String[] COLUMNS()
     {
         String[] COLUMNS = {
-               "userNum",
                 "username",
                 "password"
         };
@@ -66,7 +59,6 @@ public class User
             ArrayList<String> temp = new ArrayList<>();
             try
             {
-                temp.add(String.valueOf(user.getUserNum()));
                 temp.add(user.getUsername());
                 temp.add(user.getPassword());
 
@@ -94,11 +86,19 @@ public class User
 
         do
         {
-            users.add(new User(cursor.getInt(cursor.getColumnIndex(COLUMNS()[0])),
-                               cursor.getString(cursor.getColumnIndex(COLUMNS()[1])),
-                               cursor.getString(cursor.getColumnIndex(COLUMNS()[2]))));
+            users.add(new User(cursor.getString(cursor.getColumnIndex(COLUMNS()[0])),
+                               cursor.getString(cursor.getColumnIndex(COLUMNS()[1]))));
 
         }while (cursor.moveToNext());
         return users;
     }
+
+    public final ContentValues getContentValue()
+    {
+        ContentValues values = new ContentValues();
+        values.put("username",this.username);
+        values.put("password",this.password);
+        return values;
+    }
+
 }

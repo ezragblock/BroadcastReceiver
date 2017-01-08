@@ -6,21 +6,25 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.shalom.myapplication.R;
+import com.example.shalom.myapplication.SharedPreference.MyPreference;
 import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.User;
 
 import java.util.ArrayList;
 
-public class Register extends AppCompatActivity {
-
+public class Register extends AppCompatActivity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
     }
+
     public void register(View v)
     {
         Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
@@ -34,10 +38,12 @@ public class Register extends AppCompatActivity {
                 return;
             }
         }
-        ContentValues values = new ContentValues();
-        values.put("userNum",users.get(users.size() - 1).getUserNum() + 1);
-        values.put("username",username.getText().toString());
-        values.put("password",((EditText)findViewById(R.id.Password)).getText().toString());
-        getContentResolver().insert(uri,values);
+        User u = new User(username.getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
+        getContentResolver().insert(uri,u.getContentValue());
+
+        if(((CheckBox)findViewById(R.id.SaveOnPhone)).isActivated())
+        {
+            MyPreference.addUser(u);
+        }
     }
 }

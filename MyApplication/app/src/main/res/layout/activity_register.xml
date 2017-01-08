@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app=""
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_register"
     android:orientation="vertical"
@@ -9,7 +10,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.shalom.myapplication.Controller.Register">
+    tools:context="com.example.shalom.myapplication.Controller.Register"
+    android:weightSum="1">
     <EditText
         android:id="@+id/username"
         android:hint="Username"
@@ -21,6 +23,13 @@
         android:password="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:text="Save this User on this phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SaveOnPhone" />
+
     <Button
         android:onClick="register"
         android:id="@+id/register"
@@ -28,4 +37,5 @@
         android:textSize="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </LinearLayout>
