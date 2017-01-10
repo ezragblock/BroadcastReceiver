@@ -16,7 +16,8 @@ import java.util.GregorianCalendar;
  * Created by Shalom on 11/26/2016.
  */
 
-public class Activity {
+public class Activity
+{
     ActivityType activityType;
     String description;
     String state;
@@ -200,6 +201,23 @@ public class Activity {
         values.put("businessId",this.businessId);
 
         return values;
+    }
+
+    public static ActivityType fromStringTOType(String type)
+    {
+        switch(type)
+        {
+            case "Hotel vacation package":
+                return ActivityType.HOTEL_VACATION_PACKAGE;
+            case "Travel agency trip":
+                return ActivityType.TRAVEL_AGENCY_TRIP;
+            case "Entertainment":
+                return ActivityType.ENTERTAINMENT;
+            case "Airline":
+                return ActivityType.AIRLINE;
+            default:
+                throw new IllegalArgumentException("You must choose an Activity Type");
+        }
     }
 
 

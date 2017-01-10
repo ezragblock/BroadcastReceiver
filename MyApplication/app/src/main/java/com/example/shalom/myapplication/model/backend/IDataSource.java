@@ -7,6 +7,7 @@ import com.example.shalom.myapplication.model.entities.Activity;
 import com.example.shalom.myapplication.model.entities.Business;
 import com.example.shalom.myapplication.model.entities.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -15,13 +16,13 @@ import java.util.ArrayList;
 
 public interface IDataSource
 {
-    void addUser(ContentValues values);
-    void addBusiness(ContentValues values);
-    void addActivity(ContentValues values);
+    void addUser(ContentValues values) throws IOException;
+    void addBusiness(ContentValues values) throws IOException;
+    void addActivity(ContentValues values) throws IOException;
 
-    Cursor getActivities();
-    Cursor getUsers();
-    Cursor getBusinesses();
+    Cursor getActivities() throws Exception;
+    Cursor getUsers() throws Exception;
+    Cursor getBusinesses() throws Exception;
 
     Boolean isActivitiesUpdated();
     Boolean isUsersUpdated();

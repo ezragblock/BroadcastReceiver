@@ -44,25 +44,9 @@ public class AddActivity extends AppCompatActivity
         ActivityType type;
         Spinner spinner = (Spinner)findViewById(R.id.actType);
         String text = spinner.getSelectedItem().toString();
-        ActivityType a;
-        switch(text)
-        {
-            case "Hotel vacation package":
-                a = ActivityType.HOTEL_VACATION_PACKAGE;
-                break;
-            case "Travel agency trip":
-                a = ActivityType.TRAVEL_AGENCY_TRIP;
-                break;
-            case "Entertainment":
-                a = ActivityType.ENTERTAINMENT;
-                break;
-            case "Airline":
-                a = ActivityType.AIRLINE;
-                break;
-            default:
-                throw new IllegalArgumentException("You must choose an Activity Type");
-        }////צריך לתקן ולהמיר באמצעות מספר//////////////////////////////////////////////
-        final Activity newActivity = new Activity(a,((EditText)findViewById(R.id.description)).getText().toString(),
+
+        final Activity newActivity = new Activity(Activity.fromStringTOType(text),
+                                                  ((EditText)findViewById(R.id.description)).getText().toString(),
                                                   ((EditText)findViewById(R.id.state)).getText().toString(),
                                                   new GregorianCalendar(((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth(),
                                                                       ((DatePicker)findViewById(R.id.beginningDate)).getMonth(),
@@ -86,3 +70,4 @@ public class AddActivity extends AppCompatActivity
         });
     }
 }
+///////////////////////////////////////////////////////////

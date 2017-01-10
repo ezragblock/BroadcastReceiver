@@ -32,8 +32,7 @@ public class ListDataSource implements IDataSource
     public void addUser(ContentValues user)
     {
         UserUpdate=true;
-        users.add(new User(user.getAsInteger("userNum"),
-                           user.getAsString("username"),
+        users.add(new User(user.getAsString("username"),
                            user.getAsString("password")));
     }
 
