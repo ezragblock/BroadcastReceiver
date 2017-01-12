@@ -109,7 +109,7 @@ public class SQLDataBase implements IDataSource
             Map<String, Object> params = new LinkedHashMap<>();
             params.put(User.COLUMNS()[0], values.getAsString(User.COLUMNS()[0]));
             params.put(User.COLUMNS()[1], values.getAsString(User.COLUMNS()[1]));
-            String results = POST(WEB_URL + "addUser.php", params);
+            String results = POST(WEB_URL + "UserToServer.php", params);
             if(results.equals(""))
             {
                 throw new Exception("An error occurred on the server's side");
@@ -139,7 +139,7 @@ public class SQLDataBase implements IDataSource
             params.put(Business.COLUMNS()[5], values.getAsString(Business.COLUMNS()[5]));
             params.put(Business.COLUMNS()[6], values.getAsString(Business.COLUMNS()[6]));
             params.put(Business.COLUMNS()[7], values.getAsString(Business.COLUMNS()[7]));
-            String results = POST(WEB_URL + "addBusiness.php", params);
+            String results = POST(WEB_URL + "BusinessToServer.php", params);
             if(results.equals(""))
             {
                 throw new Exception("An error occurred on the server's side");
@@ -172,7 +172,7 @@ public class SQLDataBase implements IDataSource
             params.put(Activity.COLUMNS()[8], values.getAsInteger(Activity.COLUMNS()[8]));
             params.put(Activity.COLUMNS()[9], values.getAsInteger(Activity.COLUMNS()[9]));
             params.put(Activity.COLUMNS()[10], values.getAsInteger(Activity.COLUMNS()[10]));
-            String results = POST(WEB_URL + "addActivity.php", params);
+            String results = POST(WEB_URL + "ActivityToServer.php", params);
             if(results.equals(""))
             {
                 throw new Exception("An error occurred on the server's side");
@@ -192,7 +192,7 @@ public class SQLDataBase implements IDataSource
     public Cursor getActivities() throws Exception
     {
         MatrixCursor agenciesCursor = new MatrixCursor(Activity.COLUMNS());
-        JSONArray array = new JSONObject(GET(WEB_URL + "/getActivities.php")).getJSONArray("activities");
+        JSONArray array = new JSONObject(GET(WEB_URL + "/ActivityFromServer.php")).getJSONArray("activities");
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject activities = array.getJSONObject(i);
@@ -218,7 +218,7 @@ public class SQLDataBase implements IDataSource
     public Cursor getUsers() throws Exception
     {
         MatrixCursor usersCursor = new MatrixCursor(User.COLUMNS());
-        JSONArray array = new JSONObject(GET(WEB_URL + "/getUsers.php")).getJSONArray("users");
+        JSONArray array = new JSONObject(GET(WEB_URL + "/UserFromServer.php")).getJSONArray("users");
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject user = array.getJSONObject(i);
@@ -235,7 +235,7 @@ public class SQLDataBase implements IDataSource
     public Cursor getBusinesses() throws Exception
     {
         MatrixCursor buisnessCursor = new MatrixCursor(Business.COLUMNS());
-        JSONArray array = new JSONObject(GET(WEB_URL + "/getBuisnesses.php")).getJSONArray("buisnesses");
+        JSONArray array = new JSONObject(GET(WEB_URL + "/BusinessFromServer.php")).getJSONArray("buisnesses");
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject buisnesses = array.getJSONObject(i);

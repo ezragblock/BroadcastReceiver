@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.model.backend.ActivateBackEndTask;
@@ -64,7 +65,14 @@ public class AddActivity extends AppCompatActivity
             @Override
             public Cursor Activate()
             {
-                getContentResolver().insert(uri,newActivity.getContentValue());
+                try
+                {
+                    getContentResolver().insert(uri,newActivity.getContentValue());
+                }
+                catch (Exception e)
+                {
+                    //Toast.makeText()
+                }
                 return null;
             }
         });
