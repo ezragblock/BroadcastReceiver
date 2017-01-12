@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.widget.EditText;
 
-import com.example.shalom.myapplication.R;
+//import com.example.shalom.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.Date;

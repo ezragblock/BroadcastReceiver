@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.SharedPreference.MyPreference;
@@ -26,17 +27,22 @@ public class Login extends AppCompatActivity
     public void login(View v)
     {
         //first we will check if the user exist in the phone
-        if(MyPreference.isUserOnPhone(new User(((EditText)findViewById(R.id.username)).getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString())) != 0)
+        /*if(MyPreference.isUserOnPhone(new User(((EditText)findViewById(R.id.username)).getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString())) != 0)
         {//check if this user exist in the preference
             //user opened the application... does anything later need to know the user who opened it or not?
             startActivity(new Intent(Login.this,MainOptions.class));
-        }
+        }*/
 
         Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
         Cursor cursor = getContentResolver().query(uri,null,null,null,null);
         ArrayList<User> users = User.getListFromCursor(cursor);
         for (User user: users)//going for each user in the database and checking if his data match the input
         {
+            Toast mytoast = new Toast(this);
+            mytoast.setView(v);
+            mytoast.setDuration(Toast.LENGTH_LONG);
+            mytoast.setText(user.getUsername());
+            mytoast.show();
             if(user.getUsername() == ((EditText)findViewById(R.id.username)).getText().toString()
                 && user.getPassword() == ((EditText)findViewById(R.id.Password)).getText().toString())//checking if the username and password are a match
             {
