@@ -5,12 +5,16 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.net.Uri;
 import android.text.TextUtils;
 
 import com.example.shalom.myapplication.model.backend.FactoryDataSource;
 import com.example.shalom.myapplication.model.backend.IDataSource;
 import com.example.shalom.myapplication.model.entities.Activity;
+
+import java.io.IOException;
+import java.net.ConnectException;
 
 /**
  * Created by Shalom on 11/26/2016.
@@ -34,20 +38,31 @@ public class CustomContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
-        //Choosing database category
-        Cursor c;
-        switch (sUriMatcher.match(uri)) {
-            case 1://businesses
-                return DB_Manager.getBusinesses();
-            case 2://activities
-                return DB_Manager.getActivities();
-            case 3://users
-                return DB_Manager.getUsers();
-            default:
-                throw new IllegalArgumentException("Unsupported URI: " + uri);
+        try
+        {
+            //Choosing database category
+            Cursor c;
+            switch (sUriMatcher.match(uri))
+            {
+                case 1://businesses
+                    return DB_Manager.getBusinesses();
+                case 2://activities
+                    return DB_Manager.getActivities();
+                case 3://users
+                    return DB_Manager.getUsers();
+                default:
+                    throw new IllegalArgumentException("Unsupported URI: " + uri);
+            }
+            //Delete Columns witht the projection and selection
         }
-
-        //Delete Columns witht the projection and selection
+        catch (IllegalArgumentException e)
+        {
+            throw e;
+        }
+        catch (Exception e)
+        {
+            throw  new SQLException("Cannot conect to th server" + e.getMessage());
+        }
     }
     @Override
     public String getType(Uri uri)
@@ -68,19 +83,30 @@ public class CustomContentProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values)
     {
-        switch(uri.getPath().substring(1))
+        try
         {
-            case "activities":
-                DB_Manager.addActivity(values);
-                return null;
-            case "buisnesses":
-                DB_Manager.addBusiness(values);
-                return null;
-            case "users":
-                DB_Manager.addUser(values);
-                return null;
-            default:
-                throw new IllegalArgumentException("This Content Provider doesn't support this type of thing");
+            switch(uri.getPath().substring(1))
+            {
+                case "activities":
+                    DB_Manager.addActivity(values);
+                    return null;
+                case "buisnesses":
+                    DB_Manager.addBusiness(values);
+                    return null;
+                case "users":
+                    DB_Manager.addUser(values);
+                    return null;
+                default:
+                    throw new IllegalArgumentException("This Content Provider doesn't support this type of thing");
+            }
+        }
+        catch (IOException e)
+        {
+            throw new SQLException("THere was a problem with the server" + e.getMessage());
+        }
+        catch (IllegalArgumentException e)
+        {
+            throw e;
         }
     }
     @Override
