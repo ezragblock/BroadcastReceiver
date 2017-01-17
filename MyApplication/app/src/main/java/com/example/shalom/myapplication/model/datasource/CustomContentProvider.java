@@ -45,11 +45,14 @@ public class CustomContentProvider extends ContentProvider {
             switch (sUriMatcher.match(uri))
             {
                 case 1://businesses
+                    getContext().getContentResolver().notifyChange(uri,null);
                     return DB_Manager.getBusinesses();
                 case 2://activities
+                    getContext().getContentResolver().notifyChange(uri,null);
                     return DB_Manager.getActivities();
                 case 3://users
-                    return DB_Manager.getUsers();
+                    getContext().getContentResolver().notifyChange(uri,null);
+                return DB_Manager.getUsers();
                 default:
                     throw new IllegalArgumentException("Unsupported URI: " + uri);
             }
@@ -89,6 +92,7 @@ public class CustomContentProvider extends ContentProvider {
             {
                 case "activities":
                     DB_Manager.addActivity(values);
+                    getContext().getContentResolver().notifyChange(uri,null);
                     return null;
                 case "buisnesses":
                     DB_Manager.addBusiness(values);
