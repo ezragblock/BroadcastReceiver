@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.model.backend.ActivateBackEndTask;
@@ -32,7 +33,6 @@ public class AddBusiness extends AppCompatActivity
         createBusinessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Address address = new Address(
                         ((EditText) findViewById(R.id.state)).getText().toString()
                         ,((EditText) findViewById(R.id.city)).getText().toString()
