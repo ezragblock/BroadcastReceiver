@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.SharedPreference.MyPreference;
@@ -29,55 +30,57 @@ public class Register extends AppCompatActivity
 
     public void register(View v)
     {
-        (new AsyncTask<String,String,List<User>>() {
-            @Override
-            protected void onPostExecute(List<User> users)
-            {
-                EditText username = ((EditText)findViewById(R.id.username));
-                for(User user:users)
+        try
+        {
+            (new AsyncTask<String,String,List<User>>() {
+                @Override
+                protected void onPostExecute(List<User> users)
                 {
-                    if(user.getUsername() == username.getText().toString())
+                    EditText username = ((EditText)findViewById(R.id.username));
+                    for(User user:users)
                     {
-                        username.setText("That username is already used...");
-                        return;
+                        if(user.getUsername() == username.getText().toString())
+                        {
+                            username.setText("That username is already used...");
+                            return;
+                        }
                     }
                 }
-            }
 
-            @Override
-            protected List<User> doInBackground(String... params)
-            {
-                try
+                @Override
+                protected List<User> doInBackground(String... params)
                 {
                     Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
                     return User.getListFromCursor(getContentResolver().query(uri,null,null,null,null));
                 }
-                catch (Exception e)
-                {
-                    //Toast.makeText()
-                }
-                return null;
-            }
-        }).execute();
+            }).execute();
+        }
+        catch (Exception e)
+        {
+            Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
 
         EditText username = ((EditText)findViewById(R.id.username));
         final User u = new User(username.getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
-        (new AsyncTask<String,Integer,Integer>() {
-            @Override
-            protected Integer doInBackground(String... params)
-            {
-                try
+        try
+        {
+            (new AsyncTask<String,Integer,Integer>() {
+                @Override
+                protected Integer doInBackground(String... params)
                 {
                     Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
                     getContentResolver().insert(uri,u.getContentValue());
+                    return 0;
                 }
-                catch (Exception e)
-                {
-                    //Toast.makeText()
-                }
-                return 0;
-            }
-        }).execute();
+            }).execute();
+        }
+        catch (Exception e)
+        {
+            Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
+            toast.show();
+        }
 
         if(((CheckBox)findViewById(R.id.SaveOnPhone)).isActivated())
         {

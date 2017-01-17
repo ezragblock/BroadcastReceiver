@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.model.backend.ActivateBackEndTask;
@@ -29,42 +30,41 @@ public class AddBusiness extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_business);
         Button createBusinessBtn = (Button)findViewById(R.id.createBusiness);
-        createBusinessBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
-                Address address = new Address(
-                        ((EditText) findViewById(R.id.state)).getText().toString()
-                        ,((EditText) findViewById(R.id.city)).getText().toString()
-                        ,((EditText) findViewById(R.id.street)).getText().toString());
+    public void addBusiness(View v)
+    {
+        Address address = new Address(
+                ((EditText) findViewById(R.id.state)).getText().toString()
+                ,((EditText) findViewById(R.id.city)).getText().toString()
+                ,((EditText) findViewById(R.id.street)).getText().toString());
 
-                final Business newBusiness = new Business(
-                        Integer.parseInt(((EditText) findViewById(R.id.ID)).getText().toString())
-                        ,((EditText) findViewById(R.id.name)).getText().toString()
-                        ,address
-                        ,((EditText) findViewById(R.id.telephoneNumber)).getText().toString()
-                        ,((EditText) findViewById(R.id.email)).getText().toString()
-                        ,((EditText) findViewById(R.id.website)).getText().toString());
-                //add to content provider
-                final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
+        final Business newBusiness = new Business(
+                Integer.parseInt(((EditText) findViewById(R.id.ID)).getText().toString())
+                ,((EditText) findViewById(R.id.name)).getText().toString()
+                ,address
+                ,((EditText) findViewById(R.id.telephoneNumber)).getText().toString()
+                ,((EditText) findViewById(R.id.email)).getText().toString()
+                ,((EditText) findViewById(R.id.website)).getText().toString());
+        //add to content provider
+        final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
 
-                (new AsyncTask<String,Integer,Integer>() {
-                    @Override
-                    protected Integer doInBackground(String... params)
-                    {
-                        try
-                        {
-                            getContentResolver().insert(uri, newBusiness.getContentvalue());
-                        }
-                        catch (Exception e)
-                        {
-                            //Toast.makeText()
-                        }
-                        return 0;
-                    }
-                }).execute();
-            }
-        });
+        try
+        {
+            (new AsyncTask<String,Integer,Integer>() {
+                @Override
+                protected Integer doInBackground(String... params)
+                {
+                    getContentResolver().insert(uri, newBusiness.getContentvalue());
+                    return 0;
+                }
+            }).execute();
+        }
+        catch (Exception e)
+        {
+            Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 }

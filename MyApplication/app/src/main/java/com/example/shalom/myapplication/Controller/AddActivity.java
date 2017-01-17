@@ -62,21 +62,21 @@ public class AddActivity extends AppCompatActivity
 
         final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");
 
-        (new AsyncTask<String,Integer,Integer>() {
-            @Override
-            protected Integer doInBackground(String... params)
-            {
-                try
+        try
+        {
+            (new AsyncTask<String,Integer,Integer>() {
+                @Override
+                protected Integer doInBackground(String... params)
                 {
                     getContentResolver().insert(uri,newActivity.getContentValue());
+                    return 0;
                 }
-                catch (Exception e)
-                {
-                    //Toast.makeText()
-                }
-                return 0;
-            }
-        }).execute();
+            }).execute();
+        }
+        catch (Exception e)
+        {
+            Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
+        }
     }
 }
 ///////////////////////////////////////////////////////////
