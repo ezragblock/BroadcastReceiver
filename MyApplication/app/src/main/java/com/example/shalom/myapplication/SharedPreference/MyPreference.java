@@ -14,12 +14,18 @@ public class MyPreference
 {
     public static final String MY_PREFS_NAME = "YedidyaFiles";//because i'm awesome
     static int counter = 0;//this count how much user i saved
-    static Context temp;
-    static SharedPreferences pref = temp.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-    static SharedPreferences.Editor editor = pref.edit();
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+
+    public MyPreference(Context context)
+    {
+        pref = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        editor = pref.edit();
+    }
 
 
-    public static void addUser(User u)
+    public void addUser(User u)
     {
         editor.putString("username" + counter,u.getUsername());
         editor.putString("password" + counter,u.getPassword());
@@ -27,7 +33,7 @@ public class MyPreference
         counter++;
     }
 
-    public static int isUserOnPhone(User u)//will return the index of the user (if such user doesn't exist return 0)
+    public int isUserOnPhone(User u)//will return the index of the user (if such user doesn't exist return 0)
     {
         for(int i = 0; i < counter;i++)//going over all the users and checking for a match
         {
@@ -37,7 +43,7 @@ public class MyPreference
         return 0;
     }
 
-    public static void deleteUser(User u)
+    public void deleteUser(User u)
     {
         int i = isUserOnPhone(u);
         if(i != 0)

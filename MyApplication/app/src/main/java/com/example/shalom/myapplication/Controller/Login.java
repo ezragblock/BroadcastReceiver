@@ -3,6 +3,7 @@ package com.example.shalom.myapplication.Controller;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Login extends AppCompatActivity
 {
@@ -26,31 +28,44 @@ public class Login extends AppCompatActivity
     }
     public void login(View v)
     {
-        //first we will check if the user exist in the phone
-        /*if(MyPreference.isUserOnPhone(new User(((EditText)findViewById(R.id.username)).getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString())) != 0)
-        {//check if this user exist in the preference
-            //user opened the application... does anything later need to know the user who opened it or not?
+        final User u = new User(((EditText)findViewById(R.id.username)).getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
+        //the user that was typed
+        if((new MyPreference(this)).isUserOnPhone(u)!=0)//check if exist on phone
             startActivity(new Intent(Login.this,MainOptions.class));
-        }*/
 
-        Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-        Cursor cursor = getContentResolver().query(uri,null,null,null,null);
-        ArrayList<User> users = User.getListFromCursor(cursor);
-        for (User user: users)//going for each user in the database and checking if his data match the input
-        {
-            Toast mytoast = new Toast(this);
-            mytoast.setView(v);
-            mytoast.setDuration(Toast.LENGTH_LONG);
-            mytoast.setText(user.getUsername());
-            mytoast.show();
-            if(user.getUsername() == ((EditText)findViewById(R.id.username)).getText().toString()
-                && user.getPassword() == ((EditText)findViewById(R.id.Password)).getText().toString())//checking if the username and password are a match
+        //now we will check in the database
+        (new AsyncTask<String,String,Cursor>() {
+            @Override
+            protected void onPostExecute(Cursor cursor)
             {
-                //user opened the application... does anything later need to know the user who opened it or not?
-                startActivity(new Intent(Login.this,MainOptions.class));
+                ArrayList<User> users = User.getListFromCursor(cursor);
+                for (User user: users)//going for each user in the database and checking if his data match the input
+                {
+                    if(user.getUsername() == u.getUsername()
+                            && user.getPassword() == u.getPassword())//checking if the username and password are a match
+                    {
+                        //user opened the application... does anything later need to know the user who opened it or not?
+                        startActivity(new Intent(Login.this,MainOptions.class));
+                    }
+                }
+                //check if it exists in database
             }
-        }
-        //check if it exists in database
+
+            @Override
+            protected Cursor doInBackground(String... params)
+            {
+                try
+                {
+                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
+                    return getContentResolver().query(uri,null,null,null,null);
+                }
+                catch (Exception e)
+                {
+                    //Toast.makeText()
+                }
+                return null;
+            }
+        }).execute();
     }
     public void register(View v)
     {

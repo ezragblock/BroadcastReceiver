@@ -3,6 +3,7 @@ package com.example.shalom.myapplication.Controller;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Register extends AppCompatActivity
 {
@@ -27,23 +29,59 @@ public class Register extends AppCompatActivity
 
     public void register(View v)
     {
-        Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-        ArrayList<User> users = User.getListFromCursor(getContentResolver().query(uri,null,null,null,null));
-        EditText username = ((EditText)findViewById(R.id.username));
-        for (User user: users)
-        {
-            if(user.getUsername() == username.getText().toString())
+        (new AsyncTask<String,String,List<User>>() {
+            @Override
+            protected void onPostExecute(List<User> users)
             {
-                username.setText("That username is already used...");
-                return;
+                EditText username = ((EditText)findViewById(R.id.username));
+                for(User user:users)
+                {
+                    if(user.getUsername() == username.getText().toString())
+                    {
+                        username.setText("That username is already used...");
+                        return;
+                    }
+                }
             }
-        }
-        User u = new User(username.getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
-        getContentResolver().insert(uri,u.getContentValue());
+
+            @Override
+            protected List<User> doInBackground(String... params)
+            {
+                try
+                {
+                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
+                    return User.getListFromCursor(getContentResolver().query(uri,null,null,null,null));
+                }
+                catch (Exception e)
+                {
+                    //Toast.makeText()
+                }
+                return null;
+            }
+        }).execute();
+
+        EditText username = ((EditText)findViewById(R.id.username));
+        final User u = new User(username.getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
+        (new AsyncTask<String,Integer,Integer>() {
+            @Override
+            protected Integer doInBackground(String... params)
+            {
+                try
+                {
+                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
+                    getContentResolver().insert(uri,u.getContentValue());
+                }
+                catch (Exception e)
+                {
+                    //Toast.makeText()
+                }
+                return 0;
+            }
+        }).execute();
 
         if(((CheckBox)findViewById(R.id.SaveOnPhone)).isActivated())
         {
-            MyPreference.addUser(u);
+            (new MyPreference(this)).addUser(u);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.shalom.myapplication.Controller;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -61,9 +62,9 @@ public class AddActivity extends AppCompatActivity
 
         final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");
 
-        new ActivateBackEndTask().execute(new ICallableTask() {
+        (new AsyncTask<String,Integer,Integer>() {
             @Override
-            public Cursor Activate()
+            protected Integer doInBackground(String... params)
             {
                 try
                 {
@@ -73,9 +74,9 @@ public class AddActivity extends AppCompatActivity
                 {
                     //Toast.makeText()
                 }
-                return null;
+                return 0;
             }
-        });
+        }).execute();
     }
 }
 ///////////////////////////////////////////////////////////

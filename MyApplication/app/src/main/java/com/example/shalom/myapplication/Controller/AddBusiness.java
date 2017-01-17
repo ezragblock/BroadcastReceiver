@@ -3,6 +3,7 @@ package com.example.shalom.myapplication.Controller;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -47,15 +48,21 @@ public class AddBusiness extends AppCompatActivity
                 //add to content provider
                 final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
 
-                new ActivateBackEndTask().execute( new ICallableTask()
-                {
-                    public Cursor Activate()
+                (new AsyncTask<String,Integer,Integer>() {
+                    @Override
+                    protected Integer doInBackground(String... params)
                     {
-                        getContentResolver().insert(uri, newBusiness.getContentvalue());
-                        return null;
+                        try
+                        {
+                            getContentResolver().insert(uri, newBusiness.getContentvalue());
+                        }
+                        catch (Exception e)
+                        {
+                            //Toast.makeText()
+                        }
+                        return 0;
                     }
-                });
-
+                }).execute();
             }
         });
     }
