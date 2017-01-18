@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.model.backend.ActivateBackEndTask;
