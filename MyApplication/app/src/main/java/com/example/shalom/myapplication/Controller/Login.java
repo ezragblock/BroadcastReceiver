@@ -66,7 +66,8 @@ public class Login extends AppCompatActivity
             Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
             toast.show();
         }
-
+        Toast toast = Toast.makeText(this,"Username or Password are incorrect",Toast.LENGTH_SHORT);
+        toast.show();
     }
     public void register(View v)
     {

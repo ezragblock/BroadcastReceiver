@@ -32,9 +32,10 @@ public class Register extends AppCompatActivity
     {
         try
         {
+            //hear we check if this user is already taken
             (new AsyncTask<String,String,List<User>>() {
                 @Override
-                protected void onPostExecute(List<User> users)
+               protected void onPostExecute(List<User> users)
                 {
                     EditText username = ((EditText)findViewById(R.id.username));
                     for(User user:users)
@@ -61,30 +62,27 @@ public class Register extends AppCompatActivity
             toast.show();
         }
 
-
+        //add the user
         EditText username = ((EditText)findViewById(R.id.username));
         final User u = new User(username.getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
-        try
-        {
-            (new AsyncTask<String,Integer,Integer>() {
-                @Override
-                protected Integer doInBackground(String... params)
-                {
-                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-                    getContentResolver().insert(uri,u.getContentValue());
-                    return 0;
-                }
-            }).execute();
-        }
-        catch (Exception e)
-        {
-            Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
-            toast.show();
-        }
 
+        (new AsyncTask<String,Integer,Integer>() {
+
+            @Override
+            protected Integer doInBackground(String... params)
+            {
+                Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
+                getContentResolver().insert(uri,u.getContentValue());
+                return 0;
+            }
+        }).execute();
+
+        //add the user to the phone (if it doesn't already exist)
         if(((CheckBox)findViewById(R.id.SaveOnPhone)).isActivated())
         {
             (new MyPreference(this)).addUser(u);
+            Toast toast = Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }

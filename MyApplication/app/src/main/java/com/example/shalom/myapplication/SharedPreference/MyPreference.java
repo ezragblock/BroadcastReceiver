@@ -1,6 +1,7 @@
 package com.example.shalom.myapplication.SharedPreference;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.model.entities.User;
 

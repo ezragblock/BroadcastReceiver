@@ -21,7 +21,7 @@ import java.net.ConnectException;
  */
 
 public class CustomContentProvider extends ContentProvider {
-    public static final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
+    public static final String PROVIDER_NAME = "com.example.shalom.myapplication";
 
     public static IDataSource DB_Manager = FactoryDataSource.getDataBase();
 
