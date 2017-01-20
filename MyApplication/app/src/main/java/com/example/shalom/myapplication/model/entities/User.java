@@ -54,15 +54,14 @@ public class User
     {
         MatrixCursor c = new MatrixCursor(User.COLUMNS());
 
-        for (User user:users)
-        {
-            c.addRow(new Object[] {
+        for (User user:users) {
+            c.addRow(new Object[]{
                     user.getUsername(),
                     user.getPassword()
             });
             return c;
         }
-        return c;
+        return c;//doesn't return cursor rather matrix cursor and then it crashes...
     }
 
     public static ArrayList<User> getListFromCursor(Cursor cursor)
