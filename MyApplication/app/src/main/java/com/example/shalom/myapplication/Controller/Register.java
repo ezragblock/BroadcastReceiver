@@ -40,7 +40,7 @@ public class Register extends AppCompatActivity
                     EditText username = ((EditText)findViewById(R.id.username));
                     for(User user:users)
                     {
-                        if(user.getUsername() == username.getText().toString())
+                        if(user.getUsername().equals(username.getText().toString()))
                         {
                             username.setText("That username is already used...");
                             return;

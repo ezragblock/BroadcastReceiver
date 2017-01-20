@@ -43,8 +43,8 @@ public class Login extends AppCompatActivity
                     ArrayList<User> users = User.getListFromCursor(cursor);
                     for (User user: users)//going for each user in the database and checking if his data match the input
                     {
-                        if(user.getUsername() == u.getUsername()
-                                && user.getPassword() == u.getPassword())//checking if the username and password are a match
+                        if(user.getUsername().equals(u.getUsername())
+                                && user.getPassword().equals(u.getPassword()))//checking if the username and password are a match
                         {
                             //user opened the application... does anything later need to know the user who opened it or not?
                             startActivity(new Intent(Login.this,MainOptions.class));
