@@ -28,71 +28,60 @@ public class CustomContentProvider extends ContentProvider {
     public static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     //static constructor for initializing static attributes
-    static
-    {
-        sUriMatcher.addURI(PROVIDER_NAME,"businesses",1);
-        sUriMatcher.addURI(PROVIDER_NAME,"activities",2);
-        sUriMatcher.addURI(PROVIDER_NAME,"users",3);
+    static {
+        sUriMatcher.addURI(PROVIDER_NAME, "businesses", 1);
+        sUriMatcher.addURI(PROVIDER_NAME, "activities", 2);
+        sUriMatcher.addURI(PROVIDER_NAME, "users", 3);
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
-    {
-        try
-        {
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        try {
             //Choosing database category
             Cursor c;
-            switch (sUriMatcher.match(uri))
-            {
+            switch (sUriMatcher.match(uri)) {
                 case 1://businesses
-                    getContext().getContentResolver().notifyChange(uri,null);
+                    getContext().getContentResolver().notifyChange(uri, null);
                     return DB_Manager.getBusinesses();
                 case 2://activities
-                    getContext().getContentResolver().notifyChange(uri,null);
+                    getContext().getContentResolver().notifyChange(uri, null);
                     return DB_Manager.getActivities();
                 case 3://users
-                    getContext().getContentResolver().notifyChange(uri,null);
-                return DB_Manager.getUsers();
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return DB_Manager.getUsers();
                 default:
                     throw new IllegalArgumentException("Unsupported URI: " + uri);
             }
             //Delete Columns witht the projection and selection
-        }
-        catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             throw e;
-        }
-        catch (Exception e)
-        {
-            throw  new SQLException("Cannot conect to th server" + e.getMessage());
+        } catch (Exception e) {
+            throw new SQLException("Cannot comnect to th server" + e.getMessage());
         }
     }
+
     @Override
-    public String getType(Uri uri)
-    {
+    public String getType(Uri uri) {
         return null;
     }
+
     @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
-    {
-        return 0;
-    }
-    @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs)
-    {
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         return 0;
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues values)
-    {
-        try
-        {
-            switch(uri.getPath().substring(1))
-            {
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        return 0;
+    }
+
+    @Override
+    public Uri insert(Uri uri, ContentValues values) {
+        try {
+            switch (uri.getPath().substring(1)) {
                 case "activities":
                     DB_Manager.addActivity(values);
-                    getContext().getContentResolver().notifyChange(uri,null);
+                    getContext().getContentResolver().notifyChange(uri, null);
                     return null;
                 case "buisnesses":
                     DB_Manager.addBusiness(values);
@@ -103,19 +92,15 @@ public class CustomContentProvider extends ContentProvider {
                 default:
                     throw new IllegalArgumentException("This Content Provider doesn't support this type of thing");
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new SQLException("THere was a problem with the server" + e.getMessage());
-        }
-        catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             throw e;
         }
     }
+
     @Override
-    public boolean onCreate()
-    {
+    public boolean onCreate() {
         return true;
     }
 }

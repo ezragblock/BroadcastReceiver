@@ -52,25 +52,17 @@ public class User
 
     public static Cursor getCursorFromList(ArrayList<User> users)
     {
-        MatrixCursor c = new MatrixCursor(Activity.COLUMNS());
+        MatrixCursor c = new MatrixCursor(User.COLUMNS());
 
         for (User user:users)
         {
-            ArrayList<String> temp = new ArrayList<>();
-            try
-            {
-                temp.add(user.getUsername());
-                temp.add(user.getPassword());
-
-                c.addRow(temp);
-                return c;
-            }
-            catch (Exception e)//we don't know yet what kind of exception can happened here (not yet tested)
-            {
-                return null;
-            }
+            c.addRow(new Object[] {
+                    user.getUsername(),
+                    user.getPassword()
+            });
+            return c;
         }
-        return null;
+        return c;
     }
 
     public static ArrayList<User> getListFromCursor(Cursor cursor)
@@ -78,7 +70,7 @@ public class User
         if(cursor == null)
             return new ArrayList<User>();
 
-        if(!Activity.COLUMNS().equals(cursor.getColumnNames()))
+        if(!User.COLUMNS().equals(cursor.getColumnNames()))
             throw new IllegalArgumentException("The columns must match the entity's paramters");
 
         ArrayList<User> users = new ArrayList<>();//this is the list that we will return with all the activities

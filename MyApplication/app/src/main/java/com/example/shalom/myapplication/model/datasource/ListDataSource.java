@@ -21,9 +21,9 @@ import java.util.GregorianCalendar;
 
 public class ListDataSource implements IDataSource
 {
-    public ArrayList<Business> businesses;
-    public ArrayList<Activity> activities;
-    public ArrayList<User> users;
+    public ArrayList<Business> businesses=new ArrayList<Business>();
+    public ArrayList<Activity> activities=new ArrayList<Activity>();
+    public ArrayList<User> users = new ArrayList<User>();
 
     private boolean UserUpdate;
     private boolean activityUpdate;

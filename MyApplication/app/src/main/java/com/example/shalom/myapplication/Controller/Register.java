@@ -33,9 +33,9 @@ public class Register extends AppCompatActivity
         try
         {
             //hear we check if this user is already taken
-            (new AsyncTask<String,String,List<User>>() {
+            (new AsyncTask<String,String,ArrayList<User>>() {
                 @Override
-               protected void onPostExecute(List<User> users)
+               protected void onPostExecute(ArrayList<User> users)
                 {
                     EditText username = ((EditText)findViewById(R.id.username));
                     for(User user:users)
@@ -49,10 +49,16 @@ public class Register extends AppCompatActivity
                 }
 
                 @Override
-                protected List<User> doInBackground(String... params)
+                protected ArrayList<User> doInBackground(String... params)
                 {
-                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-                    return User.getListFromCursor(getContentResolver().query(uri,null,null,null,null));
+                    try {
+                        Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
+                        return User.getListFromCursor(getContentResolver().query(uri, null, null, null, null));
+                    }
+                    catch (Exception ex) {
+                        ex.printStackTrace();
+                        return null;
+                    }
                 }
             }).execute();
         }
@@ -71,6 +77,7 @@ public class Register extends AppCompatActivity
             @Override
             protected Integer doInBackground(String... params)
             {
+                //android.os.Debug.waitForDebugger();
                 Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
                 getContentResolver().insert(uri,u.getContentValue());
                 return 0;
