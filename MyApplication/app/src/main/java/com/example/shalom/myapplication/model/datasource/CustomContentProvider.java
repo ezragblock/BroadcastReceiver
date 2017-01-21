@@ -43,13 +43,14 @@ public class CustomContentProvider extends ContentProvider {
             switch (sUriMatcher.match(uri)) {
                 case 1://businesses
                     getContext().getContentResolver().notifyChange(uri, null);
-                    return DB_Manager.getBusinesses();
+                    return (Cursor)DB_Manager.getBusinesses();
                 case 2://activities
                     getContext().getContentResolver().notifyChange(uri, null);
-                    return DB_Manager.getActivities();
+                    return (Cursor)DB_Manager.getActivities();
                 case 3://users
                     getContext().getContentResolver().notifyChange(uri, null);
-                    return DB_Manager.getUsers();
+                    c = DB_Manager.getUsers();
+                    return c;
                 default:
                     throw new IllegalArgumentException("Unsupported URI: " + uri);
             }
