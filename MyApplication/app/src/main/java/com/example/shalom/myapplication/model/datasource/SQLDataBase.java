@@ -33,6 +33,8 @@ import static java.lang.System.in;
 
 public class SQLDataBase implements IDataSource
 {
+    private int UserCount = 0 ,BusinessCount = 0,ActivityCount = 0;
+
     private static String GET(String url) throws Exception
     {
         URL obj = new URL(url);
@@ -193,6 +195,7 @@ public class SQLDataBase implements IDataSource
     {
         MatrixCursor agenciesCursor = new MatrixCursor(Activity.COLUMNS());
         JSONArray array = new JSONObject(GET(WEB_URL + "/ActivityFromServer.php")).getJSONArray("activities");
+        //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject activities = array.getJSONObject(i);
@@ -211,6 +214,7 @@ public class SQLDataBase implements IDataSource
                     activities.getInt(Activity.COLUMNS()[10])
              });
         }
+        ActivityCount = array.length();
         return agenciesCursor;
     }
 
@@ -219,6 +223,7 @@ public class SQLDataBase implements IDataSource
     {
         MatrixCursor usersCursor = new MatrixCursor(User.COLUMNS());
         JSONArray array = new JSONObject(GET(WEB_URL + "/UserFromServer.php")).getJSONArray("users");
+        //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject user = array.getJSONObject(i);
@@ -228,6 +233,7 @@ public class SQLDataBase implements IDataSource
                     user.getString(User.COLUMNS()[1])
             });
         }
+        UserCount = array.length();
         return usersCursor;
     }
 
@@ -236,6 +242,7 @@ public class SQLDataBase implements IDataSource
     {
         MatrixCursor buisnessCursor = new MatrixCursor(Business.COLUMNS());
         JSONArray array = new JSONObject(GET(WEB_URL + "/BusinessFromServer.php")).getJSONArray("buisnesses");
+        //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject buisnesses = array.getJSONObject(i);
@@ -251,24 +258,37 @@ public class SQLDataBase implements IDataSource
                             buisnesses.getString(Business.COLUMNS()[7])
                     });
         }
+        BusinessCount = array.length();
         return buisnessCursor;
     }
 
     @Override
-    public Boolean isActivitiesUpdated()
+    public Boolean isActivitiesUpdated()throws Exception
     {
-        return null;
+        JSONArray array = new JSONObject(GET(WEB_URL + "/ActivityFromServer.php")).getJSONArray("activities");
+
+        if(array.length() != ActivityCount)
+            return  false;
+        return true;
     }
 
     @Override
-    public Boolean isUsersUpdated()
+    public Boolean isUsersUpdated()throws Exception
     {
-        return null;
+        JSONArray array = new JSONObject(GET(WEB_URL + "/UserFromServer.php")).getJSONArray("users");
+
+        if(array.length() != UserCount)
+            return  false;
+        return true;
     }
 
     @Override
-    public Boolean isBusinessesUpdated()
+    public Boolean isBusinessesUpdated()throws Exception
     {
-        return null;
+        JSONArray array = new JSONObject(GET(WEB_URL + "/BusinessFromServer.php")).getJSONArray("businesses");
+
+        if(array.length() != BusinessCount)
+            return  false;
+        return true;
     }
 }

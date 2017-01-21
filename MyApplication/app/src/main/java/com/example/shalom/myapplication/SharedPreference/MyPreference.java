@@ -38,7 +38,7 @@ public class MyPreference
     {
         for(int i = 0; i < counter;i++)//going over all the users and checking for a match
         {
-            if(pref.getString("username" + i,"no such name") == u.getUsername()&&pref.getString("password" + i,"password not match") == u.getPassword())
+            if(pref.getString("username" + i,"no such name").equals(u.getUsername())&&pref.getString("password" + i,"password not match").equals(u.getPassword()))
                 return i;
         }
         return 0;

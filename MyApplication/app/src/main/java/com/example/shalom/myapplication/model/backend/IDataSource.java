@@ -24,7 +24,7 @@ public interface IDataSource
     Cursor getUsers() throws Exception;
     Cursor getBusinesses() throws Exception;
 
-    Boolean isActivitiesUpdated();
-    Boolean isUsersUpdated();
-    Boolean isBusinessesUpdated();
+    Boolean isActivitiesUpdated()throws Exception;
+    Boolean isUsersUpdated()throws Exception;
+    Boolean isBusinessesUpdated()throws Exception;
 }

@@ -42,23 +42,20 @@ public class CustomContentProvider extends ContentProvider {
             Cursor c;
             switch (sUriMatcher.match(uri)) {
                 case 1://businesses
-                    getContext().getContentResolver().notifyChange(uri, null);
                     return (Cursor)DB_Manager.getBusinesses();
                 case 2://activities
-                    getContext().getContentResolver().notifyChange(uri, null);
                     return (Cursor)DB_Manager.getActivities();
                 case 3://users
-                    getContext().getContentResolver().notifyChange(uri, null);
                     c = DB_Manager.getUsers();
                     return c;
                 default:
                     throw new IllegalArgumentException("Unsupported URI: " + uri);
             }
-            //Delete Columns witht the projection and selection
+            //Delete Columns without the projection and selection
         } catch (IllegalArgumentException e) {
             throw e;
         } catch (Exception e) {
-            throw new SQLException("Cannot comnect to th server" + e.getMessage());
+            throw new SQLException("Cannot connect to the server" + e.getMessage());
         }
     }
 
@@ -83,7 +80,6 @@ public class CustomContentProvider extends ContentProvider {
             switch (uri.getPath().substring(1)) {
                 case "activities":
                     DB_Manager.addActivity(values);
-                    getContext().getContentResolver().notifyChange(uri, null);
                     return null;
                 case "buisnesses":
                     DB_Manager.addBusiness(values);
@@ -95,7 +91,7 @@ public class CustomContentProvider extends ContentProvider {
                     throw new IllegalArgumentException("This Content Provider doesn't support this type of thing");
             }
         } catch (IOException e) {
-            throw new SQLException("THere was a problem with the server" + e.getMessage());
+            throw new SQLException("There was a problem with the server" + e.getMessage());
         } catch (IllegalArgumentException e) {
             throw e;
         }
