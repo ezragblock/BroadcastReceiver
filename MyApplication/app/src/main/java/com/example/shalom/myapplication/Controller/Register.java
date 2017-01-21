@@ -30,57 +30,62 @@ public class Register extends AppCompatActivity
 
     public void register(View v)
     {
-        try
-        {
-            //hear we check if this user is already taken
-            (new AsyncTask<String,String,ArrayList<User>>() {
-                @Override
-               protected void onPostExecute(ArrayList<User> users)
+        //hear we check if this user is already taken
+        (new AsyncTask<String,String,ArrayList<User>>() {
+            @Override
+            protected void onPostExecute(ArrayList<User> users)
+            {
+                EditText username = ((EditText)findViewById(R.id.username));
+                for(User user:users)
                 {
-                    EditText username = ((EditText)findViewById(R.id.username));
-                    for(User user:users)
+                    if(user.getUsername().equals(username.getText().toString()))
                     {
-                        if(user.getUsername().equals(username.getText().toString()))
-                        {
-                            username.setText("That username is already used...");
-                            return;
-                        }
+                        username.setText("That username is already used...");
+                        return;
                     }
                 }
+            }
 
-                @Override
-                protected ArrayList<User> doInBackground(String... params)
-                {
-                    try {
-                        Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-                        return User.getListFromCursor(getContentResolver().query(uri, null, null, null, null));
-                    }
-                    catch (Exception ex) {
-                        ex.printStackTrace();
-                        return null;
-                    }
+            @Override
+            protected ArrayList<User> doInBackground(String... params)
+            {
+                try {
+                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
+                    return User.getListFromCursor(getContentResolver().query(uri, null, null, null, null));
                 }
-            }).execute();
-        }
-        catch (Exception e)
-        {
-            Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
-            toast.show();
-        }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                    return null;
+                }
+            }
+        }).execute();
 
         //add the user
         EditText username = ((EditText)findViewById(R.id.username));
         final User u = new User(username.getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
 
-        (new AsyncTask<String,Integer,Integer>() {
+        (new AsyncTask<String,Integer,String>() {
 
             @Override
-            protected Integer doInBackground(String... params)
+            protected String doInBackground(String... params)
             {
-                //android.os.Debug.waitForDebugger();
-                Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-                getContentResolver().insert(uri,u.getContentValue());
-                return 0;
+                try
+                {
+                    //android.os.Debug.waitForDebugger();
+                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
+                    getContentResolver().insert(uri,u.getContentValue());
+                }
+                catch (Exception e)
+                {
+                    return e.getMessage();
+                }
+
+                return "Your account was registered succesfully";
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                Toast toast = Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT);
             }
         }).execute();
 

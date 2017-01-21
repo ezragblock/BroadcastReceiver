@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shalom.myapplication">
+    <provider
+        android:name="com.example.shalom.myapplication.model.datasource.CustomContentProvider"
+        android:authorities="com.example.shalom.myapplication"
+        android:exported="true">
+    </provider>
 
     <application
         android:allowBackup="true"

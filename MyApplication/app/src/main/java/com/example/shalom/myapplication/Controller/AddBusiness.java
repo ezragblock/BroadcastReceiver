@@ -49,22 +49,28 @@ public class AddBusiness extends AppCompatActivity
                 //add to content provider
                 final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
 
-        try
-        {
-            (new AsyncTask<String,Integer,Integer>() {
-                @Override
-                protected Integer doInBackground(String... params)
+
+        (new AsyncTask<String,Integer,String>() {
+            @Override
+            protected String doInBackground(String... params)
+            {
+                try
                 {
                     getContentResolver().insert(uri, newBusiness.getContentvalue());
-                    return 0;
                 }
-            }).execute();
-        }
-        catch (Exception e)
-        {
-            Toast toast = Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
-            toast.show();
-        }
+                catch (Exception e)
+                {
+                    return e.getMessage();
+                }
+                return "Added succesfully";
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                Toast toast = Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }).execute();
     }
 
 }
