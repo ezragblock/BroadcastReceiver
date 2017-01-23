@@ -4,6 +4,7 @@ package com.example.shalom.myapplication.model.datasource;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
+import android.database.AbstractCursor;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.SQLException;
@@ -39,15 +40,13 @@ public class CustomContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         try {
             //Choosing database category
-            Cursor c;
             switch (sUriMatcher.match(uri)) {
                 case 1://businesses
                     return (Cursor)DB_Manager.getBusinesses();
                 case 2://activities
                     return (Cursor)DB_Manager.getActivities();
                 case 3://users
-                    c = DB_Manager.getUsers();
-                    return c;
+                    return DB_Manager.getUsers();
                 default:
                     throw new IllegalArgumentException("Unsupported URI: " + uri);
             }

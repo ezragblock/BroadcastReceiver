@@ -50,7 +50,7 @@ public class User
         return COLUMNS;
     }
 
-    public static Cursor getCursorFromList(ArrayList<User> users)
+    public static MatrixCursor getCursorFromList(ArrayList<User> users)
     {
         MatrixCursor c = new MatrixCursor(User.COLUMNS());
 

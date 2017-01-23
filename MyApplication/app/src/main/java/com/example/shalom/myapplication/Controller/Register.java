@@ -49,11 +49,13 @@ public class Register extends AppCompatActivity
             @Override
             protected ArrayList<User> doInBackground(String... params)
             {
-                try {
+                try
+                {
                     Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
                     return User.getListFromCursor(getContentResolver().query(uri, null, null, null, null));
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     ex.printStackTrace();
                     return null;
                 }
@@ -90,11 +92,10 @@ public class Register extends AppCompatActivity
         }).execute();
 
         //add the user to the phone (if it doesn't already exist)
-        if(((CheckBox)findViewById(R.id.SaveOnPhone)).isActivated())
+        if(((CheckBox)findViewById(R.id.SaveOnPhone)).isChecked())
         {
             (new MyPreference(this)).addUser(u);
-            Toast toast = Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT).show();
         }
     }
 }
