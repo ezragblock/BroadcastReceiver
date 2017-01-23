@@ -86,7 +86,8 @@ public class Register extends AppCompatActivity
             }
 
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute(String s)
+            {
                 Toast toast = Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT);
             }
         }).execute();
