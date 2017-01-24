@@ -25,9 +25,9 @@ public class ListDataSource implements IDataSource
     public ArrayList<Activity> activities=new ArrayList<Activity>();
     public ArrayList<User> users = new ArrayList<User>();
 
-    private boolean UserUpdate;
-    private boolean activityUpdate;
-    private boolean businessUpdate;
+    private boolean UserUpdate = false;
+    private boolean activityUpdate = false;
+    private boolean businessUpdate = false;
 
     public void addUser(ContentValues user)
     {
