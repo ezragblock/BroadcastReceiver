@@ -33,6 +33,7 @@ import static java.lang.System.in;
 
 public class SQLDataBase implements IDataSource
 {
+    final String MYWEBURL = "http://block.vlab.jct.ac.il/";
     private int UserCount = 0 ,BusinessCount = 0,ActivityCount = 0;
 
     private static String GET(String url) throws Exception
@@ -111,7 +112,7 @@ public class SQLDataBase implements IDataSource
             Map<String, Object> params = new LinkedHashMap<>();
             params.put(User.COLUMNS()[0], values.getAsString(User.COLUMNS()[0]));
             params.put(User.COLUMNS()[1], values.getAsString(User.COLUMNS()[1]));
-            String results = POST(WEB_URL + "UserToServer.php", params);
+            String results = POST(MYWEBURL + "UserToServer.php", params);
             if(results.equals(""))
             {
                 throw new Exception("An error occurred on the server's side");
@@ -141,7 +142,7 @@ public class SQLDataBase implements IDataSource
             params.put(Business.COLUMNS()[5], values.getAsString(Business.COLUMNS()[5]));
             params.put(Business.COLUMNS()[6], values.getAsString(Business.COLUMNS()[6]));
             params.put(Business.COLUMNS()[7], values.getAsString(Business.COLUMNS()[7]));
-            String results = POST(WEB_URL + "BusinessToServer.php", params);
+            String results = POST(MYWEBURL + "BusinessToServer.php", params);
             if(results.equals(""))
             {
                 throw new Exception("An error occurred on the server's side");
@@ -174,7 +175,7 @@ public class SQLDataBase implements IDataSource
             params.put(Activity.COLUMNS()[8], values.getAsInteger(Activity.COLUMNS()[8]));
             params.put(Activity.COLUMNS()[9], values.getAsInteger(Activity.COLUMNS()[9]));
             params.put(Activity.COLUMNS()[10], values.getAsInteger(Activity.COLUMNS()[10]));
-            String results = POST(WEB_URL + "ActivityToServer.php", params);
+            String results = POST(MYWEBURL + "ActivityToServer.php", params);
             if(results.equals(""))
             {
                 throw new Exception("An error occurred on the server's side");
@@ -194,7 +195,7 @@ public class SQLDataBase implements IDataSource
     public Cursor getActivities() throws Exception
     {
         MatrixCursor agenciesCursor = new MatrixCursor(Activity.COLUMNS());
-        JSONArray array = new JSONObject(GET(WEB_URL + "/ActivityFromServer.php")).getJSONArray("activities");
+        JSONArray array = new JSONObject(GET(MYWEBURL + "ActivityFromServer.php")).getJSONArray("activities");
         //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {
@@ -222,7 +223,7 @@ public class SQLDataBase implements IDataSource
     public Cursor getUsers() throws Exception
     {
         MatrixCursor usersCursor = new MatrixCursor(User.COLUMNS());
-        JSONArray array = new JSONObject(GET(WEB_URL + "/UserFromServer.php")).getJSONArray("users");
+        JSONArray array = new JSONObject(GET(MYWEBURL + "UserFromServer.php")).getJSONArray("users");
         //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {
@@ -241,8 +242,7 @@ public class SQLDataBase implements IDataSource
     public Cursor getBusinesses() throws Exception
     {
         MatrixCursor buisnessCursor = new MatrixCursor(Business.COLUMNS());
-        JSONArray array = new JSONObject(GET(WEB_URL + "/BusinessFromServer.php")).getJSONArray("buisnesses");
-        //now convert every row to a cursor row
+        JSONArray array = new JSONObject(GET(MYWEBURL + "BusinessFromServer.php")).getJSONArray("buisnesses");        //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject buisnesses = array.getJSONObject(i);
@@ -265,7 +265,7 @@ public class SQLDataBase implements IDataSource
     @Override
     public Boolean isActivitiesUpdated()throws Exception
     {
-        JSONArray array = new JSONObject(GET(WEB_URL + "/ActivityFromServer.php")).getJSONArray("activities");
+        JSONArray array = new JSONObject(GET(MYWEBURL + "ActivityFromServer.php")).getJSONArray("activities");
 
         if(array.length() != ActivityCount)
             return  false;
@@ -275,7 +275,7 @@ public class SQLDataBase implements IDataSource
     @Override
     public Boolean isUsersUpdated()throws Exception
     {
-        JSONArray array = new JSONObject(GET(WEB_URL + "/UserFromServer.php")).getJSONArray("users");
+        JSONArray array = new JSONObject(GET(MYWEBURL + "UserFromServer.php")).getJSONArray("users");
 
         if(array.length() != UserCount)
             return  false;
@@ -285,7 +285,7 @@ public class SQLDataBase implements IDataSource
     @Override
     public Boolean isBusinessesUpdated()throws Exception
     {
-        JSONArray array = new JSONObject(GET(WEB_URL + "/BusinessFromServer.php")).getJSONArray("businesses");
+        JSONArray array = new JSONObject(GET(MYWEBURL + "BusinessFromServer.php")).getJSONArray("businesses");
 
         if(array.length() != BusinessCount)
             return  false;

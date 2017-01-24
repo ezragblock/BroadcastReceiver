@@ -98,5 +98,6 @@ public class Register extends AppCompatActivity
             (new MyPreference(this)).addUser(u);
             Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT).show();
         }
+        this.finish();
     }
 }

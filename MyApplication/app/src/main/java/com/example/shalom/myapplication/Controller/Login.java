@@ -70,11 +70,14 @@ public class Login extends AppCompatActivity
 
         Toast toast = Toast.makeText(this,"Username or Password are incorrect",Toast.LENGTH_SHORT);
         toast.show();
+
+        this.finish();
     }
 
     public void register(View v)
     {
         //start register activity
         startActivity(new Intent(Login.this,Register.class));
+        Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT).show();
     }
 }
