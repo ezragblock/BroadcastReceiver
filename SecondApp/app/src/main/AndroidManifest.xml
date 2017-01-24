@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.yedid.secondapp">
-    android:versionCode="1"
-    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="19" />
-
+    android:versionCode="1"
+    android:versionName="1.0">
     <android:users-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:users-permission android:name="android.permission.READ_PHONE_STATE" />
     <android:users-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -18,19 +21,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <receiver android:name=".BroadcastReceiver">
             <intent-filter>
-                <action android:name="com.example.shalom.app2.A_CUSTOM_INTENT"></action>
+                <action android:name="com.example.shalom.app2.A_CUSTOM_INTENT" />
             </intent-filter>
             <intent-filter>
-                <action    android:name="android.intent.action.TIME_SET">
-                </action>
+                <action android:name="android.intent.action.TIME_SET"></action>
             </intent-filter>
             <intent-filter>
-                <action
-                    android:name="android.intent.action.BOOT_COMPLETED">
-                </action>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.TIME_TICK" />
@@ -50,6 +49,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".controller.BusinessInfoActivity"></activity>
     </application>
 
 </manifest>
