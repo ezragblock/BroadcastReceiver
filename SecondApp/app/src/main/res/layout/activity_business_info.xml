@@ -60,24 +60,28 @@
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/phone_btn" />
+            android:id="@+id/phone_btn"
+            android:onClick="Dial" />
 
         <Button
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/email_btn" />
+            android:id="@+id/email_btn"
+            android:onClick="SentEmail" />
 
         <Button
             android:text="Button"
             android:layout_width="143dp"
             android:layout_height="wrap_content"
-            android:id="@+id/adress_btn" />
+            android:id="@+id/adress_btn"
+            android:onClick="OpenMap" />
 
         <Button
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/web_btn" />
+            android:id="@+id/web_btn"
+            android:onClick="OpenWebSite" />
     </LinearLayout>
 </RelativeLayout>

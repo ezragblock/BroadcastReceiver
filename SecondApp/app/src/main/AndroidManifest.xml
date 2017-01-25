@@ -7,13 +7,10 @@
         android:targetSdkVersion="19" />
     android:versionCode="1"
     android:versionName="1.0">
-    <android:users-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:users-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:users-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -49,7 +46,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.BusinessInfoActivity"></activity>
-    </application>
+        <activity android:name=".controller.BusinessInfoActivity">
 
+        </activity>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>
