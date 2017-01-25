@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shalom.myapplication">
+
     <provider
-        android:name="com.example.shalom.myapplication.model.datasource.CustomContentProvider"
+        android:name=".model.datasource.CustomContentProvider"
         android:authorities="com.example.shalom.myapplication"
-        android:exported="true">
-    </provider>
+        android:exported="true"></provider>
 
     <application
         android:allowBackup="true"
@@ -13,12 +13,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-    <provider
-        android:name=".model.datasource.CustomContentProvider"
-        android:authorities="com.example.shalom.myapplication"
-        android:exported="true"></provider>
-
+        <provider
+            android:name=".model.datasource.CustomContentProvider"
+            android:authorities="com.example.shalom.myapplication"
+            android:exported="true" />
 
         <activity android:name=".Controller.MainActivity">
             <intent-filter>
@@ -29,7 +27,8 @@
         </activity>
         <activity android:name=".Controller.AddActivity" />
         <activity android:name=".Controller.Login" />
-        <activity android:name=".Controller.Register"></activity>
+        <activity android:name=".Controller.Register" />
+        <activity android:name=".Controller.MainOptions"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

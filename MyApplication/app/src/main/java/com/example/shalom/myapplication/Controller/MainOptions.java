@@ -18,7 +18,7 @@ public class MainOptions extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_options2);
+        setContentView(R.layout.activity_main_options);
     }
     public void addActivity(View v)
     {
@@ -30,5 +30,4 @@ public class MainOptions extends AppCompatActivity
         //open the add business activity with intent
         startActivity(new Intent(MainOptions.this,AddBusiness.class));
     }
-
 }
