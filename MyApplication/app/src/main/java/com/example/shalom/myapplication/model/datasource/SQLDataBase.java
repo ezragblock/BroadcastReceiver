@@ -223,7 +223,8 @@ public class SQLDataBase implements IDataSource
     public Cursor getUsers() throws Exception
     {
         MatrixCursor usersCursor = new MatrixCursor(User.COLUMNS());
-        JSONArray array = new JSONObject(GET(MYWEBURL + "UserFromServer.php")).getJSONArray("users");
+        String res = GET(MYWEBURL + "UserFromServer.php");
+        JSONArray array = new JSONObject(res).getJSONArray("users");
         //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {

@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity
                 catch (Exception ex)
                 {
                     ex.printStackTrace();
-                    return null;
+                    return new ArrayList<User>();
                 }
             }
         }).execute();

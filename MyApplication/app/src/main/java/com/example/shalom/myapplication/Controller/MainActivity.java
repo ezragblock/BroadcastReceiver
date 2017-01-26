@@ -19,6 +19,8 @@ public class MainActivity extends Activity
         super.onCreate(bundle);
         Intent intent = new Intent(MainActivity.this,Login.class);
         startActivity(intent);
+
+        this.finish();
     }
 
 }

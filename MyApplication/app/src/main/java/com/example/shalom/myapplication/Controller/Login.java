@@ -48,9 +48,14 @@ public class Login extends AppCompatActivity
                     {
                         //user opened the application... does anything later need to know the user who opened it or not?
                         startActivity(new Intent(Login.this,MainOptions.class));
+                        return;
                     }
                 }
                 //check if it exists in database
+
+                //if we went over all the users and there was no match we will let the user know
+                Toast toast = Toast.makeText(getApplicationContext(),"Username or Password are incorrect",Toast.LENGTH_SHORT);
+                toast.show();
             }
 
             @Override
@@ -68,10 +73,6 @@ public class Login extends AppCompatActivity
             }
         }).execute();
 
-        Toast toast = Toast.makeText(this,"Username or Password are incorrect",Toast.LENGTH_SHORT);
-        toast.show();
-
-        this.finish();
     }
 
     public void register(View v)

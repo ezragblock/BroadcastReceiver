@@ -39,9 +39,9 @@ public class UpdatedService extends Service
     {
         Intent ActivityUpdate, BusinessUpdate,UserUpdate;
         //sets the appropriate intents in advance
-        ActivityUpdate = new Intent("com.example.shalom.myapplication").putExtra("table", 'a');
-        BusinessUpdate = new Intent("com.example.shalom.myapplication").putExtra("table", 'b');
-        UserUpdate = new Intent("com.example.shalom.myapplication").putExtra("table", 'u');
+        ActivityUpdate = new Intent("com.example.shalom.secondapp.UPDATE_LIST").putExtra("table", 'a');
+        BusinessUpdate = new Intent("com.example.shalom.secondapp.UPDATE_LIST").putExtra("table", 'b');
+        UserUpdate = new Intent("com.example.shalom.secondapp.UPDATE_LIST").putExtra("table", 'u');
 
         while (true)
         {

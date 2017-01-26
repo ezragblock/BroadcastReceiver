@@ -4,14 +4,17 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Shalom on 11/26/2016.
  */
 
-public class Business
+public class Business implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     int id;
     String name;
     Address address;

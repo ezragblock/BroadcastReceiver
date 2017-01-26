@@ -66,19 +66,24 @@ public class User
 
     public static ArrayList<User> getListFromCursor(Cursor cursor)
     {
-        if(cursor == null)
+        if(cursor == null || cursor.getCount() == 0)
             return new ArrayList<User>();
 
-        if(!User.COLUMNS().equals(cursor.getColumnNames()))
-            throw new IllegalArgumentException("The columns must match the entity's paramters");
+        //if(!User.COLUMNS().equals(cursor.getColumnNames()))
+        //    throw new IllegalArgumentException("The columns must match the entity's paramters");
 
         ArrayList<User> users = new ArrayList<>();//this is the list that we will return with all the activities
         cursor.moveToFirst();
 
         do
         {
-            users.add(new User(cursor.getString(cursor.getColumnIndex(COLUMNS()[0])),
-                               cursor.getString(cursor.getColumnIndex(COLUMNS()[1]))));
+            int i = cursor.getColumnIndex(COLUMNS()[0]);
+            int i1 = cursor.getColumnIndex(COLUMNS()[1]);
+
+            String s  = cursor.getString(i);
+
+            users.add(new User(s,
+                               cursor.getString(i1)));
 
         }while (cursor.moveToNext());
         return users;

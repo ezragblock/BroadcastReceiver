@@ -1,6 +1,11 @@
 package com.example.yedid.secondapp.model.datasource;
 
+import android.app.Activity;
 import android.database.Cursor;
+
+import com.example.yedid.secondapp.model.entities.Business;
+
+import java.util.List;
 
 /**
  * Created by yedid on 1/18/2017.
@@ -8,7 +13,7 @@ import android.database.Cursor;
 
 public interface IDS_manager
 {
-    Cursor getActivities() throws Exception;
-    Cursor getUsers() throws Exception;
-    Cursor getBusinesses() throws Exception;
+    List<Activity> getActivities();
+    List<Business> getBusinesses();
+    void updateList();
 }

@@ -14,7 +14,7 @@ public class FactoryDataSource
     public static IDataSource getDataBase()
     {
         if(myDataSource == null)
-            myDataSource = new SQLDataBase();
+            myDataSource = new ListDataSource();
         return myDataSource;
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yedid.secondapp.R;
 import com.example.yedid.secondapp.model.entities.Business;
@@ -21,8 +22,7 @@ public class BusinessInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_business_info);
 
         Intent intent = getIntent();
-        Bundle b = intent.getExtras();
-        business = (Business)b.get("b");
+        business = (Business)intent.getSerializableExtra("business");
 
         //set the btns text
         ((TextView)findViewById(R.id.business_name)).setText(business.getName());
@@ -37,7 +37,13 @@ public class BusinessInfoActivity extends AppCompatActivity {
         String uri = "tel:" + business.getTelephoneNumber();
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(uri));
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        }
+        catch (SecurityException e)
+        {
+            Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT);
+        }
     }
 
     protected void SentEmail(View view)
@@ -58,6 +64,8 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
     protected void OpenWebSite(View view)
     {
-
+        Intent intent = new Intent(this, BusinessWebView.class);
+        intent.putExtra("address",business.getWebsiteAddress());
+        startActivity(intent);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.shalom.myapplication.Controller;
 
-import android.content.ContentValues;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +12,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
-import com.example.shalom.myapplication.model.backend.ActivateBackEndTask;
-import com.example.shalom.myapplication.model.backend.ICallableTask;
 import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.Activity;
 import com.example.shalom.myapplication.model.entities.ActivityType;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class AddActivity extends AppCompatActivity
