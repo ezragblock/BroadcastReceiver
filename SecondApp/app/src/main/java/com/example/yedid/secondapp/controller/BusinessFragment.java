@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yedid.secondapp.R;
-import com.example.yedid.secondapp.controller.dummy.DummyContent;
-import com.example.yedid.secondapp.controller.dummy.DummyContent.DummyItem;
+import com.example.yedid.secondapp.model.datasource.DataBase;
 import com.example.yedid.secondapp.model.entities.Business;
 
 import java.util.ArrayList;
@@ -71,7 +70,7 @@ public class BusinessFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyBusinessRecyclerViewAdapter(new //hear send the list from the php.ITEMS
+            recyclerView.setAdapter(new MyBusinessRecyclerViewAdapter((new DataBase()).getBusinesses()//hear send the list from the php.ITEMS
                      , mListener));
         }
         return view;

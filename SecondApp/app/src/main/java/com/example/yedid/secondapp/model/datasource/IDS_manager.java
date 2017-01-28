@@ -1,8 +1,8 @@
 package com.example.yedid.secondapp.model.datasource;
 
-import android.app.Activity;
 import android.database.Cursor;
 
+import com.example.yedid.secondapp.model.entities.Activity;
 import com.example.yedid.secondapp.model.entities.Business;
 
 import java.util.List;
