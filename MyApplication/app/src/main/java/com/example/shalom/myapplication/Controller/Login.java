@@ -34,21 +34,26 @@ public class Login extends AppCompatActivity
         //the user that was typed
         if((new MyPreference(this)).isUserOnPhone(u)!=0)//check if exist on phone
             startActivity(new Intent(Login.this,MainOptions.class));
-
         //now we will check in the database
         (new AsyncTask<String,String,Cursor>() {
             @Override
             protected void onPostExecute(Cursor cursor)
             {
+
+                Toast.makeText(getApplicationContext(),"Post Execute",Toast.LENGTH_SHORT).show();
                 ArrayList<User> users = User.getListFromCursor(cursor);
                 for (User user: users)//going for each user in the database and checking if his data match the input
                 {
+                    Toast.makeText(getApplicationContext(),"In the for",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),user.getUsername().toString(),Toast.LENGTH_SHORT);
                     if(user.getUsername().equals(u.getUsername())
                             && user.getPassword().equals(u.getPassword()))//checking if the username and password are a match
                     {
+                        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
                         //user opened the application... does anything later need to know the user who opened it or not?
                         startActivity(new Intent(Login.this,MainOptions.class));
                         return;
+
                     }
                 }
                 //check if it exists in database
@@ -73,12 +78,15 @@ public class Login extends AppCompatActivity
             }
         }).execute();
 
+        //Toast toast = Toast.makeText(this,"Username or Password are incorrect",Toast.LENGTH_SHORT);
+        //toast.show();
+
+        this.finish();
     }
 
     public void register(View v)
     {
         //start register activity
         startActivity(new Intent(Login.this,Register.class));
-        Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT).show();
     }
 }
