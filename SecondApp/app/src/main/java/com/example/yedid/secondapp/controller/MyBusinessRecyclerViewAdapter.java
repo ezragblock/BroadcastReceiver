@@ -39,7 +39,8 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mNameView.setText(mValues.get(position).getName());
-        holder.mContentView.setText(mValues.get(position).getAddress().toString());
+        holder.mAddressView.setText(mValues.get(position).getAddress().toString());
+        holder.mBusinessId.setText(mValues.get(position).getId());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,19 +102,21 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mNameView;
-        public final TextView mContentView;
+        public final TextView mAddressView;
+        public final TextView mBusinessId;
         public Business mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mNameView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mNameView = (TextView) view.findViewById(R.id.businessNameText);
+            mAddressView = (TextView) view.findViewById(R.id.AddressTextView);
+            mBusinessId = (TextView) view.findViewById(R.id.BusinessIdTextView);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mNameView.getText() + "'";
         }
     }
 }
