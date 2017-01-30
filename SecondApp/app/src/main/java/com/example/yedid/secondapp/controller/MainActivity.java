@@ -12,8 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.yedid.secondapp.R;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +46,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        messages.add("Wining isn't everything ,it's just the only thing that matters");
+        messages.add("Life is a game ,the question is ,do you know how to play?");
+        messages.add("שונא מתנות יחיה ואוהב מתנות יחיה הרבה יותר טוב");
+        messages.add("תמיד שמעתי שהנקמה לא משתלמת ,שאחרי שאתה משיג סוף סוף את המטרה אתה מרגיש מדוכודך ולא מסופק.זה טמטום בריבוע!!!!!(קרב אש)");
+        messages.add("יש שני סוגי אנשים בכולם,כאלה שראו אווטאר וכאלה שלא מודים בזה");
+        messages.add("thanks to erelf for the entertaining idea");
     }
 
     @Override
@@ -100,4 +113,13 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private ArrayList<String> messages = new ArrayList<>();
+    protected void ShowMessage(View view)
+    {
+        Random rand = new Random();
+        Toast.makeText(this,messages.get(rand.nextInt(messages.size() - 1)),Toast.LENGTH_SHORT).show();
+    }
+
+
 }
