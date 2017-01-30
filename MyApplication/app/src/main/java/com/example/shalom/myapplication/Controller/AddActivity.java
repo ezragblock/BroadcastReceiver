@@ -38,7 +38,6 @@ public class AddActivity extends AppCompatActivity
     public void createAct(View v)
     {
         //add activity to database
-        ActivityType type;
         Spinner spinner = (Spinner)findViewById(R.id.actType);
         String text = spinner.getSelectedItem().toString();
 
@@ -77,7 +76,6 @@ public class AddActivity extends AppCompatActivity
                 toast.show();
             }
         }).execute();
-
     }
 }
 ////////////////////////////////////////////////////////////

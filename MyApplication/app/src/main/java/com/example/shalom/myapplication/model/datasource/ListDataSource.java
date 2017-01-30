@@ -52,7 +52,7 @@ public class ListDataSource implements IDataSource
     public void addActivity(ContentValues values)
     {
         activityUpdate=true;
-        activities.add(new Activity(ActivityType.valueOf(values.getAsString("activityType")),
+        activities.add(new Activity(ActivityType.valueOf(values.getAsString("activitytype")),
                                     values.getAsString("description"),
                                     values.getAsString("state"),
                                     new GregorianCalendar(values.getAsInteger("beginningday"),values.getAsInteger("beginningmonth"), values.getAsInteger("beginningyear")),

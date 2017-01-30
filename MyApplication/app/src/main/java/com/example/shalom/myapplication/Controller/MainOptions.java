@@ -28,6 +28,6 @@ public class MainOptions extends AppCompatActivity
     public void addBusiness(View v)
     {
         //open the add business activity with intent
-        startActivity(new Intent(MainOptions.this,AddBusiness.class));
+        startActivity(new Intent(MainOptions.this,CreateBusiness.class));
     }
 }

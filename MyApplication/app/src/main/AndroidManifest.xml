@@ -5,7 +5,9 @@
     <provider
         android:name=".model.datasource.CustomContentProvider"
         android:authorities="com.example.shalom.myapplication"
-        android:exported="true"></provider>
+        android:exported="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -28,7 +30,8 @@
         <activity android:name=".Controller.AddActivity" />
         <activity android:name=".Controller.Login" />
         <activity android:name=".Controller.Register" />
-        <activity android:name=".Controller.MainOptions"></activity>
+        <activity android:name=".Controller.MainOptions" />
+        <activity android:name=".Controller.CreateBusiness"></activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>

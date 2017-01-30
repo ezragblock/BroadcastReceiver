@@ -80,7 +80,7 @@ public class CustomContentProvider extends ContentProvider {
                 case "activities":
                     DB_Manager.addActivity(values);
                     return null;
-                case "buisnesses":
+                case "businesses":
                     DB_Manager.addBusiness(values);
                     return null;
                 case "users":

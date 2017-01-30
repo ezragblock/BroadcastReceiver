@@ -59,11 +59,13 @@
                 android:hint="Price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:id="@+id/price"/>
             <EditText
                 android:hint="Business ID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:id="@+id/businessID"/>
             <Button
                 android:layout_width="match_parent"

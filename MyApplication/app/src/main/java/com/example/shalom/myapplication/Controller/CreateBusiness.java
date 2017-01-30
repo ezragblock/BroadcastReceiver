@@ -2,10 +2,9 @@ package com.example.shalom.myapplication.Controller;
 
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,17 +13,13 @@ import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.Address;
 import com.example.shalom.myapplication.model.entities.Business;
 
-public class AddBusiness extends AppCompatActivity
-{
+public class CreateBusiness extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_business);
-        Button createBusinessBtn = (Button)findViewById(R.id.createBusiness);
+        setContentView(R.layout.activity_create_business);
     }
-
     public void addBusiness(View v)
     {
         Address address = new Address(
@@ -32,15 +27,15 @@ public class AddBusiness extends AppCompatActivity
                 ,((EditText) findViewById(R.id.city)).getText().toString()
                 ,((EditText) findViewById(R.id.street)).getText().toString());
 
-                final Business newBusiness = new Business(
-                        Integer.parseInt(((EditText) findViewById(R.id.ID)).getText().toString())
-                        ,((EditText) findViewById(R.id.name)).getText().toString()
-                        ,address
-                        ,((EditText) findViewById(R.id.telephoneNumber)).getText().toString()
-                        ,((EditText) findViewById(R.id.email)).getText().toString()
-                        ,((EditText) findViewById(R.id.website)).getText().toString());
-                //add to content provider
-                final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
+        final Business newBusiness = new Business(
+                Integer.parseInt(((EditText) findViewById(R.id.ID)).getText().toString())
+                ,((EditText) findViewById(R.id.name)).getText().toString()
+                ,address
+                ,((EditText) findViewById(R.id.telephoneNumber)).getText().toString()
+                ,((EditText) findViewById(R.id.email)).getText().toString()
+                ,((EditText) findViewById(R.id.website)).getText().toString());
+        //add to content provider
+        final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
 
 
         (new AsyncTask<String,Integer,String>() {
@@ -64,6 +59,6 @@ public class AddBusiness extends AppCompatActivity
                 toast.show();
             }
         }).execute();
+        this.finish();
     }
-
 }
