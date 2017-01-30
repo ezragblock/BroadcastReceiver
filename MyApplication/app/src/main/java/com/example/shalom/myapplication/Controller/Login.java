@@ -33,7 +33,10 @@ public class Login extends AppCompatActivity
         final User u = new User(((EditText)findViewById(R.id.username)).getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
         //the user that was typed
         if((new MyPreference(this)).isUserOnPhone(u)!=0)//check if exist on phone
-            startActivity(new Intent(Login.this,MainOptions.class));
+        {
+            startActivity(new Intent(Login.this, MainOptions.class));
+            return;
+        }
         //now we will check in the database
         (new AsyncTask<String,String,Cursor>() {
             @Override

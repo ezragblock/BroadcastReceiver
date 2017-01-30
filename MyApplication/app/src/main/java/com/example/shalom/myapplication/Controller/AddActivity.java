@@ -67,7 +67,7 @@ public class AddActivity extends AppCompatActivity
                 {
                     return e.getMessage();
                 }
-                return "Added succesfully";
+                return "Added successfully";
             }
 
             @Override

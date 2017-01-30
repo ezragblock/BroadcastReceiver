@@ -44,7 +44,7 @@ public class MyPreference
         {
             String s1 = pref.getString("username" + i,"no such name");
             String s2 = pref.getString("password" + i,"no such name");
-            if(pref.getString("username" + i,"no such name").equals(u.getUsername())&&pref.getString("password" + i,"password not match").equals(u.getPassword()))
+            if(s1.equals(u.getUsername()) && s2.equals(u.getPassword()))
                 return i;
         }
         return 0;
