@@ -39,13 +39,9 @@ public class Login extends AppCompatActivity
             @Override
             protected void onPostExecute(Cursor cursor)
             {
-
-                Toast.makeText(getApplicationContext(),"Post Execute",Toast.LENGTH_SHORT).show();
                 ArrayList<User> users = User.getListFromCursor(cursor);
                 for (User user: users)//going for each user in the database and checking if his data match the input
                 {
-                    Toast.makeText(getApplicationContext(),"In the for",Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(),user.getUsername().toString(),Toast.LENGTH_SHORT);
                     if(user.getUsername().equals(u.getUsername())
                             && user.getPassword().equals(u.getPassword()))//checking if the username and password are a match
                     {
@@ -78,10 +74,6 @@ public class Login extends AppCompatActivity
             }
         }).execute();
 
-        //Toast toast = Toast.makeText(this,"Username or Password are incorrect",Toast.LENGTH_SHORT);
-        //toast.show();
-
-        this.finish();
     }
 
     public void register(View v)

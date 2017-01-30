@@ -23,6 +23,7 @@ public class MyPreference
     {
         pref = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         editor = pref.edit();
+        counter = pref.getInt("counter",0);
     }
 
 
@@ -32,12 +33,17 @@ public class MyPreference
         editor.putString("password" + counter,u.getPassword());
         editor.commit();
         counter++;
+        editor.remove("counter");
+        editor.putInt("counter",counter);
+        editor.commit();
     }
 
     public int isUserOnPhone(User u)//will return the index of the user (if such user doesn't exist return 0)
     {
         for(int i = 0; i < counter;i++)//going over all the users and checking for a match
         {
+            String s1 = pref.getString("username" + i,"no such name");
+            String s2 = pref.getString("password" + i,"no such name");
             if(pref.getString("username" + i,"no such name").equals(u.getUsername())&&pref.getString("password" + i,"password not match").equals(u.getPassword()))
                 return i;
         }
