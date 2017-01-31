@@ -26,7 +26,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,ActivityFragment.OnFragmentInteractionListener,BusinessFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        ActivityFragment.OnFragmentInteractionListener,BusinessFragment.OnListFragmentInteractionListener,MainFragment.OnFragmentInteractionListener {
 
     public FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragmentManager.beginTransaction().add(R.id.fregament_container,BusinessFragment.newInstance(1)).commit();
+        fragmentManager.beginTransaction().add(R.id.fregament_container,new MainFragment()).commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -114,9 +115,9 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = BusinessFragment.newInstance(0);
 
         if (id == R.id.nav_actvities) {
-            fragment = ActivityFragment.newInstance("","");
+            fragment = new ActivityFragment();
         } else if (id == R.id.nav_businesses) {
-            fragment = BusinessFragment.newInstance(0);
+            fragment = new BusinessFragment();
         } else if (id == R.id.nav_exit) {
             this.finish();
         } else  {
@@ -153,5 +154,10 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.fregament_container,BusinessInfo.newInstance("",""));
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

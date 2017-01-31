@@ -1,5 +1,7 @@
 package com.example.yedid.secondapp.model.backend;
 
+import android.content.Context;
+
 import com.example.yedid.secondapp.model.datasource.DataBase;
 import com.example.yedid.secondapp.model.datasource.IDS_manager;
 
@@ -10,10 +12,10 @@ import com.example.yedid.secondapp.model.datasource.IDS_manager;
 public class FactoryDataSource
 {
     static IDS_manager myDataSource = null;
-    public static IDS_manager getDataBase()
+    public static IDS_manager getDataBase(Context context)
     {
         if(myDataSource == null)
-            myDataSource = new DataBase();
+            myDataSource = new DataBase(context);
         return myDataSource;
     }
 }

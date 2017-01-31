@@ -88,7 +88,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         super.onViewCreated(view, savedInstanceState);
 
         activitiesListView = (ExpandableListView) view.findViewById(R.id.TripExpandbleListView);
-        activitiesListView.setAdapter(new ExpandableListAdapter(FactoryDataSource.getDataBase().getActivities()));
+        activitiesListView.setAdapter(new ExpandableListAdapter(FactoryDataSource.getDataBase(getActivity()).getActivities()));
         activitiesListView.setGroupIndicator(null);
 
         final BusinessInfo.ExpandableListAdapter adapter;

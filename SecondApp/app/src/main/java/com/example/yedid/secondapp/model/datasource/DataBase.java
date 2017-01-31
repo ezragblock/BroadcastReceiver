@@ -21,7 +21,7 @@ public class DataBase implements IDS_manager {
 
     static ArrayList<Business> businesses = new ArrayList<Business>();
     static ArrayList<Activity> activities = new ArrayList<Activity>();
-    static Context context;
+    Context context;
     String PROVIDER_NAME = "content://" + "com.example.shalom.myapplication";
 
     public DataBase(Context context)
@@ -30,11 +30,9 @@ public class DataBase implements IDS_manager {
 
         activities = new ArrayList<Activity>();
         businesses = new ArrayList<Business>();
+
+        updateList();
     }
-
-    public DataBase()
-    {}
-
 
 
     @Override
