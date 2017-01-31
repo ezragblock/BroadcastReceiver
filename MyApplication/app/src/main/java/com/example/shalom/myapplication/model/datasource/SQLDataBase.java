@@ -3,6 +3,7 @@ package com.example.shalom.myapplication.model.datasource;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.widget.Toast;
 
 import com.example.shalom.myapplication.model.backend.IDataSource;
 import com.example.shalom.myapplication.model.entities.Activity;
@@ -121,6 +122,7 @@ public class SQLDataBase implements IDataSource
             {
                 throw new Exception(results.substring(5));
             }
+            //Toast.makeText(,results,Toast.LENGTH_LONG).show();
         }
         catch (Exception e)
         {

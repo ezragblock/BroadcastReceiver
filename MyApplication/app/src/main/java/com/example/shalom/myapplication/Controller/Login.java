@@ -52,7 +52,6 @@ public class Login extends AppCompatActivity
                         //user opened the application... does anything later need to know the user who opened it or not?
                         startActivity(new Intent(Login.this,MainOptions.class));
                         return;
-
                     }
                 }
                 //check if it exists in database
