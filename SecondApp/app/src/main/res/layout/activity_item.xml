@@ -9,7 +9,7 @@
         android:id="@+id/imageView"
         android:layout_width="63dp"
         android:layout_height="58dp"
-        app:srcCompat="@drawable/ActivityPicture"
+        app:srcCompat="@drawable/activity_picture"
         android:textColor="@android:color/darker_gray"/>
 
     <LinearLayout

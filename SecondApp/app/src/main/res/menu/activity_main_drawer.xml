@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Businesses" />
+            android:icon="@drawable/business_picture"
+            android:title="Businesses"
+            android:id="@+id/nav_businesses" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_actvities"
+            android:icon="@drawable/activity_picture"
             android:title="Activities" />
     </group>
 
@@ -19,7 +20,7 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="about us" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_menu_send"
                 android:title="exit" />
         </menu>
