@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragmentManager.beginTransaction().add(R.id.fregament_container,BusinessFragment.newInstance(0)).commit();
+        fragmentManager.beginTransaction().add(R.id.fregament_container,BusinessFragment.newInstance(1)).commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
