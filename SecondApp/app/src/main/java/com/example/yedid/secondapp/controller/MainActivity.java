@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.yedid.secondapp.R;
+import com.example.yedid.secondapp.model.backend.FactoryDataSource;
 import com.example.yedid.secondapp.model.entities.Activity;
 import com.example.yedid.secondapp.model.entities.Business;
 
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity
         messages.add("תמיד שמעתי שהנקמה לא משתלמת ,שאחרי שאתה משיג סוף סוף את המטרה אתה מרגיש מדוכודך ולא מסופק.זה טמטום בריבוע!!!!!(קרב אש)");
         messages.add("יש שני סוגי אנשים בכולם,כאלה שראו אווטאר וכאלה שלא מודים בזה");
         messages.add("thanks to erelf7 for the entertaining idea");
+
+        FactoryDataSource.setContex(this);
     }
 
     @Override

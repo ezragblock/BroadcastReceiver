@@ -58,12 +58,13 @@ public class DataBase implements IDS_manager {
         if(context == null)
             return;
 
-        new AsyncTask<String,String,String>(){
+        (new AsyncTask<String,String,String>(){
             @Override
             protected String doInBackground(String... params) {
                 try
                 {
-                    ArrayList<Business> b = Business.getListFromCursor(context.getContentResolver().query(Uri.parse(PROVIDER_NAME + "/businesses"),null,null,null,null));
+                    Cursor cursor = context.getContentResolver().query(Uri.parse(PROVIDER_NAME + "/businesses"),null,null,null,null);
+                    ArrayList<Business> b = Business.getListFromCursor(cursor);
                     ArrayList<Activity> a = com.example.yedid.secondapp.model.entities.Activity.getListFromCursor(context.getContentResolver().query(Uri.parse(PROVIDER_NAME + "/activities"),null,null,null,null));
 
                     if(a == null || b == null)
@@ -84,6 +85,6 @@ public class DataBase implements IDS_manager {
             protected void onPostExecute(String s) {
                 //tell the user the message
             }
-        };
+        }).execute();
     }
 }
