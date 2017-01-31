@@ -9,7 +9,7 @@
         android:id="@+id/imageView"
         android:layout_width="63dp"
         android:layout_height="58dp"
-        app:srcCompat="@drawable/businessPicture" />
+        app:srcCompat="@drawable/business_picture" />
 
     <LinearLayout
         android:layout_width="wrap_content"
