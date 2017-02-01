@@ -166,17 +166,17 @@ public class SQLDataBase implements IDataSource
         try
         {
             Map<String, Object> params = new LinkedHashMap<>();
-            params.put(Activity.COLUMNS()[0], values.getAsString(Activity.COLUMNS()[0]));
-            params.put(Activity.COLUMNS()[1], values.getAsString(Activity.COLUMNS()[1]));
-            params.put(Activity.COLUMNS()[2], values.getAsString(Activity.COLUMNS()[2]));
-            params.put(Activity.COLUMNS()[3], values.getAsInteger(Activity.COLUMNS()[3]));
-            params.put(Activity.COLUMNS()[4], values.getAsInteger(Activity.COLUMNS()[4]));
-            params.put(Activity.COLUMNS()[5], values.getAsInteger(Activity.COLUMNS()[5]));
-            params.put(Activity.COLUMNS()[6], values.getAsInteger(Activity.COLUMNS()[6]));
-            params.put(Activity.COLUMNS()[7], values.getAsInteger(Activity.COLUMNS()[7]));
-            params.put(Activity.COLUMNS()[8], values.getAsInteger(Activity.COLUMNS()[8]));
-            params.put(Activity.COLUMNS()[9], values.getAsInteger(Activity.COLUMNS()[9]));
-            params.put(Activity.COLUMNS()[10], values.getAsInteger(Activity.COLUMNS()[10]));
+            params.put(Activity.COLUMNS()[0], values.getAsString("activitytype"));
+            params.put(Activity.COLUMNS()[1], values.getAsString("description"));
+            params.put(Activity.COLUMNS()[2], values.getAsString("state"));
+            params.put(Activity.COLUMNS()[3], values.getAsInteger("beginningday"));
+            params.put(Activity.COLUMNS()[4], values.getAsInteger("beginningmonth"));
+            params.put(Activity.COLUMNS()[5], values.getAsInteger("beginningyear"));
+            params.put(Activity.COLUMNS()[6], values.getAsInteger("finishingday"));
+            params.put(Activity.COLUMNS()[7], values.getAsInteger("finishingmonth"));
+            params.put(Activity.COLUMNS()[8], values.getAsInteger("finishingyear"));
+            params.put(Activity.COLUMNS()[9], values.getAsInteger("price"));
+            params.put(Activity.COLUMNS()[10], values.getAsInteger("businessId"));
             String results = POST(MYWEBURL + "ActivityToServer.php", params);
             if(results.equals(""))
             {

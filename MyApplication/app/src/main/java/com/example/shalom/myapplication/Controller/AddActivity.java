@@ -16,6 +16,7 @@ import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.Activity;
 import com.example.shalom.myapplication.model.entities.ActivityType;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class AddActivity extends AppCompatActivity
@@ -46,13 +47,12 @@ public class AddActivity extends AppCompatActivity
                                                   ((EditText)findViewById(R.id.state)).getText().toString(),
                                                   new GregorianCalendar(((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth(),
                                                                       ((DatePicker)findViewById(R.id.beginningDate)).getMonth(),
-                                                                      ((DatePicker)findViewById(R.id.beginningDate)).getYear()),
+                                                                      ((DatePicker)findViewById(R.id.beginningDate)).getYear() +1900),
                                                   new GregorianCalendar(((DatePicker)findViewById(R.id.finishingDate)).getDayOfMonth(),
                                                                       ((DatePicker)findViewById(R.id.finishingDate)).getMonth(),
-                                                                      ((DatePicker)findViewById(R.id.finishingDate)).getYear()),
+                                                                      ((DatePicker)findViewById(R.id.finishingDate)).getYear() + 1900),
                                                   Integer.parseInt(((EditText)findViewById(R.id.price)).getText().toString()),
                                                   Integer.parseInt(((EditText)findViewById(R.id.businessID)).getText().toString()));
-
 
         final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");
 
