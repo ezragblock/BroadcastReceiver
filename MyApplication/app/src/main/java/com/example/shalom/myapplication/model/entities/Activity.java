@@ -208,13 +208,13 @@ public class Activity
     {
         switch(type)
         {
-            case "HOTEL_VACATION_PACKAGE":
+            case "Hotel vacation package":
                 return ActivityType.HOTEL_VACATION_PACKAGE;
-            case "TRAVEL_AGENCY_TRIP":
+            case "Travel agency trip":
                 return ActivityType.TRAVEL_AGENCY_TRIP;
-            case "ENTERTAINMENT":
+            case "Entertainment":
                 return ActivityType.ENTERTAINMENT;
-            case "AIRLINE":
+            case "Airline":
                 return ActivityType.AIRLINE;
             default:
                 throw new IllegalArgumentException("You must choose an Activity Type");

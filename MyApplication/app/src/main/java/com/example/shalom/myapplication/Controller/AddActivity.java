@@ -41,17 +41,20 @@ public class AddActivity extends AppCompatActivity
         //add activity to database
         Spinner spinner = (Spinner)findViewById(R.id.actType);
         String text = spinner.getSelectedItem().toString();
-
+        GregorianCalendar start = new GregorianCalendar();
+        start.set(
+                ((DatePicker)findViewById(R.id.beginningDate)).getYear(),
+                ((DatePicker)findViewById(R.id.beginningDate)).getMonth(),
+                ((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth());
+        GregorianCalendar end = new GregorianCalendar();
+        end.set(
+                ((DatePicker)findViewById(R.id.finishingDate)).getYear(),
+                ((DatePicker)findViewById(R.id.finishingDate)).getMonth(),
+                ((DatePicker)findViewById(R.id.finishingDate)).getDayOfMonth());
         final Activity newActivity = new Activity(Activity.fromStringTOType(text),
                                                   ((EditText)findViewById(R.id.description)).getText().toString(),
                                                   ((EditText)findViewById(R.id.state)).getText().toString(),
-                                                  new GregorianCalendar(((DatePicker)findViewById(R.id.beginningDate)).getDayOfMonth(),
-                                                                      ((DatePicker)findViewById(R.id.beginningDate)).getMonth(),
-                                                                      ((DatePicker)findViewById(R.id.beginningDate)).getYear() +1900),
-                                                  new GregorianCalendar(((DatePicker)findViewById(R.id.finishingDate)).getDayOfMonth(),
-                                                                      ((DatePicker)findViewById(R.id.finishingDate)).getMonth(),
-                                                                      ((DatePicker)findViewById(R.id.finishingDate)).getYear() + 1900),
-                                                  Integer.parseInt(((EditText)findViewById(R.id.price)).getText().toString()),
+                                                  start,end,Integer.parseInt(((EditText)findViewById(R.id.price)).getText().toString()),
                                                   Integer.parseInt(((EditText)findViewById(R.id.businessID)).getText().toString()));
 
         final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");
@@ -76,6 +79,7 @@ public class AddActivity extends AppCompatActivity
                 toast.show();
             }
         }).execute();
+        this.finish();
     }
 }
 ////////////////////////////////////////////////////////////
