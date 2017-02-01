@@ -202,17 +202,20 @@ public class SQLDataBase implements IDataSource
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject activities = array.getJSONObject(i);
+
+
+
             agenciesCursor.addRow(new Object[]
              {
                     activities.getString(Activity.COLUMNS()[0]),
                     activities.getString(Activity.COLUMNS()[1]),
                     activities.getString(Activity.COLUMNS()[2]),
-                    String.valueOf(new GregorianCalendar(activities.getInt(Activity.COLUMNS()[3]),
-                                                         activities.getInt(Activity.COLUMNS()[4]),
-                                                         activities.getInt(Activity.COLUMNS()[5]))),
-                    String.valueOf(new GregorianCalendar(activities.getInt(Activity.COLUMNS()[6]),
-                                                         activities.getInt(Activity.COLUMNS()[7]),
-                                                         activities.getInt(Activity.COLUMNS()[8]))),
+                    activities.getInt(Activity.COLUMNS()[3]),
+                    activities.getInt(Activity.COLUMNS()[4]),
+                    activities.getInt(Activity.COLUMNS()[5]),
+                    activities.getInt(Activity.COLUMNS()[6]),
+                    activities.getInt(Activity.COLUMNS()[7]),
+                    activities.getInt(Activity.COLUMNS()[8]),
                     activities.getInt(Activity.COLUMNS()[9]),
                     activities.getInt(Activity.COLUMNS()[10])
              });
@@ -245,7 +248,7 @@ public class SQLDataBase implements IDataSource
     public Cursor getBusinesses() throws Exception
     {
         MatrixCursor buisnessCursor = new MatrixCursor(Business.COLUMNS());
-        JSONArray array = new JSONObject(GET(MYWEBURL + "BusinessFromServer.php")).getJSONArray("buisnesses");        //now convert every row to a cursor row
+        JSONArray array = new JSONObject(GET(MYWEBURL + "BusinessFromServer.php")).getJSONArray("businesses");        //now convert every row to a cursor row
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject buisnesses = array.getJSONObject(i);

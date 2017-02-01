@@ -18,7 +18,8 @@
         <provider
             android:name=".model.datasource.CustomContentProvider"
             android:authorities="com.example.shalom.myapplication"
-            android:exported="true" />
+            android:exported="true"
+            android:grantUriPermissions="true"/>
 
         <activity android:name=".Controller.MainActivity">
             <intent-filter>

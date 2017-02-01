@@ -155,8 +155,8 @@ public class Activity
         if(cursor == null)
             return new ArrayList<Activity>();
 
-        if(!Activity.COLUMNS().equals(cursor.getColumnNames()))
-            throw new IllegalArgumentException("The columns must match the entity's paramters");
+        //if(!Activity.COLUMNS().equals(cursor.getColumnNames()))
+        //    throw new IllegalArgumentException("The columns must match the entity's paramters");
 
         ArrayList<Activity> a = new ArrayList<>();//this is the list that we will return with all the activities
         cursor.moveToFirst();

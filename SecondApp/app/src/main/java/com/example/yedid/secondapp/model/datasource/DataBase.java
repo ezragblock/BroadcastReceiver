@@ -22,7 +22,7 @@ public class DataBase implements IDS_manager {
     static ArrayList<Business> businesses = new ArrayList<Business>();
     static ArrayList<Activity> activities = new ArrayList<Activity>();
     Context context;
-    String PROVIDER_NAME = "content://" + "com.example.shalom.myapplication";
+    public final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
 
     public DataBase(Context context)
     {
@@ -63,9 +63,13 @@ public class DataBase implements IDS_manager {
             protected String doInBackground(String... params) {
                 try
                 {
-                    Cursor cursor = context.getContentResolver().query(Uri.parse(PROVIDER_NAME + "/businesses"),null,null,null,null);
+                    Uri url = Uri.parse(PROVIDER_NAME + "/businesses");
+                    Cursor cursor = context.getContentResolver().acquireContentProviderClient(url).query(url,null,null,null,null);
                     ArrayList<Business> b = Business.getListFromCursor(cursor);
-                    ArrayList<Activity> a = com.example.yedid.secondapp.model.entities.Activity.getListFromCursor(context.getContentResolver().query(Uri.parse(PROVIDER_NAME + "/activities"),null,null,null,null));
+                    url = Uri.parse(PROVIDER_NAME + "/activities");
+                    cursor = context.getContentResolver().acquireContentProviderClient(url).query(url,null,null,null,null);
+                    ArrayList<Activity> a = Activity.
+                            getListFromCursor(cursor);
 
                     if(a == null || b == null)
                         throw new Exception("Erorr while updating");
@@ -73,7 +77,7 @@ public class DataBase implements IDS_manager {
                     activities = a;
                     businesses = b;
 
-                        return "Succesfull update,refresh page to watch";
+                    return "Succesfull update,refresh page to watch";
                 }
                 catch (Exception e)
                 {
