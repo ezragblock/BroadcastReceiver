@@ -5,8 +5,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -20,6 +22,7 @@ import com.example.yedid.secondapp.model.backend.FactoryDataSource;
 import com.example.yedid.secondapp.model.entities.Activity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -91,11 +94,12 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         activitiesListView.setAdapter(new ExpandableListAdapter(FactoryDataSource.getDataBase().getActivities()));
         activitiesListView.setGroupIndicator(null);
 
-        final BusinessInfo.ExpandableListAdapter adapter;
-        SearchView searchView = (SearchView)getActivity().findViewById(R.id.action_search);//in menu/main
+        final ExpandableListAdapter adapter;
+        final MenuItem item = ((ActionMenuItemView) getActivity().findViewById(R.id.action_search)).getItemData();
+        SearchView searchView = (SearchView)item.getActionView();//in menu/main
 
         if (activitiesListView.getAdapter() instanceof BusinessInfo.ExpandableListAdapter) {
-            adapter = (BusinessInfo.ExpandableListAdapter) activitiesListView.getAdapter();
+            adapter = (ExpandableListAdapter) activitiesListView.getAdapter();
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -164,9 +168,14 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
             {
                 if(!group.contains(state.getState()))
                     group.add(state.getState());
-            }
+            }//counting how many groups do we need
 
             ArrayList<com.example.yedid.secondapp.model.entities.Activity>[] result = new ArrayList[group.size()];
+            for(int i = 0;i < group.size();i++)
+            {
+                result[i] = new ArrayList<>();
+            }//initilze the group
+
             for(com.example.yedid.secondapp.model.entities.Activity activity:activities)
             {
                 for(int i = 0;i < group.size();i++)
@@ -174,7 +183,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
                     if(group.get(i) == activity.getState())
                         result[i].add(activity);
                 }
-            }
+            }//add every activity to the appropriate position in the group
             return result;
         }
 
@@ -299,7 +308,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
 
             public void setText(int group)
             {
-                stateText.setText(children[group].get(0).getBeginningDate().toString());
+                stateText.setText(children[group].get(0).getState());
             }
 
             private TextView stateText;
@@ -315,8 +324,12 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
 
             public void setText(int group,int child)
             {
-                beginingDAtaText.setText(children[group].get(child).getBeginningDate().toString());
-                beginingDAtaText.setText(children[group].get(child).getFinishDate().toString());
+                beginingDAtaText.setText(children[group].get(child).getBeginningDate().get(Calendar.DAY_OF_MONTH) + "/" +
+                                         children[group].get(child).getBeginningDate().get(Calendar.MONTH) + "/" +
+                                         children[group].get(child).getBeginningDate().get(Calendar.YEAR));
+                endDateTextView.setText(children[group].get(child).getFinishDate().get(Calendar.DAY_OF_MONTH) + "/" +
+                                         children[group].get(child).getFinishDate().get(Calendar.MONTH) + "/" +
+                                         children[group].get(child).getFinishDate().get(Calendar.YEAR));
             }
 
             private TextView endDateTextView;

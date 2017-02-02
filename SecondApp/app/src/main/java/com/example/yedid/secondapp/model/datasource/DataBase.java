@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.yedid.secondapp.model.entities.ActivityType;
@@ -62,11 +63,12 @@ public class DataBase implements IDS_manager {
         (new AsyncTask<String,String,ArrayList<Activity>>(){
             @Override
             protected ArrayList<Activity> doInBackground(String... params) {
+                ArrayList<Activity> a = new ArrayList<Activity>();
                 try
                 {
                     Uri url = Uri.parse(PROVIDER_NAME + "/activities");
                     Cursor cursor = context.getContentResolver().acquireContentProviderClient(url).query(url,null,null,null,null);
-                    ArrayList<Activity> a = Activity.getListFromCursor(cursor);
+                    a = Activity.getListFromCursor(cursor);
 
                     if(a == null)
                         return new ArrayList<Activity>();
@@ -76,12 +78,13 @@ public class DataBase implements IDS_manager {
                 }catch (Exception e)
                 {
                     publishProgress(e.getMessage());
-                    return new ArrayList<>();
+                    return a;
                 }
             }
 
             @Override
             protected void onPostExecute(ArrayList<Activity> a) {
+                Log.i("LIST",a.toString());
                 activities = a;
             }
         }).execute();
@@ -90,10 +93,11 @@ public class DataBase implements IDS_manager {
         (new AsyncTask<String,String,ArrayList<Business>>(){
             @Override
             protected ArrayList<Business> doInBackground(String... params) {
+                ArrayList<Business> b = new ArrayList<Business>();
                 try{
                     Uri url = Uri.parse(PROVIDER_NAME + "/businesses");
                     Cursor cursor = context.getContentResolver().acquireContentProviderClient(url).query(url,null,null,null,null);
-                    ArrayList<Business> b = Business.getListFromCursor(cursor);
+                    b = Business.getListFromCursor(cursor);
 
                     if(b == null)
                         return new ArrayList<Business>();
@@ -103,7 +107,7 @@ public class DataBase implements IDS_manager {
                 }catch (Exception e)
                 {
                     publishProgress(e.getMessage());
-                    return new ArrayList<>();
+                    return b;
                 }
             }
 

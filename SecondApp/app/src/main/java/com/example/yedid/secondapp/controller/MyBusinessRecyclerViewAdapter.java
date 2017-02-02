@@ -40,7 +40,7 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
         holder.mItem = mValues.get(position);
         holder.mNameView.setText(mValues.get(position).getName());
         holder.mAddressView.setText(mValues.get(position).getAddress().toString());
-        holder.mBusinessId.setText(mValues.get(position).getId());
+        holder.mBusinessId.setText(String.valueOf(mValues.get(position).getId()));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,14 +109,14 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mNameView = (TextView) view.findViewById(R.id.businessNameText);
+            mNameView = (TextView) view.findViewById(R.id.BusinessNameTextView);
             mAddressView = (TextView) view.findViewById(R.id.AddressTextView);
             mBusinessId = (TextView) view.findViewById(R.id.BusinessIdTextView);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mNameView.getText() + "'";
+            return "stupid";
         }
     }
 }

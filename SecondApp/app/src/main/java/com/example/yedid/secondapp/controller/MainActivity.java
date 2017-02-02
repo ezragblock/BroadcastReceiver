@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FactoryDataSource.setContex(this);
+        FactoryDataSource.getDataBase();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
