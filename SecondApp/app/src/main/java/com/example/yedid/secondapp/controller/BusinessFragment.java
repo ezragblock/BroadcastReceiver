@@ -71,7 +71,8 @@ public class BusinessFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyBusinessRecyclerViewAdapter((FactoryDataSource.getDataBase()).getBusinesses()//hear send the list from the php.ITEMS
+            List<Business> businesses1 = (FactoryDataSource.getDataBase()).getBusinesses();
+            recyclerView.setAdapter(new MyBusinessRecyclerViewAdapter(businesses1//hear send the list from the php.ITEMS
                      , mListener));
         }
         return view;
