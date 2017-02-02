@@ -2,6 +2,7 @@ package com.example.shalom.myapplication.Controller;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -98,6 +99,7 @@ public class Register extends AppCompatActivity
             (new MyPreference(this)).addUser(u);
             Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT).show();
         }
+        startActivity(new Intent(Register.this,MainOptions.class));
         this.finish();
     }
 }

@@ -28,11 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controller.AddActivity" />
-        <activity android:name=".Controller.Login" />
-        <activity android:name=".Controller.Register" />
+        <activity android:name=".Controller.AddActivity"
+                  android:theme="@style/Base.Theme.AppCompat.Dialog"/>
+        <activity android:name=".Controller.Login"
+            android:theme="@style/Base.Theme.AppCompat.Dialog" />
+        <activity android:name=".Controller.Register"
+            android:theme="@style/Base.Theme.AppCompat.Dialog" />
         <activity android:name=".Controller.MainOptions" />
-        <activity android:name=".Controller.CreateBusiness"></activity>
+        <activity android:name=".Controller.CreateBusiness"
+                  android:theme="@style/Base.Theme.AppCompat.Dialog"/>
     </application>
 
 </manifest>

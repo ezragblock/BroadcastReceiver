@@ -78,9 +78,9 @@ public class Login extends AppCompatActivity
 
     }
 
-    public void register(View v)
+    /*public void register(View v)
     {
         //start register activity
         startActivity(new Intent(Login.this,Register.class));
-    }
+    }*/
 }

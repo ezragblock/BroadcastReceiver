@@ -34,12 +34,12 @@
 
     </LinearLayout>
 
-    <Button
+    <!--Button
         android:text="Register"
         android:textSize="30dp"
         android:layout_alignParentBottom = "true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/register"
-        android:onClick="register"/>
+        android:onClick="register"/-->
 </RelativeLayout>
