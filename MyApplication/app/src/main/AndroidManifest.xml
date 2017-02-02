@@ -29,14 +29,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controller.AddActivity"
-                  android:theme="@style/Base.Theme.AppCompat.Dialog"/>
+            android:theme="@style/Base.Theme.AppCompat.Dialog"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".Controller.Login"
-            android:theme="@style/Base.Theme.AppCompat.Dialog" />
+            android:theme="@style/Base.Theme.AppCompat.Dialog"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".Controller.Register"
-            android:theme="@style/Base.Theme.AppCompat.Dialog" />
+            android:theme="@style/Base.Theme.AppCompat.Dialog"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".Controller.MainOptions" />
         <activity android:name=".Controller.CreateBusiness"
-                  android:theme="@style/Base.Theme.AppCompat.Dialog"/>
+            android:theme="@style/Base.Theme.AppCompat.Dialog"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
 
 </manifest>
