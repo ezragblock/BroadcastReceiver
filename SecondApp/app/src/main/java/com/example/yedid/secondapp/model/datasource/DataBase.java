@@ -19,8 +19,8 @@ import java.util.List;
 
 public class DataBase implements IDS_manager {
 
-    static ArrayList<Business> businesses = new ArrayList<Business>();
-    static ArrayList<Activity> activities = new ArrayList<Activity>();
+    private ArrayList<Business> businesses;
+    private ArrayList<Activity> activities;
     Context context;
     public final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
 
@@ -58,36 +58,58 @@ public class DataBase implements IDS_manager {
         if(context == null)
             return;
 
-        (new AsyncTask<String,String,String>(){
+        //update the activities
+        (new AsyncTask<String,String,ArrayList<Activity>>(){
             @Override
-            protected String doInBackground(String... params) {
+            protected ArrayList<Activity> doInBackground(String... params) {
                 try
                 {
-                    Uri url = Uri.parse(PROVIDER_NAME + "/businesses");
+                    Uri url = Uri.parse(PROVIDER_NAME + "/activities");
                     Cursor cursor = context.getContentResolver().acquireContentProviderClient(url).query(url,null,null,null,null);
-                    ArrayList<Business> b = Business.getListFromCursor(cursor);
-                    url = Uri.parse(PROVIDER_NAME + "/activities");
-                    cursor = context.getContentResolver().acquireContentProviderClient(url).query(url,null,null,null,null);
-                    ArrayList<Activity> a = Activity.
-                            getListFromCursor(cursor);
+                    ArrayList<Activity> a = Activity.getListFromCursor(cursor);
 
-                    if(a == null || b == null)
-                        throw new Exception("Erorr while updating");
+                    if(a == null)
+                        return new ArrayList<Activity>();
 
-                    activities = a;
-                    businesses = b;
+                    return a;
 
-                    return "Succesfull update,refresh page to watch";
-                }
-                catch (Exception e)
+                }catch (Exception e)
                 {
-                    return e.getMessage();
+                    publishProgress(e.getMessage());
+                    return new ArrayList<>();
                 }
             }
 
             @Override
-            protected void onPostExecute(String s) {
-                //tell the user the message
+            protected void onPostExecute(ArrayList<Activity> a) {
+                activities = a;
+            }
+        }).execute();
+
+        //update the businesses
+        (new AsyncTask<String,String,ArrayList<Business>>(){
+            @Override
+            protected ArrayList<Business> doInBackground(String... params) {
+                try{
+                    Uri url = Uri.parse(PROVIDER_NAME + "/businesses");
+                    Cursor cursor = context.getContentResolver().acquireContentProviderClient(url).query(url,null,null,null,null);
+                    ArrayList<Business> b = Business.getListFromCursor(cursor);
+
+                    if(b == null)
+                        return new ArrayList<Business>();
+
+                    return b;
+
+                }catch (Exception e)
+                {
+                    publishProgress(e.getMessage());
+                    return new ArrayList<>();
+                }
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<Business> b) {
+                businesses = b;
             }
         }).execute();
     }
