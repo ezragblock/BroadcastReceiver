@@ -39,17 +39,18 @@ public class CustomContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         try {
-            //Choosing database category
-            switch (sUriMatcher.match(uri)) {
-                case 1://businesses
-                    return (Cursor)DB_Manager.getBusinesses();
-                case 2://activities
-                    return (Cursor)DB_Manager.getActivities();
-                case 3://users
-                    return DB_Manager.getUsers();
-                default:
-                    throw new IllegalArgumentException("Unsupported URI: " + uri);
+            if(sUriMatcher.match(uri) == 1)
+            {
+                Cursor cursor = DB_Manager.getBusinesses();
+                return cursor;
             }
+            else if(sUriMatcher.match(uri) == 2) {
+                return DB_Manager.getActivities();
+            }
+            else if(sUriMatcher.match(uri) == 3){
+                return DB_Manager.getUsers();
+            }
+            throw new IllegalArgumentException("Unsupported URI: " + uri);
             //Delete Columns without the projection and selection
         } catch (IllegalArgumentException e) {
             throw e;

@@ -1,5 +1,7 @@
 package com.example.shalom.myapplication.Controller;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +17,10 @@ import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.Activity;
 import com.example.shalom.myapplication.model.entities.ActivityType;
+import com.example.shalom.myapplication.model.entities.Business;
+import com.example.shalom.myapplication.model.entities.User;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -26,7 +31,44 @@ public class AddActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        /*
+        final Spinner spinner2 = (Spinner)findViewById(R.id.businessSpinner);
+        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(spinnerAdapter);
 
+
+        final ArrayList<String> names = new ArrayList<String>();
+        (new AsyncTask<String,String,Cursor>() {
+            @Override
+            protected void onPostExecute(Cursor cursor)
+            {
+                /*ArrayList<Business> businesses = Business.getListFromCursor(cursor);
+                for (Business business: businesses)//going for each user in the database and checking if his data match the input
+                {
+                    names.add(business.getName());
+                }
+                return;
+            }
+
+            @Override
+            protected Cursor doInBackground(String... params)
+            {
+                try
+                {
+                    Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
+                    Cursor cursor = getContentResolver().query(uri,null,null,null,null);
+                    return cursor;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }).execute();
+
+        spinnerAdapter.notifyDataSetChanged();
+        */
         Spinner spinner = (Spinner) findViewById(R.id.actType);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
