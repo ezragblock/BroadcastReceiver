@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.example.shalom.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -191,12 +192,12 @@ public class Activity
         values.put("activitytype",this.activityType.toString());
         values.put("description",this.description);
         values.put("state",this.state);
-        values.put("beginningday", this.beginningDate.getTime().getDay());
-        values.put("beginningmonth", this.beginningDate.getTime().getMonth());
-        values.put("beginningyear", this.beginningDate.getTime().getYear());
-        values.put("finishingday", this.finishDate.getTime().getDay());
-        values.put("finishingmonth", this.finishDate.getTime().getMonth());
-        values.put("finishingyear", this.finishDate.getTime().getYear());
+        values.put("beginningday", this.beginningDate.get(Calendar.DAY_OF_MONTH));
+        values.put("beginningmonth",this.beginningDate.get(Calendar.MONTH));
+        values.put("beginningyear", this.beginningDate.get(Calendar.YEAR));
+        values.put("finishingday", this.finishDate.get(Calendar.DAY_OF_MONTH));
+        values.put("finishingmonth",this.finishDate.get(Calendar.MONTH));
+        values.put("finishingyear", this.finishDate.get(Calendar.YEAR));
         values.put("price",this.price);
         values.put("businessId",this.businessId);
 
