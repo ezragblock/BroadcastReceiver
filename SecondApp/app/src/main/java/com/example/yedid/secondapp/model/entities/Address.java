@@ -1,11 +1,15 @@
 package com.example.yedid.secondapp.model.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by Shalom on 11/26/2016.
  */
 
-public class Address
+public class Address implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     public String state;
     public String city;
     public String street;

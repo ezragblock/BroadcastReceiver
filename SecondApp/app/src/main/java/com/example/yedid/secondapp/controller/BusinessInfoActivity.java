@@ -57,10 +57,10 @@ public class BusinessInfoActivity extends AppCompatActivity {
         activitiesListView.setGroupIndicator(null);
 
         final ExpandableListAdapter adapter;
-        final MenuItem item = ((ActionMenuItemView) findViewById(R.id.action_search)).getItemData();
-        SearchView searchView = (SearchView)item.getActionView();//in menu/main
+//        final MenuItem item = ((ActionMenuItemView) findViewById(R.id.action_search)).getItemData();
+//        SearchView searchView = (SearchView)item.getActionView();//in menu/main
 
-        if (activitiesListView.getAdapter() instanceof ExpandableListAdapter) {
+        /*if (activitiesListView.getAdapter() instanceof ExpandableListAdapter) {
             adapter = (ExpandableListAdapter) activitiesListView.getAdapter();
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -83,7 +83,7 @@ public class BusinessInfoActivity extends AppCompatActivity {
                     return false;
                 }
             });
-        }
+        }*/
     }
 
 

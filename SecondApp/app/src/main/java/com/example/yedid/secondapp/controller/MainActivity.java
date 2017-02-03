@@ -1,5 +1,6 @@
 package com.example.yedid.secondapp.controller;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,6 +24,7 @@ import com.example.yedid.secondapp.model.backend.FactoryDataSource;
 import com.example.yedid.secondapp.model.entities.Activity;
 import com.example.yedid.secondapp.model.entities.Business;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -155,10 +157,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Business item) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fregament_container,BusinessInfo.newInstance("",""));
-        transaction.addToBackStack(null);
-        transaction.commit();
+        Intent intent = new Intent(MainActivity.this,BusinessInfoActivity.class);
+        intent.putExtra("business",(Serializable) item);
+        startActivity(intent);
     }
 
     @Override
