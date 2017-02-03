@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_business_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.yedid.secondapp.controller.BusinessInfoActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="141dp"
+        android:layout_height="198dp"
+        android:hapticFeedbackEnabled="false"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phoneBtn"
+            android:onClick="Dial" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emailBtn"
+            android:onClick="SentEmail" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/webBtn"
+            android:onClick="OpenWebSite" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mapBtn"
+            android:onClick="OpenMap" />
+    </LinearLayout>
+
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:layout_height="237dp"
+        android:layout_marginTop="275dp"
+        android:id="@+id/activitiesExpandableView" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="147dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="60dp"
+        android:id="@+id/businessNameText" />
+
+    <ImageView
+        android:layout_width="145dp"
+        android:layout_height="143dp"
+        app:srcCompat="@drawable/business_picture"
+        android:id="@+id/imageView2"
+        android:layout_marginTop="20dp"
+        android:layout_alignTop="@+id/businessNameText"
+        android:layout_alignLeft="@+id/businessNameText"
+        android:layout_alignStart="@+id/businessNameText" />
+
+</RelativeLayout>

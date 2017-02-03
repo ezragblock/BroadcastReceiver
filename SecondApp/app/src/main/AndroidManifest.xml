@@ -50,7 +50,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.BusinessWebView"></activity>
+        <activity android:name=".controller.BusinessWebView" />
+        <activity android:name=".controller.BusinessInfoActivity"></activity>
     </application>
 
 </manifest>
