@@ -234,7 +234,6 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
                             children[i] = FilteredArray.get(i);
                         }
                     }
-
                     notifyDataSetChanged();
                 }
             };
