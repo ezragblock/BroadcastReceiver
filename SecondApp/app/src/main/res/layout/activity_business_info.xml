@@ -31,21 +31,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/emailBtn"
-            android:onClick="SentEmail" />
+            android:onClick="SentEmail"
+            android:textSize="10sp" />
 
         <Button
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/webBtn"
-            android:onClick="OpenWebSite" />
+            android:onClick="OpenWebSite"
+            android:textSize="10sp" />
 
         <Button
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mapBtn"
-            android:onClick="OpenMap" />
+            android:onClick="OpenMap"
+            android:textSize="10sp" />
     </LinearLayout>
 
     <ExpandableListView
