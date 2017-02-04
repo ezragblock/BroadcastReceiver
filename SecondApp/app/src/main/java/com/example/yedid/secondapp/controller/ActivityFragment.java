@@ -99,8 +99,8 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         //final MenuItem item = ((ActionMenuItemView) getActivity().findViewById(R.id.action_search)).getItemData();
         //SearchView searchView = (SearchView)item.getActionView();//in menu/main
 
-        if (activitiesListView.getAdapter() instanceof ActivityFragment.ExpandableListAdapter) {
-            adapter = (ExpandableListAdapter) activitiesListView.getAdapter();
+        if (activitiesListView.getExpandableListAdapter() instanceof ActivityFragment.ExpandableListAdapter) {
+            adapter = (ExpandableListAdapter) activitiesListView.getExpandableListAdapter();
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -224,7 +224,17 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
 
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
-                    children = (ArrayList<com.example.yedid.secondapp.model.entities.Activity>[]) results.values;
+                    if(constraint.length() == 0)
+                        children = original;
+                    else {
+                        ArrayList<ArrayList<Activity>> FilteredArray = ((ArrayList<ArrayList<Activity>>) results.values);
+                        children = new ArrayList[results.count];
+                        //convert the FilteredArray to children
+                        for (int i = 0; i < results.count; i++) {
+                            children[i] = FilteredArray.get(i);
+                        }
+                    }
+
                     notifyDataSetChanged();
                 }
             };
