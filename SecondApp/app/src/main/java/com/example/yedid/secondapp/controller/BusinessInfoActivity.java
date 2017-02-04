@@ -301,8 +301,9 @@ public class BusinessInfoActivity extends AppCompatActivity {
     protected void SentEmail(View view)
     {
         Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setData(Uri.parse("mailto:"));
         intent.setType("text/html");
-        intent.putExtra(Intent.EXTRA_EMAIL, business.getEmail());
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{business.getEmail()});
         startActivity(Intent.createChooser(intent, "Send Email"));
     }
 
