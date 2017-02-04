@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,13 @@ public class BusinessFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private SearchView searchView;
+
+    public void setSearchView(SearchView sv)
+    {
+        searchView = sv;
+    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -74,6 +82,32 @@ public class BusinessFragment extends Fragment {
             List<Business> businesses1 = (FactoryDataSource.getDataBase()).getBusinesses();
             recyclerView.setAdapter(new MyBusinessRecyclerViewAdapter(businesses1//hear send the list from the php.ITEMS
                      , mListener));
+
+            if(recyclerView.getAdapter() instanceof MyBusinessRecyclerViewAdapter)
+            {
+                final MyBusinessRecyclerViewAdapter adapter = (MyBusinessRecyclerViewAdapter) recyclerView.getAdapter();
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        adapter.getFilter().filter(newText);
+                        return false;
+                    }
+                });
+
+                searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+                    @Override
+                    public boolean onClose() {
+                        adapter.getFilter().filter(null);
+                        return false;
+                    }
+                });
+            }
         }
         return view;
     }

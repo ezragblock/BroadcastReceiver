@@ -8,6 +8,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.view.menu.ActionMenuItemView;
+import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -119,12 +121,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Fragment fragment = BusinessFragment.newInstance(0);
+        Fragment fragment = new MainFragment();
+
+        final MenuItem i = ((ActionMenuItemView) findViewById(R.id.action_search)).getItemData();
+        SearchView searchView = (SearchView)i.getActionView();//in menu/main
 
         if (id == R.id.nav_actvities) {
             fragment = new ActivityFragment();
+            ((ActivityFragment)fragment).setSearchView(searchView);
         } else if (id == R.id.nav_businesses) {
             fragment = new BusinessFragment();
+            ((BusinessFragment)fragment).setSearchView(searchView);
         } else if (id == R.id.nav_exit) {
             this.finish();
         } else  {

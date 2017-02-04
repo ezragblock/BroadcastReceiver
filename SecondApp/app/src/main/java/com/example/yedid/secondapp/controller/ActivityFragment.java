@@ -46,6 +46,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
     private OnFragmentInteractionListener mListener;
 
     private ExpandableListView activitiesListView;
+    private SearchView searchView;
 
     public ActivityFragment() {
         // Required empty public constructor
@@ -91,14 +92,14 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         super.onViewCreated(view, savedInstanceState);
 
         activitiesListView = (ExpandableListView) view.findViewById(R.id.TripExpandbleListView);
-        activitiesListView.setAdapter(new ExpandableListAdapter(FactoryDataSource.getDataBase().getActivities()));
+        activitiesListView.setAdapter(new ActivityFragment.ExpandableListAdapter(FactoryDataSource.getDataBase().getActivities()));
         activitiesListView.setGroupIndicator(null);
 
         final ExpandableListAdapter adapter;
-        final MenuItem item = ((ActionMenuItemView) getActivity().findViewById(R.id.action_search)).getItemData();
-        SearchView searchView = (SearchView)item.getActionView();//in menu/main
+        //final MenuItem item = ((ActionMenuItemView) getActivity().findViewById(R.id.action_search)).getItemData();
+        //SearchView searchView = (SearchView)item.getActionView();//in menu/main
 
-        if (activitiesListView.getAdapter() instanceof ExpandableListAdapter) {
+        if (activitiesListView.getAdapter() instanceof ActivityFragment.ExpandableListAdapter) {
             adapter = (ExpandableListAdapter) activitiesListView.getAdapter();
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -146,6 +147,11 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void setSearchView(SearchView sv)
+    {
+        searchView = sv;
     }
 
     public class ExpandableListAdapter extends BaseExpandableListAdapter implements Filterable {

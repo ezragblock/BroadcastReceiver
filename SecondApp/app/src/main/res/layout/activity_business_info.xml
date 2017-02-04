@@ -55,11 +55,10 @@
         android:id="@+id/activitiesExpandableView" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="147dp"
         android:layout_height="31dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/businessNameText" />
 
     <ImageView
@@ -67,9 +66,10 @@
         android:layout_height="143dp"
         app:srcCompat="@drawable/business_picture"
         android:id="@+id/imageView2"
-        android:layout_marginTop="20dp"
         android:layout_alignTop="@+id/businessNameText"
         android:layout_alignLeft="@+id/businessNameText"
-        android:layout_alignStart="@+id/businessNameText" />
+        android:layout_alignStart="@+id/businessNameText"
+        android:layout_alignBaseline="@+id/businessNameText"
+        android:layout_alignBottom="@+id/businessNameText" />
 
 </RelativeLayout>
