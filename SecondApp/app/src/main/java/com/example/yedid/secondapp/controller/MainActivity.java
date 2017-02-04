@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity
         messages.add("thanks to erelf7 for the entertaining idea");
 
         FactoryDataSource.setContex(this);
+        this.setTitle("Trip Finder");
     }
 
     @Override

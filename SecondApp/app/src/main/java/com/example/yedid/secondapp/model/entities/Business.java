@@ -165,4 +165,8 @@ public class Business implements Serializable
         return values;
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

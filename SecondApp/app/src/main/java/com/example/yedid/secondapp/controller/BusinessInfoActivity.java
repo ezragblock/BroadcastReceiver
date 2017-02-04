@@ -25,6 +25,7 @@ import com.example.yedid.secondapp.model.entities.Activity;
 import com.example.yedid.secondapp.model.entities.Business;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -82,6 +83,8 @@ public class BusinessInfoActivity extends AppCompatActivity {
                 }
             });
         }*/
+
+        setTitle(business.getName());
     }
 
 
@@ -250,7 +253,7 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
             public void setText(int group)
             {
-                stateText.setText(children[group].get(0).getBeginningDate().toString());
+                stateText.setText(children[group].get(0).getState());
             }
 
             TextView stateText;
@@ -266,8 +269,12 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
             public void setText(int group,int child)
             {
-                beginingDAtaText.setText(children[group].get(child).getBeginningDate().toString());
-                beginingDAtaText.setText(children[group].get(child).getFinishDate().toString());
+                beginingDAtaText.setText(children[group].get(child).getBeginningDate().get(Calendar.DAY_OF_MONTH) + "/" +
+                        children[group].get(child).getBeginningDate().get(Calendar.MONTH) + "/" +
+                        children[group].get(child).getBeginningDate().get(Calendar.YEAR));
+                endDateTextView.setText(children[group].get(child).getFinishDate().get(Calendar.DAY_OF_MONTH) + "/" +
+                        children[group].get(child).getFinishDate().get(Calendar.MONTH) + "/" +
+                        children[group].get(child).getFinishDate().get(Calendar.YEAR));
             }
 
             TextView endDateTextView;

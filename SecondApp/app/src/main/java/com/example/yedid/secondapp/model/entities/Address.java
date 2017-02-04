@@ -31,4 +31,8 @@ public class Address implements Serializable
         return COLUMNS;
     }
 
+    @Override
+    public String toString() {
+        return street + "," + city+ "," + state;
+    }
 }
