@@ -24,7 +24,7 @@ public class BusinessWebView extends AppCompatActivity {
         Intent intent = getIntent();
         String address = intent.getStringExtra("address");
         webView.setWebViewClient(new Callback());
-        webView.loadUrl("https://" + address);
+        webView.loadUrl(address);
     }
 
     private class Callback extends WebViewClient{

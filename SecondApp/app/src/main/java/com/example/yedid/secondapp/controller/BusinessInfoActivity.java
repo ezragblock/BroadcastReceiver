@@ -286,9 +286,7 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
     protected void Dial(View view)
     {
-        String uri = "tel:" + business.getTelephoneNumber();
-        Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse(uri));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + business.getTelephoneNumber()));
         try {
             startActivity(intent);
         }
