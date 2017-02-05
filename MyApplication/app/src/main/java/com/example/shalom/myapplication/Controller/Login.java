@@ -40,24 +40,23 @@ public class Login extends AppCompatActivity
         //now we will check in the database
         (new AsyncTask<String,String,Cursor>() {
             @Override
-            protected void onPostExecute(Cursor cursor)
-            {
+            protected void onPostExecute(Cursor cursor) {
                 ArrayList<User> users = User.getListFromCursor(cursor);
-                for (User user: users)//going for each user in the database and checking if his data match the input
+                for (User user : users)//going for each user in the database and checking if his data match the input
                 {
-                    if(user.getUsername().equals(u.getUsername())
+                    if (user.getUsername().equals(u.getUsername())
                             && user.getPassword().equals(u.getPassword()))//checking if the username and password are a match
                     {
-                        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
                         //user opened the application... does anything later need to know the user who opened it or not?
-                        startActivity(new Intent(Login.this,MainOptions.class));
+                        startActivity(new Intent(Login.this, MainOptions.class));
                         return;
                     }
                 }
                 //check if it exists in database
 
                 //if we went over all the users and there was no match we will let the user know
-                Toast toast = Toast.makeText(getApplicationContext(),"Username or Password are incorrect",Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_SHORT);
                 toast.show();
             }
 
@@ -75,7 +74,7 @@ public class Login extends AppCompatActivity
                 }
             }
         }).execute();
-
+        this.finish();
     }
 
     /*public void register(View v)
