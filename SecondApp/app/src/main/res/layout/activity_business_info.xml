@@ -11,20 +11,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yedid.secondapp.controller.BusinessInfoActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="141dp"
-        android:layout_height="198dp"
-        android:hapticFeedbackEnabled="false"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="50dp">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="141dp"
+            android:layout_height="198dp"
+            android:hapticFeedbackEnabled="false"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="50dp">
 
-        <Button
-            android:text="Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/phoneBtn"
-            android:onClick="Dial" />
+            <Button
+                android:text="Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneBtn"
+                android:onClick="Dial" />
 
         <Button
             android:text="Button"
@@ -51,6 +54,8 @@
             android:textSize="10sp" />
     </LinearLayout>
 
+    </ScrollView>
+
     <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="237dp"
@@ -58,10 +63,11 @@
         android:id="@+id/activitiesExpandableView" />
 
     <TextView
+        android:text="TextView"
         android:layout_width="147dp"
         android:layout_height="31dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/businessNameText" />
 
     <ImageView
@@ -69,10 +75,9 @@
         android:layout_height="143dp"
         app:srcCompat="@drawable/business_picture"
         android:id="@+id/imageView2"
+        android:layout_marginTop="20dp"
         android:layout_alignTop="@+id/businessNameText"
         android:layout_alignLeft="@+id/businessNameText"
-        android:layout_alignStart="@+id/businessNameText"
-        android:layout_alignBaseline="@+id/businessNameText"
-        android:layout_alignBottom="@+id/businessNameText" />
+        android:layout_alignStart="@+id/businessNameText" />
 
 </RelativeLayout>
