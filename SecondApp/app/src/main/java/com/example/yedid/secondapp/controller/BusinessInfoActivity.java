@@ -248,7 +248,7 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
             public GroupViewHolder(View convertView)
             {
-                stateText = (TextView) convertView.findViewById(R.id.SteteTextView);
+                stateText = (TextView) convertView.findViewById(R.id.stateTextView);
             }
 
             public void setText(int group)
@@ -263,8 +263,10 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
             public ActivityViewHolder(View convertView)
             {
-                endDateTextView = (TextView) convertView.findViewById(R.id.EndDateTextView);
-                beginingDAtaText = (TextView) convertView.findViewById(R.id.BeginingDateTextView);
+                endDateTextView = (TextView) convertView.findViewById(R.id.finishDateTextView);
+                beginingDAtaText = (TextView) convertView.findViewById(R.id.beginingDateTextView);
+                descriptionTextView = (TextView) convertView.findViewById(R.id.descriptionTextView);
+                businessIdTextView = (TextView) convertView.findViewById(R.id.businessIdTextView);
             }
 
             public void setText(int group,int child)
@@ -275,10 +277,14 @@ public class BusinessInfoActivity extends AppCompatActivity {
                 endDateTextView.setText(children[group].get(child).getFinishDate().get(Calendar.DAY_OF_MONTH) + "/" +
                         children[group].get(child).getFinishDate().get(Calendar.MONTH) + "/" +
                         children[group].get(child).getFinishDate().get(Calendar.YEAR));
+                descriptionTextView.setText(children[group].get(child).getDescription());
+                businessIdTextView.setText(String.valueOf(children[group].get(child).getBusinessId()));
             }
 
             TextView endDateTextView;
             TextView beginingDAtaText;
+            TextView descriptionTextView;
+            TextView businessIdTextView;
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.SearchView;
@@ -318,7 +319,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
 
             public GroupViewHolder(View convertView)
             {
-                stateText = (TextView) convertView.findViewById(R.id.SteteTextView);
+                stateText = (TextView) convertView.findViewById(R.id.stateTextView);
             }
 
             public void setText(int group)
@@ -326,29 +327,35 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
                 stateText.setText(children[group].get(0).getState());
             }
 
-            private TextView stateText;
+            TextView stateText;
         }
 
         private class ActivityViewHolder {
 
             public ActivityViewHolder(View convertView)
             {
-                endDateTextView = (TextView) convertView.findViewById(R.id.EndDateTextView);
-                beginingDAtaText = (TextView) convertView.findViewById(R.id.BeginingDateTextView);
+                endDateTextView = (TextView) convertView.findViewById(R.id.finishDateTextView);
+                beginingDAtaText = (TextView) convertView.findViewById(R.id.beginingDateTextView);
+                descriptionTextView = (TextView) convertView.findViewById(R.id.descriptionTextView);
+                businessIdTextView = (TextView) convertView.findViewById(R.id.businessIdTextView);
             }
 
             public void setText(int group,int child)
             {
                 beginingDAtaText.setText(children[group].get(child).getBeginningDate().get(Calendar.DAY_OF_MONTH) + "/" +
-                                         children[group].get(child).getBeginningDate().get(Calendar.MONTH) + "/" +
-                                         children[group].get(child).getBeginningDate().get(Calendar.YEAR));
+                        children[group].get(child).getBeginningDate().get(Calendar.MONTH) + "/" +
+                        children[group].get(child).getBeginningDate().get(Calendar.YEAR));
                 endDateTextView.setText(children[group].get(child).getFinishDate().get(Calendar.DAY_OF_MONTH) + "/" +
-                                         children[group].get(child).getFinishDate().get(Calendar.MONTH) + "/" +
-                                         children[group].get(child).getFinishDate().get(Calendar.YEAR));
+                        children[group].get(child).getFinishDate().get(Calendar.MONTH) + "/" +
+                        children[group].get(child).getFinishDate().get(Calendar.YEAR));
+                descriptionTextView.setText(children[group].get(child).getDescription());
+                businessIdTextView.setText(String.valueOf(children[group].get(child).getBusinessId()));
             }
 
-            private TextView endDateTextView;
-            private TextView beginingDAtaText;
+            TextView endDateTextView;
+            TextView beginingDAtaText;
+            TextView descriptionTextView;
+            TextView businessIdTextView;
         }
     }
 
