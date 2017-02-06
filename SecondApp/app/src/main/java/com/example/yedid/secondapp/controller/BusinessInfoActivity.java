@@ -62,39 +62,12 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
         final ExpandableListAdapter adapter;
 
-        /*if (activitiesListView.getAdapter() instanceof ExpandableListAdapter) {
-            adapter = (ExpandableListAdapter) activitiesListView.getAdapter();
-
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    adapter.getFilter().filter(newText);
-                    return false;
-                }
-            });
-
-            searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-                @Override
-                public boolean onClose() {
-                    adapter.getFilter().filter(null);
-                    return false;
-                }
-            });
-        }*/
-
         setTitle(business.getName());
     }
 
 
 
-
-
-    public class ExpandableListAdapter extends BaseExpandableListAdapter implements Filterable {
+    /*public class ExpandableListAdapter extends BaseExpandableListAdapter implements Filterable {
 
         private final LayoutInflater inf;
         private List<Activity>[] children;
@@ -289,7 +262,7 @@ public class BusinessInfoActivity extends AppCompatActivity {
             TextView descriptionTextView;
             TextView beginingDAtaText;
         }
-    }
+    }*/
 
 
 

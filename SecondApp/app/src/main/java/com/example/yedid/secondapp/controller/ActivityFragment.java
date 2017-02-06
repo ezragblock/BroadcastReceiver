@@ -92,14 +92,14 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         super.onViewCreated(view, savedInstanceState);
 
         activitiesListView = (ExpandableListView) view.findViewById(R.id.TripExpandbleListView);
-        activitiesListView.setAdapter(new ActivityFragment.ExpandableListAdapter(FactoryDataSource.getDataBase().getActivities()));
+        activitiesListView.setAdapter(new ExpandableListAdapter(FactoryDataSource.getDataBase().getActivities(),getActivity()));
         activitiesListView.setGroupIndicator(null);
 
         final ExpandableListAdapter adapter;
         //final MenuItem item = ((ActionMenuItemView) getActivity().findViewById(R.id.action_search)).getItemData();
         //SearchView searchView = (SearchView)item.getActionView();//in menu/main
 
-        if (activitiesListView.getExpandableListAdapter() instanceof ActivityFragment.ExpandableListAdapter) {
+        if (activitiesListView.getExpandableListAdapter() instanceof ExpandableListAdapter) {
             adapter = (ExpandableListAdapter) activitiesListView.getExpandableListAdapter();
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -154,7 +154,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         searchView = sv;
     }
 
-    public class ExpandableListAdapter extends BaseExpandableListAdapter implements Filterable {
+    /*public class ExpandableListAdapter extends BaseExpandableListAdapter implements Filterable {
 
         private final LayoutInflater inf;
         private List<Activity>[] children;
@@ -357,7 +357,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
             TextView descriptionTextView;
             TextView beginingDAtaText;
         }
-    }
+    }*/
 
     /**
      * This interface must be implemented by activities that contain this
