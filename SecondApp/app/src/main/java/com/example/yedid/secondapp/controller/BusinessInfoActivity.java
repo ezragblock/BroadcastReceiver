@@ -22,7 +22,9 @@ import android.widget.Toast;
 import com.example.yedid.secondapp.R;
 import com.example.yedid.secondapp.model.backend.FactoryDataSource;
 import com.example.yedid.secondapp.model.entities.Activity;
+import com.example.yedid.secondapp.model.entities.ActivityType;
 import com.example.yedid.secondapp.model.entities.Business;
+import com.example.yedid.secondapp.controller.ActivityViewHolder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -224,17 +226,17 @@ public class BusinessInfoActivity extends AppCompatActivity {
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            ExpandableListAdapter.ActivityViewHolder holder;
+            ActivityViewHolder holder;
             if (convertView == null) {
                 convertView = inf.inflate(R.layout.activity_item, parent, false);
-                holder = new ExpandableListAdapter.ActivityViewHolder(convertView);
+                holder = new ActivityViewHolder(convertView);
 
                 convertView.setTag(holder);
             } else {
-                holder = (ExpandableListAdapter.ActivityViewHolder) convertView.getTag();
+                holder = (ActivityViewHolder) convertView.getTag();
             }
 
-            holder.setText(groupPosition,childPosition);
+            holder.setText(groupPosition,childPosition,children);
 
             return convertView;
         }
@@ -257,34 +259,6 @@ public class BusinessInfoActivity extends AppCompatActivity {
             }
 
             TextView stateText;
-        }
-
-        private class ActivityViewHolder {
-
-            public ActivityViewHolder(View convertView)
-            {
-                endDateTextView = (TextView) convertView.findViewById(R.id.finishDateTextView);
-                beginingDAtaText = (TextView) convertView.findViewById(R.id.beginingDateTextView);
-                descriptionTextView = (TextView) convertView.findViewById(R.id.descriptionTextView);
-                businessIdTextView = (TextView) convertView.findViewById(R.id.businessIdTextView);
-            }
-
-            public void setText(int group,int child)
-            {
-                beginingDAtaText.setText(children[group].get(child).getBeginningDate().get(Calendar.DAY_OF_MONTH) + "/" +
-                        children[group].get(child).getBeginningDate().get(Calendar.MONTH) + "/" +
-                        children[group].get(child).getBeginningDate().get(Calendar.YEAR));
-                endDateTextView.setText(children[group].get(child).getFinishDate().get(Calendar.DAY_OF_MONTH) + "/" +
-                        children[group].get(child).getFinishDate().get(Calendar.MONTH) + "/" +
-                        children[group].get(child).getFinishDate().get(Calendar.YEAR));
-                descriptionTextView.setText(children[group].get(child).getDescription());
-                businessIdTextView.setText(String.valueOf(children[group].get(child).getBusinessId()));
-            }
-
-            TextView endDateTextView;
-            TextView beginingDAtaText;
-            TextView descriptionTextView;
-            TextView businessIdTextView;
         }
     }
 
