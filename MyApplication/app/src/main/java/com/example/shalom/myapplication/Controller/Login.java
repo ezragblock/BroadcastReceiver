@@ -21,6 +21,11 @@ import java.util.List;
 
 public class Login extends AppCompatActivity
 {
+
+    /**
+     * the constructor of the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -28,6 +33,12 @@ public class Login extends AppCompatActivity
         setContentView(R.layout.activity_login);
     }
 
+    /**
+     * This method is called when the user enters the username and password
+     * and this checks if its in the database (or on the phone if it was saved there)
+     * and if it is, it opens the main options window
+     * @param v
+     */
     public void login(View v)
     {
         final User u = new User(((EditText)findViewById(R.id.username)).getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());

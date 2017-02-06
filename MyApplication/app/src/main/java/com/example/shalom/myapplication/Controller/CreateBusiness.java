@@ -15,11 +15,21 @@ import com.example.shalom.myapplication.model.entities.Business;
 
 public class CreateBusiness extends AppCompatActivity {
 
+    /**
+     * constructor of the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_business);
     }
+
+    /**
+     * this method is called when the user presses the business creation button
+     * is in charge of creating and adding the business to the database
+     * @param v the button
+     */
     public void addBusiness(View v)
     {
         Address address = new Address(

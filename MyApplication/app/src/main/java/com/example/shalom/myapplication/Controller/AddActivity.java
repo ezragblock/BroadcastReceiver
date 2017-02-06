@@ -26,6 +26,11 @@ import java.util.GregorianCalendar;
 
 public class AddActivity extends AppCompatActivity
 {
+    /**
+     * This method is in charge of creating the add activity activity
+     * and sets up all the things in the window like spinners
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -78,6 +83,13 @@ public class AddActivity extends AppCompatActivity
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
     }
+
+    /**
+     * method which is called when the user presses the create activity button
+     * Is in charge of creating the activity and adding it to the database
+     *
+     * @param v the button
+     */
     public void createAct(View v)
     {
         //add activity to database

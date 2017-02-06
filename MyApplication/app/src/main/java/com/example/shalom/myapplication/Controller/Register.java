@@ -22,6 +22,10 @@ import java.util.List;
 
 public class Register extends AppCompatActivity
 {
+    /**
+     * Constructor for the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -29,6 +33,11 @@ public class Register extends AppCompatActivity
         setContentView(R.layout.activity_register);
     }
 
+    /**
+     * This method is called when the user presses the register button after entering a username and password
+     * and it creates the new user and adds it to the database, and saves it on the phone if the option was selected
+     * @param v
+     */
     public void register(View v)
     {
         //hear we check if this user is already taken

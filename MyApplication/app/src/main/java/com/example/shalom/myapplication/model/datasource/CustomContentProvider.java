@@ -36,6 +36,15 @@ public class CustomContentProvider extends ContentProvider {
         sUriMatcher.addURI(PROVIDER_NAME, "users", 3);
     }
 
+    /**
+     * This method is in charge of returning part or all the database from a query
+     * @param uri the uri of the part of the database being queried
+     * @param projection the projection of the query
+     * @param selection the selection of the query
+     * @param selectionArgs not used in this application
+     * @param sortOrder the order the columns are sorted in
+     * @return a cursor containing the thing that was queried
+     */
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         try {
@@ -59,21 +68,47 @@ public class CustomContentProvider extends ContentProvider {
         }
     }
 
+    /**
+     * not implemented
+     * @param uri
+     * @return
+     */
     @Override
     public String getType(Uri uri) {
         return null;
     }
 
+    /**
+     * update - NOT IMPLEMENTED
+     * @param uri
+     * @param values
+     * @param selection
+     * @param selectionArgs
+     * @return
+     */
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         return 0;
     }
 
+    /**
+     * delete from the database - NOT IMPLEMENTED
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
+     */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         return 0;
     }
 
+    /**
+     * This method is in charge od inserting something into the database
+     * @param uri the uri (path) where we want to insert it (for example content://com.example.ezra.users
+     * @param values the thing being inserted
+     * @return the uri of the inserted item
+     */
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         try {
@@ -97,6 +132,10 @@ public class CustomContentProvider extends ContentProvider {
         }
     }
 
+    /**
+     * constructor for the content provider
+     * @return
+     */
     @Override
     public boolean onCreate() {
         return true;

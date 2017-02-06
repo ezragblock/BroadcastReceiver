@@ -15,6 +15,12 @@ public class Address
     public String city;
     public String street;
 
+    /**
+     * Constructor of an address
+     * @param state
+     * @param city
+     * @param street
+     */
     public Address(String state, String city, String street)
     {
         this.state = state;
@@ -22,6 +28,10 @@ public class Address
         this.street = street;
     }
 
+    /**
+     *
+     * @return string array of all the columns in order for the database
+     */
     public static String [] COLUMNS()
     {
         String[] COLUMNS = {

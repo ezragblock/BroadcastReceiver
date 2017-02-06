@@ -16,15 +16,66 @@ import java.util.ArrayList;
 
 public interface IDataSource
 {
+    /**
+     * Method in charge of adding a user which is in values to the database to the database
+     * @param values the user being added to the database
+     * @throws IOException throws an error in case the adding process failed
+     */
     void addUser(ContentValues values) throws IOException;
+
+    /**
+     * Method in charge of adding a business to the database which is in values to the database
+     * @param values the business being added to the database
+     * @throws IOException throws an error in case the adding process failed
+     */
     void addBusiness(ContentValues values) throws IOException;
+
+    /**
+     * Method in charge of adding an activity to the database which is in values to the database
+     * @param values the activity being added to the database
+     * @throws IOException throws an error in case the adding process failed
+     */
     void addActivity(ContentValues values) throws IOException;
 
+    /**
+     * Method in charge of returning the activities from the database
+     * @return a cursor containing the activities from the database
+     * @throws Exception if the pulling of the activities fails
+     */
     Cursor getActivities() throws Exception;
+
+    /**
+     * Method in charge of returning the users from the database
+     * @return a cursor containing the users from the database
+     * @throws Exception if the pulling of the users fails
+     */
     Cursor getUsers() throws Exception;
+
+    /**
+     * Method in charge of returning the businesses from the database
+     * @return a cursor containing the businesses from the database
+     * @throws Exception if the pulling of the businesses fails
+     */
     Cursor getBusinesses() throws Exception;
 
+    /**
+     * Method in charge of returning whether the activities list in the database has been updated
+     * @return whether or not the database has been updated
+     * @throws Exception if the check fails
+     */
     Boolean isActivitiesUpdated()throws Exception;
+
+    /**
+     * Method in charge of returning whether the users list in the database has been updated
+     * @return whether or not the database has been updated
+     * @throws Exception if the check fails
+     */
     Boolean isUsersUpdated()throws Exception;
+
+    /**
+     * Method in charge of returning whether the businesses list in the database has been updated
+     * @return whether or not the database has been updated
+     * @throws Exception if the check fails
+     */
     Boolean isBusinessesUpdated()throws Exception;
 }

@@ -19,28 +19,53 @@ public class User
     String username;
     String password;
 
+    /**
+     * constructor of a user
+     * @param username
+     * @param password
+     */
     public User(String username, String password)
     {
         this.username = username;
         this.password = password;
     }
 
+    /**
+     *
+     * @return the username of the current user
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * sets the username of the current user
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return the password of the current user
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * sets the password of the current user
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return the colums of the user in the database
+     */
     public static String[] COLUMNS()
     {
         String[] COLUMNS = {
@@ -50,6 +75,11 @@ public class User
         return COLUMNS;
     }
 
+    /**
+     * converts arraylist of users to matrixcursor
+     * @param users the users arraylist
+     * @return the matrixcursor
+     */
     public static MatrixCursor getCursorFromList(ArrayList<User> users)
     {
         MatrixCursor c = new MatrixCursor(User.COLUMNS());
@@ -64,6 +94,11 @@ public class User
         return c;//doesn't return cursor rather matrix cursor and then it crashes...
     }
 
+    /**
+     * converts a cursor to an arraylis of users
+     * @param cursor the cursor being converted
+     * @return the arraylist of users
+     */
     public static ArrayList<User> getListFromCursor(Cursor cursor)
     {
         if(cursor == null || cursor.getCount() == 0)
@@ -89,6 +124,10 @@ public class User
         return users;
     }
 
+    /**
+     *
+     * @return the current user in content values form
+     */
     public final ContentValues getContentValue()
     {
         ContentValues values = new ContentValues();

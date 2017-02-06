@@ -19,6 +19,10 @@ public class MyPreference
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
 
+    /**
+     * constructor of the proference
+     * @param context
+     */
     public MyPreference(Context context)
     {
         pref = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
@@ -26,7 +30,10 @@ public class MyPreference
         counter = pref.getInt("counter",0);
     }
 
-
+    /**
+     * in charge of adding a user to the preference on the phone
+     * @param u the user being added
+     */
     public void addUser(User u)
     {
         editor.putString("username" + counter,u.getUsername());
@@ -38,6 +45,11 @@ public class MyPreference
         editor.commit();
     }
 
+    /**
+     * Check whether or nor a user is saved on the phone
+     * @param u the user being searched for
+     * @return whether or not it's saved on the phone
+     */
     public int isUserOnPhone(User u)//will return the index of the user (if such user doesn't exist return 0)
     {
         for(int i = 0; i < counter;i++)//going over all the users and checking for a match
@@ -50,6 +62,10 @@ public class MyPreference
         return 0;
     }
 
+    /**
+     * deletes a user from the phone (preference)
+     * @param u the user being deleted
+     */
     public void deleteUser(User u)
     {
         int i = isUserOnPhone(u);

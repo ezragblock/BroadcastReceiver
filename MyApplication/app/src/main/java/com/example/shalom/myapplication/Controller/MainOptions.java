@@ -17,54 +17,33 @@ import com.example.shalom.myapplication.model.entities.Business;
 
 public class MainOptions extends AppCompatActivity
 {
-
+    /**
+     * Constructor of the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_options);
     }
+
+    /**
+     * Method for calling up the activity adding window when the add activity button is pressed
+     * @param v
+     */
     public void addActivity(View v)
     {
         //open add activity window
         startActivity(new Intent(MainOptions.this,AddActivity.class));
     }
+
+    /**
+     * This method is for calling up the business creation window when the business creation button is pressed
+     * @param v
+     */
     public void addBusiness(View v)
     {
-
-        /*
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context); alertDialogBuilder.setTitle("login");
-
-        // Get the layout inflater
-        LayoutInflater inflater = this.getLayoutInflater();
-
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
-        alertDialogBuilder.setView(inflater.inflate(R.layout.dialog_add_business, null));
-
-        AlertDialog.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
-
-            @Override public void onClick(DialogInterface dialog, int which) {
-                switch(which)
-                {
-                    case Dialog.BUTTON_NEGATIVE:
-                        AlertDialog.
-                        break;
-                    case Dialog.BUTTON_POSITIVE:
-                        break;
-                }
-            }
-        };
-
-
-        // Add action buttons
-        alertDialogBuilder.setPositiveButton("Create", onClickListener);
-        alertDialogBuilder.setNegativeButton("Cancel",onClickListener);
-
-        alertDialogBuilder.show();*/
-
-
-
         //open the add business activity with intent
         startActivity(new Intent(MainOptions.this,CreateBusiness.class));
     }

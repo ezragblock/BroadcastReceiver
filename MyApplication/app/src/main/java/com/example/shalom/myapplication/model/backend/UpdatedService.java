@@ -12,6 +12,9 @@ public class UpdatedService extends Service
     private static final String TAG = "service";
     private static IDataSource manager = FactoryDataSource.getDataBase();
 
+    /**
+     * constructor for the service (also checks if the database has been updated or not
+     */
     @Override
     public void onCreate()
     {
@@ -34,7 +37,10 @@ public class UpdatedService extends Service
         }.execute ();
     }
 
-
+    /**
+     * This method is in charge of checking whether or not the database has been updated
+     * @return true if it has been updated and false otherwise
+     */
     private boolean checkForDBUpdates()
     {
         Intent ActivityUpdate, BusinessUpdate,UserUpdate;
@@ -74,19 +80,34 @@ public class UpdatedService extends Service
         }
     }
 
-
+    /**
+     * Not yet implemented
+     * @param intent
+     * @return
+     */
     @Override
     public IBinder onBind(Intent intent)
     {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+    /**
+     * start command listener method
+     * @param intent the intent
+     * @param flags the flags
+     * @param startId
+     * @return
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    /**
+     * destructor of the the service
+     */
     @Override
     public void onDestroy()
     {
