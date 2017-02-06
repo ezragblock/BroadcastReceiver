@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.SearchView;
@@ -17,14 +16,10 @@ import android.widget.ExpandableListView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.yedid.secondapp.R;
 import com.example.yedid.secondapp.model.backend.FactoryDataSource;
 import com.example.yedid.secondapp.model.entities.Activity;
-import com.example.yedid.secondapp.model.entities.ActivityType;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -309,7 +304,7 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
                 holder = (ActivityViewHolder) convertView.getTag();
             }
 
-            holder.setText(groupPosition,childPosition,children);
+            holder.setText(groupPosition,childPosition);
 
             return convertView;
         }
@@ -319,19 +314,49 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
             return false;
         }
 
-        private class GroupViewHolder {
+        private class GroupViewHolder{
 
-            public GroupViewHolder(View convertView) {
+            public GroupViewHolder(View convertView)
+            {
                 stateText = (TextView) convertView.findViewById(R.id.stateTextView);
             }
 
-            public void setText(int group) {
+            public void setText(int group)
+            {
                 stateText.setText(children[group].get(0).getState());
             }
 
-            TextView stateText;
+            private TextView stateText;
         }
 
+        private class ActivityViewHolder {
+
+
+            public ActivityViewHolder(View convertView)
+            {
+                stateTextView = (TextView) convertView.findViewById(R.id.stateTextView);
+                descriptionTextView = (TextView) convertView.findViewById(R.id.descriptionTextView);
+                endDateTextView = (TextView) convertView.findViewById(R.id.finishDateTextView);
+                beginingDAtaText = (TextView) convertView.findViewById(R.id.beginingDateTextView);
+            }
+
+            public void setText(int group,int child)
+            {
+                beginingDAtaText.setText(children[group].get(child).getBeginningDate().get(Calendar.DAY_OF_MONTH) + "/" +
+                        children[group].get(child).getBeginningDate().get(Calendar.MONTH) + "/" +
+                        children[group].get(child).getBeginningDate().get(Calendar.YEAR));
+                endDateTextView.setText(children[group].get(child).getFinishDate().get(Calendar.DAY_OF_MONTH) + "/" +
+                        children[group].get(child).getFinishDate().get(Calendar.MONTH) + "/" +
+                        children[group].get(child).getFinishDate().get(Calendar.YEAR));
+                stateTextView.setText("State: " + children[group].get(child).getState().toString());
+                descriptionTextView.setText("Description: " + children[group].get(child).getDescription());
+            }
+
+            TextView endDateTextView;
+            TextView stateTextView;
+            TextView descriptionTextView;
+            TextView beginingDAtaText;
+        }
     }
 
     /**
