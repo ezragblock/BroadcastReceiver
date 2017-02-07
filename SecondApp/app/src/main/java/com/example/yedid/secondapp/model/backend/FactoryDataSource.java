@@ -13,6 +13,11 @@ public class FactoryDataSource
 {
     static Context context;
     static IDS_manager myDataSource = null;
+
+    /**
+     *
+     * @return a database according to what the factory method "decides"
+     */
     public static IDS_manager getDataBase()
     {
         if(myDataSource == null)

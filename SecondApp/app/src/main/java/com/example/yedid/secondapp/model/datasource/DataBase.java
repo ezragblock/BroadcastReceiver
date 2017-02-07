@@ -25,6 +25,10 @@ public class DataBase implements IDS_manager {
     Context context;
     public final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
 
+    /**
+     * constructor for the database
+     * @param context the context from which it was created
+     */
     public DataBase(Context context)
     {
         this.context = context;
@@ -35,12 +39,19 @@ public class DataBase implements IDS_manager {
         updateList();
     }
 
-
+    /**
+     *
+     * @return a list of all the businesses in the database
+     */
     @Override
     public List<Business> getBusinesses() {
         return (ArrayList)businesses.clone();
     }
 
+    /**
+     *
+     * @return a list of all the activities in the database with
+     */
     @Override
     public List<Activity> getActivities() {
         ArrayList<Activity> a = new ArrayList<>();
@@ -54,6 +65,9 @@ public class DataBase implements IDS_manager {
         return a;
     }
 
+    /**
+     * This method is in charge of updating the list from the server
+     */
     @Override
     public void updateList() {
         if(context == null)
@@ -61,6 +75,11 @@ public class DataBase implements IDS_manager {
 
         //update the activities
         (new AsyncTask<String,String,ArrayList<Activity>>(){
+            /**
+             * Here the activity list is taken from the server for update
+             * @param params
+             * @return the arraylist of activities
+             */
             @Override
             protected ArrayList<Activity> doInBackground(String... params) {
                 ArrayList<Activity> a = new ArrayList<Activity>();
@@ -82,6 +101,10 @@ public class DataBase implements IDS_manager {
                 }
             }
 
+            /**
+             * puts the list of activities from the server into the activities list
+             * @param a
+             */
             @Override
             protected void onPostExecute(ArrayList<Activity> a) {
                 Log.i("LIST",a.toString());
