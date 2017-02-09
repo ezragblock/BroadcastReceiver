@@ -177,10 +177,12 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
     @Override
     public void onDetach() {
         super.onDetach();
+
         mListener = null;
     }
 
     /**
+     *
      * This is in charge of setting the search view
      * @param sv
      */
