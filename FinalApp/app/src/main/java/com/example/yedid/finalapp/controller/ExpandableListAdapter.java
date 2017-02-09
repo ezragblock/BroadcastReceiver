@@ -91,7 +91,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                children = (ArrayList<Activity>[]) results.values;
+                if(constraint.length() == 0)
+                    children = original;
+                else {
+                    children = new ArrayList[results.count];
+                    ArrayList<ArrayList<Activity>> myList = (ArrayList<ArrayList<Activity>>) results.values;
+
+                    //convert array list to array
+                    for (int i = 0; i < results.count; i++) {
+                        children[i] = myList.get(i);
+                    }
+                }
                 notifyDataSetChanged();
             }
         };
