@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity
 
     public FragmentManager fragmentManager = getSupportFragmentManager();
 
+    /**
+     * on the creation of the main activity this method is create fir setting up the fragments,
+     * the database, and the message on the bottom
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FactoryDataSource.setContex(this);
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Random rand = new Random();
-                Snackbar.make(view, messages.get(rand.nextInt(messages.size() - 1)), 3000)
+                Snackbar.make(view, messages.get(rand.nextInt(messages.size() - 1)), 5000)
                         .setAction("Action", null).show();
             }
         });
@@ -80,6 +85,9 @@ public class MainActivity extends AppCompatActivity
         this.setTitle("Trip Finder");
     }
 
+    /**
+     * closes the fragment when the back burron is pressed
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -94,6 +102,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * when the options are opened by the user this opens the list given
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -101,6 +114,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * when an item in the options menu is selected - i.e. the settings
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -116,6 +134,12 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * when a navigation item - from the navigation drawer is selected
+     * it opens the business or activity list
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -151,6 +175,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private ArrayList<String> messages = new ArrayList<>();
+
+    /**
+     * shows the message when the message circle on the bottom is pressed
+     * @param view
+     */
     protected void ShowMessage(View view)
     {
         Random rand = new Random();
@@ -158,11 +187,19 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * emptry - NOT USED
+     * @param activity
+     */
     @Override
     public void onFragmentInteraction(Activity activity) {
 
     }
 
+    /**
+     * whent the fragment calls this method to open the business it opens it accordingly
+     * @param item
+     */
     @Override
     public void onListFragmentInteraction(Business item) {
         Intent intent = new Intent(MainActivity.this,BusinessInfoActivity.class);
@@ -170,6 +207,10 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * unused
+     * @param uri
+     */
     @Override
     public void onFragmentInteraction(Uri uri) {
 
