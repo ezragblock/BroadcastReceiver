@@ -18,6 +18,11 @@ public class BroadcastReceiver extends android.content.BroadcastReceiver
     {
     }
 
+    /**
+     * In charge of receiving a broadcast in this case to update the database
+     * @param context
+     * @param intent
+     */
     @Override
     public void onReceive(Context context, Intent intent)
     {

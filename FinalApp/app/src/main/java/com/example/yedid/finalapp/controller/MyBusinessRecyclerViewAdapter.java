@@ -1,4 +1,4 @@
-package com.example.yedid.finalapp.controller;
+package com.example.yedid.finalapp.Controller;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

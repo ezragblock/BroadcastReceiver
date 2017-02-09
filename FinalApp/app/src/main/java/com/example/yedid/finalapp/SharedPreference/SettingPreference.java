@@ -20,7 +20,7 @@ public class SettingPreference
     private SharedPreferences.Editor editor;
 
     /**
-     * constructor of the proference
+     * constructor of the preference
      * @param context
      */
     public SettingPreference(Context context)
@@ -29,6 +29,11 @@ public class SettingPreference
         editor = pref.edit();
     }
 
+    /**
+     * in charge of changing the activity filter setting so it will filter accordingly
+     * @param Type
+     * @param value
+     */
     public void ChangeActivityFilterSetting(String Type,Boolean value)
     {
         editor.remove(Type);
@@ -36,6 +41,11 @@ public class SettingPreference
         editor.commit();
     }
 
+    /**
+     * get the setting filer
+     * @param Type
+     * @return
+     */
     public Boolean getSettingFilter(String Type)
     {
         if(Type == ActivityType.TRAVEL_AGENCY_TRIP.toString())

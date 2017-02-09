@@ -1,4 +1,4 @@
-package com.example.yedid.finalapp.controller;
+package com.example.yedid.finalapp.Controller;
 
 import android.content.Context;
 import android.net.Uri;
@@ -70,6 +70,11 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         return fragment;
     }
 
+    /**
+     * This method is set off when creating the fragment.
+     * It's in charge of setting it up
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +84,14 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         }
     }
 
+    /**
+     * This method is set off when creating the view.
+     * It inflates the view which is stored in the xml file
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,6 +100,12 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         //getActivity().setTitle("yedidya");
     }
 
+    /**
+     * This method is called post to the creation of the view.
+     * It is in charge of setting up all the listviews and other graphic parts
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -126,12 +145,21 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+
+    /**
+     * This method is called when a button is pressed - automatically created by the compiler
+     * @param activity
+     */
     public void onButtonPressed(Activity activity) {
         if (mListener != null) {
             mListener.onFragmentInteraction(activity);
         }
     }
 
+    /**
+     * This is in charge of attaching the fragment to the activity
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -143,12 +171,19 @@ public class ActivityFragment extends Fragment {/////////////////////////i much 
         }
     }
 
+    /**
+     * This is in charge of detaching the fragment finally from the activity
+     */
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
+    /**
+     * This is in charge of setting the search view
+     * @param sv
+     */
     public void setSearchView(SearchView sv)
     {
         searchView = sv;

@@ -14,6 +14,12 @@ public class Address implements Serializable
     public String city;
     public String street;
 
+    /**
+     * Constructor of an address
+     * @param state
+     * @param city
+     * @param street
+     */
     public Address(String state, String city, String street)
     {
         this.state = state;
@@ -21,16 +27,24 @@ public class Address implements Serializable
         this.street = street;
     }
 
+    /**
+     *
+     * @return string array of all the columns in order for the database
+     */
     public static String [] COLUMNS()
     {
         String[] COLUMNS = {
-              "state",
-              "city",
-              "street"
+                "state",
+                "city",
+                "street"
         };
         return COLUMNS;
     }
 
+    /**
+     *
+     * @return address in string format
+     */
     @Override
     public String toString() {
         return street + "," + city+ "," + state;
