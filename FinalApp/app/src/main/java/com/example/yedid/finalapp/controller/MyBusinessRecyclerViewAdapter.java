@@ -22,12 +22,23 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
     private final List<Business> dValues;
     private final BusinessFragment.OnListFragmentInteractionListener mListener;
 
+    /**
+     * cibstructor form the business recycler view adapter
+     * @param items
+     * @param listener
+     */
     public MyBusinessRecyclerViewAdapter(List<Business> items, BusinessFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
         dValues = (List<Business>) ((ArrayList<Business>)items).clone();
     }
 
+    /**
+     * returns the readied view for the fragment
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -35,6 +46,11 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
         return new ViewHolder(view);
     }
 
+    /**
+     * in charge of setting the textviews accordingly
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -54,11 +70,19 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
         });
     }
 
+    /**
+     * retuns the item count from the list
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mValues.size();
     }
 
+    /**
+     *
+     * @return the filtered list
+     */
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -106,6 +130,10 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
         public final TextView mBusinessId;
         public Business mItem;
 
+        /**
+         * sets up the textviews
+         * @param view
+         */
         public ViewHolder(View view) {
             super(view);
             mView = view;
@@ -114,6 +142,11 @@ public class MyBusinessRecyclerViewAdapter extends RecyclerView.Adapter<MyBusine
             mBusinessId = (TextView) view.findViewById(R.id.BusinessIdTextView);
         }
 
+        /**
+         * Ok... Well...
+         * Ummm.... I don't know what I'm supposed to comment on this...
+         * @return
+         */
         @Override
         public String toString() {
             return "stupid";

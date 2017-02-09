@@ -52,6 +52,10 @@ public class MainFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * thiss is opened on the creation of the main fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,13 @@ public class MainFragment extends Fragment {
         }
     }
 
+    /**
+     * This opens the view for the fragment from the xml file
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +79,10 @@ public class MainFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
+    /**
+     * When a button is pressed on the fragment
+     * @param uri
+     */
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -75,6 +90,10 @@ public class MainFragment extends Fragment {
         }
     }
 
+    /**
+     * in charge of attaching the fragment to the activity to ready it for creation
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -86,6 +105,9 @@ public class MainFragment extends Fragment {
         }
     }
 
+    /**
+     * detaches the fragment post to the destruction of the fragment
+     */
     @Override
     public void onDetach() {
         super.onDetach();

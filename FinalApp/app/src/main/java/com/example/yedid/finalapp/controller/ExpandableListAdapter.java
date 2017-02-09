@@ -26,6 +26,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
     private List<Activity>[] original;
     private Context context;
 
+    /**
+     * Constructor of the expendable list adapter
+     * @param activities the list of activities being put in the expendable list
+     * @param context
+     */
     public ExpandableListAdapter(List<Activity> activities, Context context) {
 
         this.original = getSortedByState(activities);
@@ -34,6 +39,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         inf = LayoutInflater.from(this.context);
     }
 
+    /**
+     * returns the activities sorted by their state
+     * @param activities
+     * @return
+     */
     private List<Activity>[] getSortedByState(List<Activity> activities)
     {
         ArrayList<String> group = new ArrayList<>();
@@ -60,6 +70,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         return result;
     }
 
+    /**
+     *
+     * @return the filter of the activities
+     */
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -107,41 +121,84 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         };
     }
 
+    /**
+     *
+     * @return returns the  froup count
+     * */
     @Override
     public int getGroupCount() {
         return children.length;
     }
 
+    /**
+     *
+     * @param groupPosition the group chosen
+     * @return the count of the children inside a group
+     */
     @Override
     public int getChildrenCount(int groupPosition) {
         return children[groupPosition].size();
     }
 
+    /**
+     * gets a specific chosen group
+     * @param groupPosition the group chosen
+     * @return the group that was chosen
+     */
     @Override
     public Object getGroup(int groupPosition) {
         return children[groupPosition].get(0).getState();
     }
 
+    /**
+     * gets a specific child from a group
+     * @param groupPosition the group chosen
+     * @param childPosition the child chosen
+     * @return
+     */
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return children[groupPosition].get(childPosition);
     }
 
+    /**
+     * return a group ID
+     * @param groupPosition
+     * @return
+     */
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
+    /**
+     * returns the ID child of a group which were chosen
+     * @param groupPosition
+     * @param childPosition
+     * @return
+     */
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
 
+    /**
+     * returns whether or not the IDs are stable
+     * @return
+     */
     @Override
     public boolean hasStableIds() {
         return true;
     }
 
+    /**
+     * returns the group view
+     * @param groupPosition
+     * @param isExpanded
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         GroupViewHolder holder;
@@ -160,6 +217,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         return convertView;
     }
 
+    /**
+     * returns the child view
+     * @param groupPosition
+     * @param childPosition
+     * @param isLastChild
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ActivityViewHolder holder;
@@ -177,6 +243,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         return convertView;
     }
 
+    /**
+     * returns whether or not a child of a group is selected currently
+     * @param groupPosition
+     * @param childPosition
+     * @return
+     */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
@@ -184,11 +256,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
 
     private class GroupViewHolder{
 
+        /**
+         * Constructor of the group view holder
+         * @param convertView
+         */
         public GroupViewHolder(View convertView)
         {
             stateText = (TextView) convertView.findViewById(R.id.stateTextView);
         }
 
+        /**
+         * puts in the state text into the state textview
+         * @param group
+         */
         public void setText(int group)
         {
             stateText.setText(children[group].get(0).getState());
@@ -199,6 +279,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
 
     private class ActivityViewHolder {
 
+        /**
+         * constructor - sets up all the textviews
+         * @param convertView
+         */
         public ActivityViewHolder(View convertView)
         {
             stateTextView = (TextView) convertView.findViewById(R.id.stateTextView);
@@ -207,6 +291,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
             beginingDAtaText = (TextView) convertView.findViewById(R.id.beginingDateTextView);
         }
 
+        /**
+         * sets the text of the textviews according to the activity given
+         * @param group
+         * @param child
+         */
         public void setText(int group,int child)
         {
             beginingDAtaText.setText(children[group].get(child).getBeginningDate().get(Calendar.DAY_OF_MONTH) + "/" +

@@ -22,6 +22,11 @@ public class BusinessInfoActivity extends AppCompatActivity {
     private ExpandableListView activitiesListView;
     private Business business;
 
+    /**
+     * This is called on the creation of the business info activity.
+     * It's in charge of adding all the business info into the window and adding the activities into the business aat the bottom
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +55,11 @@ public class BusinessInfoActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * This method is called when the user presses the phone number of the business
+     * It opens the dialer with the phone number
+     * @param view
+     */
     protected void Dial(View view)
     {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + business.getTelephoneNumber()));
@@ -63,6 +72,11 @@ public class BusinessInfoActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is called when the email address of the business is pressed.
+     * It opens up the option to send an email to the business's email address
+     * @param view
+     */
     protected void SentEmail(View view)
     {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -72,6 +86,11 @@ public class BusinessInfoActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, "Send Email"));
     }
 
+    /**
+     * This pressed when the user presses the business address.
+     * It opens it in Google maps
+     * @param view
+     */
     protected void OpenMap(View view)
     {
         Uri gmmIntentUri = Uri.parse("geo:0,0?q=1600 " + business.getAddress().state + ", " + business.getAddress().city + ", " + business.getAddress().state);
@@ -80,6 +99,11 @@ public class BusinessInfoActivity extends AppCompatActivity {
         startActivity(mapIntent);
     }
 
+    /**
+     * This is pressed when the user presses the website of the business
+     * It opens a webview in the activity
+     * @param view
+     */
     protected void OpenWebSite(View view)
     {
         Intent intent = new Intent(this, BusinessWebView.class);
@@ -87,6 +111,9 @@ public class BusinessInfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Sets up the business arguments from the intent
+     */
     //set the business argument for thisfragment so we can take the buisness data and print them
     private void setBusinessArg()
     {
@@ -94,6 +121,9 @@ public class BusinessInfoActivity extends AppCompatActivity {
         business = (Business)intent.getSerializableExtra("business");
     }
 
+    /**
+     * This method takes the business info and puts it in all the controls like buttons etc.
+     */
     //take the data from the business paramter and print it
     private void setBusinessData()
     {
