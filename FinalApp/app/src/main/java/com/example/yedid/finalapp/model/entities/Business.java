@@ -15,6 +15,7 @@ public class Business implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
+
     int id;
     String name;
     Address address;
