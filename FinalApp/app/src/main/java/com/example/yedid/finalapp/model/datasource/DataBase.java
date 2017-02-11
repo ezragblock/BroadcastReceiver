@@ -6,12 +6,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.yedid.finalapp.SharedPreference.SettingPreference;
 import com.example.yedid.finalapp.model.entities.Activity;
 import com.example.yedid.finalapp.model.entities.ActivityType;
 import com.example.yedid.finalapp.model.entities.Business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -25,10 +27,6 @@ public class DataBase implements IDS_manager {
     Context context;
     public final String PROVIDER_NAME = "content://com.example.shalom.myapplication";
 
-    private Boolean HOTEL_VACATION_PACKAGE = true;
-    private Boolean TRAVEL_AGENCY_TRIP = false;
-    private Boolean ENTERTAINMENT = false;
-    private Boolean AIRLINE = false;
 
     /**
      * constructor for the database
@@ -64,14 +62,15 @@ public class DataBase implements IDS_manager {
         //I choose only the travels activities
         for(Activity activity:activities)
         {
+            SettingPreference settingPreference = new SettingPreference(context);
             //add according to user preference
-            if(activity.getActivityType().equals(ActivityType.TRAVEL_AGENCY_TRIP) && this.TRAVEL_AGENCY_TRIP)
+            if(settingPreference.getSettingFilter(ActivityType.TRAVEL_AGENCY_TRIP) && activity.getActivityType().equals(ActivityType.TRAVEL_AGENCY_TRIP))
                 a.add(activity);
-            else if(this.HOTEL_VACATION_PACKAGE && activity.getActivityType().equals(ActivityType.HOTEL_VACATION_PACKAGE))
+            else if(settingPreference.getSettingFilter(ActivityType.HOTEL_VACATION_PACKAGE) && activity.getActivityType().equals(ActivityType.HOTEL_VACATION_PACKAGE))
                 a.add(activity);
-            else if(this.ENTERTAINMENT && activity.getActivityType().equals(ActivityType.ENTERTAINMENT))
+            else if(settingPreference.getSettingFilter(ActivityType.ENTERTAINMENT) && activity.getActivityType().equals(ActivityType.ENTERTAINMENT))
                 a.add(activity);
-            else if(this.AIRLINE && activity.getActivityType().equals(ActivityType.AIRLINE))
+            else if(settingPreference.getSettingFilter(ActivityType.AIRLINE) && activity.getActivityType().equals(ActivityType.AIRLINE))
                 a.add(activity);
         }
         return a;
