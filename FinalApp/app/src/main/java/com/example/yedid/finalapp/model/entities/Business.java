@@ -6,15 +6,16 @@ import android.database.MatrixCursor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.ArrayList;
+
+import java.util.ArrayList;
 
 /**
  * Created by Shalom on 11/26/2016.
  */
 
-public class Business implements Serializable
+public class Business
 {
-    private static final long serialVersionUID = 1L;
-
     int id;
     String name;
     Address address;
@@ -22,6 +23,15 @@ public class Business implements Serializable
     String email;
     String websiteAddress;
 
+    /**
+     * Constructor for a business
+     * @param id the business identification number
+     * @param name the business name
+     * @param address the address of the business
+     * @param telephoneNumber the business telephone number
+     * @param email the business's email address
+     * @param websiteAddress the business's website URL
+     */
     public Business(int id, String name, Address address, String telephoneNumber, String email, String websiteAddress)
     {
         this.id = id;
@@ -32,70 +42,127 @@ public class Business implements Serializable
         this.websiteAddress = websiteAddress;
     }
 
+    /**
+     *
+     * @return the business id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *  sets the business id
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return the business name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * sets the business name
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return returns the business's address
+     */
     public Address getAddress() {
         return address;
     }
 
+    /**
+     * sets the business's address
+     * @param address
+     */
     public void setAddress(Address address) {
         this.address = address;
     }
 
+    /**
+     *
+     * @return the email address of the business
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * sets the email address
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return the telephone number
+     */
     public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
+    /**
+     * sets the telephone number
+     * @param telephoneNumber
+     */
     public void setTelephoneNumber(String telephoneNumber)
     {
         this.telephoneNumber = telephoneNumber;
     }
 
+    /**
+     *
+     * @return the website url
+     */
     public String getWebsiteAddress() {
         return websiteAddress;
     }
 
+    /**
+     * sets the website url
+     * @param websiteAddress
+     */
     public void setWebsiteAddress(String websiteAddress) {
         this.websiteAddress = websiteAddress;
     }
 
+    /**
+     * returns the columns of the business in the database
+     * @return
+     */
     public static String[] COLUMNS()
     {
         String[] COLUMNS = {
-            "id",
-            "name",
-            "state",
-            "city",
-            "street",
-            "telephoneNumber",
-            "email",
-            "websiteAddress"
+                "id",
+                "name",
+                "state",
+                "city",
+                "street",
+                "telephoneNumber",
+                "email",
+                "websiteAddress"
         };
         return COLUMNS;
     }
 
+    /**
+     * converts a arraylist of businesses to a cursor
+     * @param buisness the arraylist
+     * @return the cursor
+     */
     public static Cursor getCursorFromList(ArrayList<Business> buisness)
     {
         MatrixCursor c = new MatrixCursor(Business.COLUMNS());
@@ -125,32 +192,41 @@ public class Business implements Serializable
         return null;
     }
 
+    /**
+     * converts a cursor to an arraylist of businesses
+     * @param cursor the cursor being converted
+     * @return the array;ist of businesses
+     */
     public static ArrayList<Business> getListFromCursor(Cursor cursor)
     {
         if(cursor == null)
             return new ArrayList<Business>();
 
-        //if(!Activity.COLUMNS().equals(cursor.getColumnNames()))
-        //   throw new IllegalArgumentException("The columns must match the entity's paramters");
+        if(!Business.COLUMNS().equals(cursor.getColumnNames()))
+            throw new IllegalArgumentException("The columns must match the entity's paramters");
 
-        ArrayList<Business> buisness = new ArrayList<>();//this is the list that we will return with all the activities
+        ArrayList<Business> buisness = new ArrayList<>();//this is the list that we will return with all the businesses
         cursor.moveToFirst();
 
         do
         {
             buisness.add(new Business(cursor.getInt(cursor.getColumnIndex(COLUMNS()[0])),
-                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[1])),
-                                      new Address(cursor.getString(cursor.getColumnIndex(COLUMNS()[2])),
-                                              cursor.getString(cursor.getColumnIndex(COLUMNS()[3])),
-                                              cursor.getString(cursor.getColumnIndex(COLUMNS()[4]))),
-                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[5])),
-                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[6])),
-                                      cursor.getString(cursor.getColumnIndex(COLUMNS()[7]))));
+                    cursor.getString(cursor.getColumnIndex(COLUMNS()[1])),
+                    new Address(cursor.getString(cursor.getColumnIndex(COLUMNS()[2])),
+                            cursor.getString(cursor.getColumnIndex(COLUMNS()[3])),
+                            cursor.getString(cursor.getColumnIndex(COLUMNS()[4]))),
+                    cursor.getString(cursor.getColumnIndex(COLUMNS()[5])),
+                    cursor.getString(cursor.getColumnIndex(COLUMNS()[6])),
+                    cursor.getString(cursor.getColumnIndex(COLUMNS()[7]))));
 
         }while (cursor.moveToNext());
         return buisness;
     }
 
+    /**
+     *
+     * @return the business in content vaule form
+     */
     public final ContentValues getContentvalue()
     {
         final ContentValues values = new ContentValues();
@@ -159,12 +235,14 @@ public class Business implements Serializable
         values.put("state",address.state);
         values.put("city",address.city);
         values.put("street",address.street);
-        values.put("telephoneNumber",this.getTelephoneNumber());
-        values.put("email",this.getEmail());
         values.put("websiteAddress",this.getWebsiteAddress());
         return values;
     }
 
+    /**
+     *
+     * @return business in string format
+     */
     @Override
     public String toString() {
         return this.name;

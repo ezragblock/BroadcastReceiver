@@ -1,4 +1,4 @@
-package com.example.yedid.finalapp.controller;
+package com.example.yedid.finalapp.Controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +12,11 @@ public class BusinessWebView extends AppCompatActivity {
 
     private WebView webView;
 
+    /**
+     * on the creation of the webview activity,
+     * it's in charge of setting up all the things including the webview itself with the website from the business
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,9 @@ public class BusinessWebView extends AppCompatActivity {
         webView.loadUrl(address);
     }
 
+    /**
+     * Unused method
+     */
     private class Callback extends WebViewClient{
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {

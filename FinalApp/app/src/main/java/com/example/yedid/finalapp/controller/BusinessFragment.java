@@ -1,4 +1,4 @@
-package com.example.yedid.finalapp.controller;
+package com.example.yedid.finalapp.Controller;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -57,6 +57,10 @@ public class BusinessFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * This method is called on the creation of the fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,15 @@ public class BusinessFragment extends Fragment {
         }
     }
 
+    /**
+     * This method is called during the creaation of the view
+     * It uses the inflater to open the view from the xml file
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_business_list, container, false);
@@ -112,7 +125,10 @@ public class BusinessFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * This is called on to attach the fragment to the activity
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -124,6 +140,9 @@ public class BusinessFragment extends Fragment {
         }
     }
 
+    /**
+     * This is called to detach the fragment after destroying it from the activity
+     */
     @Override
     public void onDetach() {
         super.onDetach();
