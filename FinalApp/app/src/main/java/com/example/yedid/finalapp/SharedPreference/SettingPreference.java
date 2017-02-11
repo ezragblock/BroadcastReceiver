@@ -34,10 +34,10 @@ public class SettingPreference
      * @param Type
      * @param value
      */
-    public void ChangeActivityFilterSetting(String Type,Boolean value)
+    public void ChangeActivityFilterSetting(ActivityType Type,Boolean value)
     {
-        editor.remove(Type);
-        editor.putBoolean(Type,value);
+        editor.remove(Type.toString());
+        editor.putBoolean(Type.toString(),value);
         editor.commit();
     }
 
@@ -46,10 +46,10 @@ public class SettingPreference
      * @param Type
      * @return
      */
-    public Boolean getSettingFilter(String Type)
+    public Boolean getSettingFilter(ActivityType Type)
     {
-        if(Type == ActivityType.TRAVEL_AGENCY_TRIP.toString())
-            return pref.getBoolean(Type,true);//in this trpe my default is true
-        return pref.getBoolean(Type,false);
+        if(Type == ActivityType.TRAVEL_AGENCY_TRIP)
+            return pref.getBoolean(Type.toString(),true);//in this trpe my default is true
+        return pref.getBoolean(Type.toString(),false);
     }
 }

@@ -30,7 +30,6 @@ public class BroadcastReceiver extends android.content.BroadcastReceiver
         // TODO Auto-generated method stub
         // Extract data included in the Intent
         CharSequence intentData = intent.getCharSequenceExtra("message");
-        Toast.makeText(context, "Javacodegeeks received the Intent's message:" + intentData,Toast.LENGTH_LONG).show();
         if(intent.getAction().matches("com.example.shalom.secondapp.UPDATE_LIST"))
         {
             manager = new DataBase(context);

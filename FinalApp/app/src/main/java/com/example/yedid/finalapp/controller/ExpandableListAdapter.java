@@ -1,4 +1,4 @@
-package com.example.yedid.finalapp.Controller;
+package com.example.yedid.finalapp.controller;
 
 import android.content.Context;
 import android.view.LayoutInflater;

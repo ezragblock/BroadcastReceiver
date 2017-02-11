@@ -1,4 +1,4 @@
-package com.example.yedid.finalapp.Controller;
+package com.example.yedid.finalapp.controller;
 
 import android.content.Context;
 import android.net.Uri;
@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.yedid.finalapp.R;
 import com.example.yedid.finalapp.model.backend.FactoryDataSource;
 import com.example.yedid.finalapp.model.entities.Activity;
+import com.example.yedid.finalapp.controller.ExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
