@@ -202,9 +202,6 @@ public class Business
         if(cursor == null)
             return new ArrayList<Business>();
 
-        if(!Business.COLUMNS().equals(cursor.getColumnNames()))
-            throw new IllegalArgumentException("The columns must match the entity's paramters");
-
         ArrayList<Business> buisness = new ArrayList<>();//this is the list that we will return with all the businesses
         cursor.moveToFirst();
 
