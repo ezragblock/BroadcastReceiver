@@ -76,6 +76,7 @@ public class Register extends AppCompatActivity
         EditText username = ((EditText)findViewById(R.id.username));
         final User u = new User(username.getText().toString(),((EditText)findViewById(R.id.Password)).getText().toString());
 
+
         (new AsyncTask<String,Integer,String>() {
 
             @Override
@@ -92,7 +93,7 @@ public class Register extends AppCompatActivity
                     return e.getMessage();
                 }
 
-                return "Your account was registered succesfully";
+                return "Your account was registered successfully";
             }
 
             @Override

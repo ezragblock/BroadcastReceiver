@@ -5,6 +5,9 @@ import android.widget.Toast;
 
 import com.example.shalom.myapplication.model.entities.User;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -55,14 +58,27 @@ public class MyPreference
         for(int i = 0; i < counter;i++)//going over all the users and checking for a match
         {
             String s1 = pref.getString("username" + i,"no such name");
-            String s2 = pref.getString("password" + i,"no such name");
+            String s2 = pref.getString("password" + i,"no such password");
             if(s1.equals(u.getUsername()) && s2.equals(u.getPassword()))
                 return i;
         }
-        return 0;
+        return -1;
     }
 
+
+    public ArrayList<User> getUsers()
+    {
+        ArrayList<User> users = new ArrayList<User>();
+        for(int i = 0; i < counter;i++)//going over all the users and add them to the list
+        {
+            String s1 = pref.getString("username" + i,"no such name");
+            String s2 = pref.getString("password" + i,"no such name");
+            users.add(new User(s1,s2));
+        }
+        return users;
+    }
     /**
+     *
      * deletes a user from the phone (preference)
      * @param u the user being deleted
      */
@@ -73,8 +89,17 @@ public class MyPreference
         {
             editor.remove("username" + i);
             editor.remove("password" + i);
+            while(i<counter-1)
+            {
+
+                int j = i + 1;
+                editor.putString("username" + i,pref.getString("username" + j,""));
+                editor.putString("password" + i,pref.getString("password" + j,""));
+                i++;
+            }
+            editor.putInt("counter",counter-1);
+            counter--;
             editor.commit();
         }
     }
-
 }

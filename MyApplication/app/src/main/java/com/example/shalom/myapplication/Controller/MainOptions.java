@@ -8,15 +8,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.shalom.myapplication.R;
+import com.example.shalom.myapplication.SharedPreference.MyPreference;
 import com.example.shalom.myapplication.model.entities.Address;
 import com.example.shalom.myapplication.model.entities.Business;
+import com.example.shalom.myapplication.model.entities.User;
+
+import java.util.ArrayList;
 
 public class MainOptions extends AppCompatActivity
 {
+
+
+
+
     /**
      * Constructor of the activity
      * @param savedInstanceState
