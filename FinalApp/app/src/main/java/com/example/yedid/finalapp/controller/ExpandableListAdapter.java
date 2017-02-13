@@ -63,7 +63,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         {
             for(int i = 0;i < group.size();i++)
             {
-                if(group.get(i) == activity.getState())
+                if(group.get(i).equals(activity.getState()))
                     result[i].add(activity);
             }
         }//add every activity to the appropriate position in the group
