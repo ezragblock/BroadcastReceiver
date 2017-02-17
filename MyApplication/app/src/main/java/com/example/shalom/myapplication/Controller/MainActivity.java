@@ -12,6 +12,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.example.shalom.myapplication.R;
+import com.example.shalom.myapplication.model.backend.UpdatedService;
+
 public class MainActivity extends Activity
 {
     /**
@@ -24,6 +26,7 @@ public class MainActivity extends Activity
         //on Create
         super.onCreate(bundle);
         setContentView(R.layout.activity_main);
+        startService(new Intent(this, UpdatedService.class));
     }
 
     /**

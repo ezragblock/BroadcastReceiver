@@ -10,7 +10,14 @@ import android.support.annotation.Nullable;
 public class UpdatedService extends Service
 {
     private static final String TAG = "service";
+    private static Boolean IsRunning = false;
     private static IDataSource manager = FactoryDataSource.getDataBase();
+
+    public static Boolean IsServiceRunning()
+    {
+        return IsRunning;
+    }
+
 
     /**
      * constructor for the service (also checks if the database has been updated or not
@@ -19,13 +26,18 @@ public class UpdatedService extends Service
     public void onCreate()
     {
         super.onCreate();
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        IsRunning = true;
 
         new AsyncTask<String, String, String>()
         {
             @Override
             protected String doInBackground(final String... params)
             {
-                if(checkForDBUpdates())
+                if(checkForDBUpdates())//this function send a broadcast if she detect a change on the server
                 {
                     return "DataBase Has been Updated";
                 }
@@ -34,7 +46,7 @@ public class UpdatedService extends Service
                     return "";
                 }
             }
-        }.execute ();
+        }.execute();
     }
 
     /**
@@ -47,7 +59,7 @@ public class UpdatedService extends Service
         //sets the appropriate intents in advance
         ActivityUpdate = new Intent("com.example.shalom.secondapp.UPDATE_LIST").putExtra("table", 'a');
         BusinessUpdate = new Intent("com.example.shalom.secondapp.UPDATE_LIST").putExtra("table", 'b');
-        UserUpdate = new Intent("com.example.shalom.secondapp.UPDATE_LIST").putExtra("table", 'u');
+        UserUpdate = new Intent("com.example.shalom.secondapp.UPDATE_USER").putExtra("table", 'u');
 
         while (true)
         {
@@ -57,17 +69,14 @@ public class UpdatedService extends Service
                 if (manager.isActivitiesUpdated())
                 {
                     sendBroadcast(ActivityUpdate);
-                    return true;
                 }
                 if (manager.isBusinessesUpdated())
                 {
                     sendBroadcast(BusinessUpdate);
-                    return true;
                 }
                 if(manager.isUsersUpdated())
                 {
                     sendBroadcast(UserUpdate);
-                    return true;
                 }
             }
             catch (Exception e)
@@ -76,7 +85,6 @@ public class UpdatedService extends Service
             }
             //wait 10 seconds
             SystemClock.sleep(10000);
-            return false;
         }
     }
 

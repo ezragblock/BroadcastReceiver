@@ -32,11 +32,13 @@ public class CreateBusiness extends AppCompatActivity {
      */
     public void addBusiness(View v)
     {
+        //creating the address from the UI
         Address address = new Address(
                 ((EditText) findViewById(R.id.state)).getText().toString()
                 ,((EditText) findViewById(R.id.city)).getText().toString()
                 ,((EditText) findViewById(R.id.street)).getText().toString());
 
+        //creating a business from the UI
         final Business newBusiness = new Business(
                 Integer.parseInt(((EditText) findViewById(R.id.ID)).getText().toString())
                 ,((EditText) findViewById(R.id.name)).getText().toString()
@@ -47,7 +49,7 @@ public class CreateBusiness extends AppCompatActivity {
         //add to content provider
         final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/businesses");
 
-
+        //add this business to the database
         (new AsyncTask<String,Integer,String>() {
             @Override
             protected String doInBackground(String... params)
@@ -68,7 +70,7 @@ public class CreateBusiness extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT);
                 toast.show();
             }
-        }).execute();
+        }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);//for multithreading
         this.finish();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.shalom.myapplication.Controller;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.shalom.myapplication.R;
 import com.example.shalom.myapplication.SharedPreference.MyPreference;
+import com.example.shalom.myapplication.model.backend.UpdatedService;
 import com.example.shalom.myapplication.model.datasource.CustomContentProvider;
 import com.example.shalom.myapplication.model.entities.User;
 
@@ -35,6 +37,8 @@ public class Login extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         /*EditText usernameText =(EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.Password);
         MyPreference pref = new MyPreference(this);
@@ -44,6 +48,8 @@ public class Login extends AppCompatActivity
             usernameText.setText(favoriteUser.getUsername());
             passwordText.setText(favoriteUser.getPassword());
         }*/
+
+        //we set the users we save on the phone in the drop down list
         ArrayList<User> users = (new MyPreference(this)).getUsers();
         ArrayList<String> usernames = new ArrayList<String>();
         for (User user : users)
@@ -69,7 +75,6 @@ public class Login extends AppCompatActivity
         });
     }
 
-
     /**
      * This method is called when the user enters the username and password
      * and this checks if its in the database (or on the phone if it was saved there)
@@ -87,45 +92,43 @@ public class Login extends AppCompatActivity
         else
         {
             //now we will check in the database
-            (new AsyncTask<String,String,Cursor>() {
+            (new AsyncTask<String,String,ArrayList<User>>() {
                 @Override
-                protected void onPostExecute(Cursor cursor) {
-                    ArrayList<User> users = User.getListFromCursor(cursor);
-                    for (User user : users)//going for each user in the database and checking if his data match the input
-                    {
-                        if (user.getUsername().equals(u.getUsername())
-                                && user.getPassword().equals(u.getPassword()))//checking if the username and password are a match
-                        {
-                            Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
-                            //user opened the application... does anything later need to know the user who opened it or not?
-                            startActivity(new Intent(Login.this, MainOptions.class));
-                            return;
-                        }
-                    }
-                    //check if it exists in database
-
-                    //if we went over all the users and there was no match we will let the user know
-                    Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-
-                @Override
-                protected Cursor doInBackground(String... params)
+                protected ArrayList<User> doInBackground(String... params)
                 {
                     try
                     {
                         Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-                        return getContentResolver().query(uri,null,null,null,null);
+                        return User.getListFromCursor(getContentResolver().query(uri,null,null,null,null));
                     }
                     catch (Exception e)
                     {
                         return null;
                     }
                 }
-            }).execute();
+
+                @Override
+                protected void onPostExecute(ArrayList<User> users) {
+                    for (User user : users)//going for each user in the database and checking if his data match the input
+                    {
+                        if (user.getUsername().equals(u.getUsername())
+                                && user.getPassword().equals(u.getPassword()))//checking if the username and password are a match
+                        {
+                            Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                            if(((CheckBox)findViewById(R.id.save_checkbox)).isChecked())
+                                (new MyPreference(getApplicationContext())).addUser(u);
+                            //user opened the application... does anything later need to know the user who opened it or not?
+                            startActivity(new Intent(Login.this, MainOptions.class));
+                            return;
+                        }
+                    }
+                    //check if it exists in database
+                    //if we went over all the users and there was no match we will let the user know
+                    Toast toast = Toast.makeText(getApplicationContext(), "Username or Password are incorrect", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);//for multithreading
         }
-        if(((CheckBox)findViewById(R.id.save_checkbox)).isChecked())
-            (new MyPreference(this)).addUser(u);
         this.finish();
     }
 

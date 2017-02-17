@@ -66,7 +66,7 @@ public class MyPreference
     }
 
 
-    public ArrayList<User> getUsers()
+    public ArrayList<User> getUsers()//this function is used for the drop down list in the login activity,making it easy for the user to log in
     {
         ArrayList<User> users = new ArrayList<User>();
         for(int i = 0; i < counter;i++)//going over all the users and add them to the list

@@ -113,6 +113,7 @@ public class AddActivity extends AppCompatActivity
 
         final Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/activities");
 
+        //this task is to add the activity
         (new AsyncTask<String,Integer,String>() {
             @Override
             protected String doInBackground(String... params)
@@ -132,8 +133,7 @@ public class AddActivity extends AppCompatActivity
                 Toast toast = Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT);
                 toast.show();
             }
-        }).execute();
+        }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);//for multithreading
         this.finish();
     }
 }
-////////////////////////////////////////////////////////////

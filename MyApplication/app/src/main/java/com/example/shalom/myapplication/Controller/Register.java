@@ -33,6 +33,7 @@ public class Register extends AppCompatActivity
         setContentView(R.layout.activity_register);
     }
 
+
     /**
      * This method is called when the user presses the register button after entering a username and password
      * and it creates the new user and adds it to the database, and saves it on the phone if the option was selected
@@ -70,7 +71,7 @@ public class Register extends AppCompatActivity
                     return new ArrayList<User>();
                 }
             }
-        }).execute();
+        }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);//for multithreading
 
         //add the user
         EditText username = ((EditText)findViewById(R.id.username));
@@ -86,30 +87,32 @@ public class Register extends AppCompatActivity
                 {
                     //android.os.Debug.waitForDebugger();
                     Uri uri = Uri.parse("content://" + CustomContentProvider.PROVIDER_NAME + "/users");
-                    getContentResolver().insert(uri,u.getContentValue());
+                    Uri uriReturned = getContentResolver().insert(uri,u.getContentValue());
+                    if(uriReturned == null)
+                        return "";
+                    return "Your account was registered successfully";
                 }
                 catch (Exception e)
                 {
                     return e.getMessage();
                 }
-
-                return "Your account was registered successfully";
             }
 
             @Override
-            protected void onPostExecute(String s)
-            {
-                Toast toast = Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT);
+            protected void onPostExecute(String s) {
+                if(!s.equals(""))
+                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                if (s.equals("Your account was registered successfully") || s.equals("")) {
+                    if(((CheckBox)findViewById(R.id.SaveOnPhone)).isChecked()) {
+                        (new MyPreference(getApplicationContext())).addUser(u);
+                        Toast.makeText(getApplicationContext(), "saved on your phone", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Register.this,MainOptions.class));
+                    }
+                }
             }
-        }).execute();
+        }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);//for multithreading
 
         //add the user to the phone (if it doesn't already exist)
-        if(((CheckBox)findViewById(R.id.SaveOnPhone)).isChecked())
-        {
-            (new MyPreference(this)).addUser(u);
-            Toast.makeText(this,"saved on your phone",Toast.LENGTH_SHORT).show();
-        }
-        startActivity(new Intent(Register.this,MainOptions.class));
         this.finish();
     }
 }
